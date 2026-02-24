@@ -1,0 +1,2 @@
+#!/bin/sh
+(export SALENV_PATH=/project/sal/salenv; export BIGLOO_PATH=/project/sal/bigloo; export GMP_PATH=/project/sal/gmp; export GMP_LIB=$GMP_PATH/lib; export SCM_LIBS=$SALENV_PATH/lib:$BIGLOO_PATH/lib/2.5a; export LD_LIBRARY_PATH=$SCM_LIBS:$GMP_LIB; export PATH=$SALENV_PATH/bin:$BIGLOO_PATH/bin:/usr/bin:/bin; export SALPATH=.:$SALENV_PATH/contexts; export BIGLOOLIB=$SCM_LIBS:$GMP_LIB; ltlweb 2>&1)

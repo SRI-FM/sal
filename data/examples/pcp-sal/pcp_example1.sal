@@ -1,0 +1,84 @@
+pcp_example1 : CONTEXT =
+BEGIN
+
+  Semaphore : TYPE = {sem1};
+
+  semSetCtx : CONTEXT = simple_set{Semaphore;};
+
+  NumberOfTasks : NATURAL = 1;
+
+  taskCtx : CONTEXT = pcp_task{Semaphore; NumberOfTasks};
+
+  JobIdx : TYPE = taskCtx!JobIdx;
+
+  task1 : taskCtx!TaskDescriptor = 
+                  (# priority := 100, 
+                     period := 5, 
+                     semaphores := semSetCtx!insert(sem1, semSetCtx!empty_set)
+                   #);
+
+  tasks : taskCtx!TaskDescriptors = 
+          [ [i : JobIdx]
+	          task1];
+	
+  rsrcCtx : CONTEXT = pcp_rsrc{Semaphore; NumberOfTasks, tasks};
+
+  schCtx : CONTEXT = pcp_scheduler{Semaphore; NumberOfTasks, tasks};
+
+  RSRC : TYPE = rsrcCtx!RSRC;
+
+  Turn : TYPE = schCtx!Turn;
+
+  turn?(t : Turn, j : JobIdx) : BOOLEAN = schCtx!turn?(t, j);
+
+  max_period : NATURAL = schCtx!max_period;
+
+  SIMPLE_PC : TYPE = {l1, l2, l3};
+
+  JobState : TYPE = schCtx!JobState;
+  JobStatus : TYPE = schCtx!JobStatus;
+
+  precedes?(j : JobIdx, k : JobIdx) : BOOLEAN =
+    schCtx!precedes?(j,k);
+
+  priority(j : JobIdx) : NATURAL =
+    schCtx!priority(j);
+
+  simple_job : MODULE =
+	BEGIN
+    INPUT turn : Turn
+    OUTPUT status : JobStatus
+    GLOBAL rsrc : RSRC
+    OUTPUT pc : SIMPLE_PC
+  INITIALIZATION
+    status = schCtx!finished;
+    pc = l1
+	TRANSITION
+    [
+       pc = l1 AND turn?(turn',1) --> % execute first step
+                                       status' = schCtx!started;
+                                       pc' = l2
+       []
+       pc = l2 AND turn?(turn',1) --> % execute second step
+                                       pc' = l3
+       []
+       pc = l3 AND turn?(turn',1) --> % execute third step
+                                       pc' = l1;
+                                       status' = schCtx!finished
+    ]
+	END;
+
+  system : MODULE = 
+  schCtx!scheduler ||
+  ((WITH OUTPUT job_status : ARRAY JobIdx OF JobStatus
+		RENAME status TO job_status[1] 
+    IN simple_job)
+   []
+  schCtx!idle_process);  
+
+
+  deadlock? (job_state : ARRAY JobIdx OF JobState, t : Turn) : BOOLEAN = schCtx!deadlock?(job_state, t);
+
+  deadlock_free : THEOREM system |- G(NOT schCtx!deadlock?(job_status, turn));
+
+END

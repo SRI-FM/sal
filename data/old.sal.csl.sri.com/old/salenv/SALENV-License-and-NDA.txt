@@ -1,0 +1,163 @@
+                                             SRI Agreement No. ________
+
+             ``SALENV'' CONFIDENTIALITY AGREEMENT AND 
+              RESTRICTED SOFTWARE EVALUATION LICENSE
+
+THIS CONFIDENTIALITY AGREEMENT AND RESTRICTED SOFTWARE EVALUATION
+LICENSE dated as of _______________, 2001, (hereinafter referred to as
+``Agreement''), is entered into between SRI International, a California
+nonprofit public benefit corporation, (hereinafter referred to as
+``SRI''), having a place of business at 333 Ravenswood Avenue, Menlo
+Park, California 94025-3493, and _________________, (hereinafter
+referred to as ``LICENSEE''), a ___________ corporation, having a place
+of business at _____________________________________________.
+
+IN CONSIDERATION of the mutual covenants set forth below, the parties
+hereby agree as follows:
+
+1. SRI, in its sole discretion, shall disclose certain Confidential
+Information, as defined below, to LICENSEE on the terms and subject to
+the conditions of this Agreement. The term of this Agreement shall be
+six (6) months from the later date of the execution of this Agreement
+(the ``Term''). However, the limitations on use and disclosure of the
+Confidential Information shall survive expiration of the Term and shall
+be binding upon the parties after termination of this Agreement.
+
+2. ``Confidential Information'' shall mean, collectively, all technical,
+financial and business information of any kind whatsoever, and all
+tangible and intangible embodiments thereof of any kind whatsoever,
+disclosed by SRI to LICENSEE or obtained by LICENSEE through observation
+or examination of the foregoing, but only to the extent such information
+or embodiment is maintained as confidential by SRI.  All Confidential
+Information disclosed by SRI to LICENSEE shall be marked or otherwise
+identified as confidential when disclosed to LICENSEE or, in the case of
+information given orally, is identified as confidential in a written
+document received by LICENSEE within thirty (30) days after oral
+disclosure to LICENSEE.
+
+3. The Confidential Information disclosed by SRI to LICENSEE relates to
+source code, object code, documentation and examples using SRI's
+technology for formal methods known as ``SALENV''( (hereinafter referred to
+as the ``Software'').
+
+4. The sole purpose for which SRI discloses the Confidential Information to
+LICENSEE is to provide LICENSEE a limited license for internal
+evaluation purposes only, of an early beta release of the Software.
+
+5. LICENSEE shall not use any of the Confidential Information at any time
+or for any purpose other than the non-commercial purpose set forth
+above.
+
+6. LICENSEE shall maintain in confidence the Confidential Information
+disclosed by SRI and shall not disclose the Confidential Information to
+any third party except as expressly permitted by this Agreement.
+LICENSEE shall only disclose the Confidential Information to those of
+its directors, officers, employees or agents having a need to know, as
+reasonably necessary to facilitate the above purpose(s), provided that
+such persons are obligated in writing or otherwise bound by fiduciary
+obligations to LICENSEE to maintain in confidence and not use the
+Confidential Information except as permitted by this Agreement.
+
+7. LICENSEE shall promptly notify SRI upon discovery of any unauthorized
+use or disclosure of SRI's Confidential Information.
+
+8. Notwithstanding the foregoing, (i) LICENSEE shall have the right to
+disclose Confidential Information to the extent required by applicable
+law or regulation, provided that, LICENSEE shall give SRI prompt written
+notice and sufficient opportunity to object to such use or disclosure,
+or to request confidential treatment of the Confidential Information;
+and (ii) LICENSEE's nonuse and nondisclosure obligations above shall not
+apply to such Confidential Information as LICENSEE can establish by
+written documentation to have been:
+
+  a. public knowledge at the time of such disclosure by LICENSEE, or
+     thereafter to have become public knowledge, other than as a result of
+     acts attributable to LICENSEE in violation hereof; or
+
+  b. rightfully known by LICENSEE (as shown by its written records) prior to
+     the date of disclosure to it by SRI; or
+
+  c. disclosed to LICENSEE on an unrestricted basis from a third party not
+     under a duty of confidentiality to SRI; or
+
+  d. independently developed by employees or agents of LICENSEE without
+     access to or use of the Confidential Information.
+
+9. Within thirty (30) days after termination of the Term, LICENSEE promptly
+shall return all tangible items relating to the Confidential
+Information, including all written material, photographs, models,
+compounds, compositions and the like, made available or supplied by SRI
+to LICENSEE, and all copies thereof; provided, however, that LICENSEE
+may retain one (1) copy for its legal files.  Upon the request of SRI,
+LICENSEE shall identify those persons to whom any of the Confidential
+Information was disclosed.
+
+10. SRI hereby grants LICENSEE a non-exclusive, non-transferable,
+royalty-free, limited license to use the Software solely for purposes of
+internal evaluation, for the Term set forth above and subject to all
+terms and conditions of this Agreement.  No other rights are granted or
+implied.  By way of illustration only, no right is granted: (a) to copy
+the Software, except to the limited extent that transient copies of
+executable code are automatically created in the course of normal
+execution, (b) to modify or make any derivative works based upon the
+Software, (c) to sell, rent, license or in any way distribute or
+transfer the Software or products and services based upon the Software.
+
+11. LICENSEE acknowledges that the Software and the results obtained from
+any evaluation or benchmark testing conducted pursuant to this Agreement
+embody valuable information proprietary to SRI (Confidential
+Information) protected by this Agreement.
+
+12. This Agreement shall not be construed to grant any license or other
+rights except as expressly provided in this Agreement.
+
+13. LICENSEE may not assign this Agreement, whether by operation of law or
+otherwise, without the prior express written consent of SRI.  Any
+purported assignment in violation of this section shall be null and
+void.
+
+14. This Agreement shall be governed by and construed in accordance with the
+laws of the State of California, without regard to the conflicts of law
+principles thereof.
+
+15. Each party hereby acknowledges that the rights and obligations of this
+Agreement are subject to the laws and regulations of the United States
+relating to the export of products and technical information.  Without
+limitation, each party shall comply with all such laws and regulations.
+
+16. SRI makes no representations or warranties express or implied of any
+type whatsoever regarding the Confidential Information, including
+without limitation noninfringement, merchantability or fitness for any
+particular purpose.  LICENSEE's use of the Confidential Information
+shall be at LICENSEE's own risk, and SRI assumes no liability or
+obligation to LICENSEE as a result thereof.
+
+17. This Agreement shall be binding upon and for the benefit of the
+undersigned parties, their successors and assigns.  Failure to enforce
+any provisions of this Agreement shall not constitute a waiver of any
+term hereof.
+
+18. This Agreement embodies the entire understanding between the parties and
+supersedes any prior understanding and agreements between and among them
+respecting the subject matter hereof.  There are no representations,
+agreements, arrangements or understandings, oral or written, between the
+parties hereto relating to the subject matter of this Agreement which
+are not fully expressed herein.  No change, modification, extension,
+termination or waiver of this Agreement, or any of the provisions herein
+contained, shall be valid unless made in writing and signed by duly
+authorized representatives of the parties hereto.
+
+IN WITNESS WHEREOF, the parties through their duly authorized
+representatives have entered into this Agreement as of the date first
+written above.
+
+SRI INTERNATIONAL                       LICENSEE
+                          
+
+Name: Richard Herz                      Name:            
+
+Title: Manager of Contracts             Title:            
+
+Date:                                   Date:           
+
+

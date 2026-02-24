@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./fourslot.sal  -->
+<CONTEXT PLACE="1 1 97 4">
+  <IDENTIFIER PLACE="1 1 1 9">fourslot</IDENTIFIER>
+  <PARAMETERS></PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 97 4">
+    <TYPEDECLARATION PLACE="4 1 4 20">
+      <IDENTIFIER PLACE="4 1 4 5">item</IDENTIFIER>
+      <SUBRANGE PLACE="4 14 4 20">
+        <NUMERAL PLACE="4 15 4 16">0</NUMERAL>
+        <NUMERAL PLACE="4 18 4 19">3</NUMERAL>
+      </SUBRANGE>
+    </TYPEDECLARATION>
+    <MODULEDECLARATION PLACE="6 1 49 4">
+      <IDENTIFIER PLACE="6 1 6 7">reader</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="7 1 49 4">
+        <INPUTDECL PLACE="8 1 9 18">
+          <VARDECL PLACE="9 3 9 18">
+            <IDENTIFIER PLACE="9 3 9 9">latest</IDENTIFIER>
+            <TYPENAME PLACE="9 11 9 18">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="10 3 10 34">
+            <IDENTIFIER PLACE="10 3 10 8">index</IDENTIFIER>
+            <ARRAYTYPE PLACE="10 10 10 34">
+              <TYPENAME PLACE="10 16 10 23">BOOLEAN</TYPENAME>
+              <TYPENAME PLACE="10 27 10 34">BOOLEAN</TYPENAME>
+            </ARRAYTYPE>
+          </VARDECL>
+          <VARDECL PLACE="11 3 11 48">
+            <IDENTIFIER PLACE="11 3 11 7">slot</IDENTIFIER>
+            <ARRAYTYPE PLACE="11 10 11 48">
+              <TYPENAME PLACE="11 16 11 23">BOOLEAN</TYPENAME>
+              <ARRAYTYPE PLACE="11 27 11 48">
+                <TYPENAME PLACE="11 33 11 40">BOOLEAN</TYPENAME>
+                <TYPENAME PLACE="11 44 11 48">item</TYPENAME>
+              </ARRAYTYPE>
+            </ARRAYTYPE>
+          </VARDECL>
+          <VARDECL PLACE="12 3 12 14">
+            <IDENTIFIER PLACE="12 3 12 6">wpc</IDENTIFIER>
+            <SUBRANGE PLACE="12 8 12 14">
+              <NUMERAL PLACE="12 9 12 10">0</NUMERAL>
+              <NUMERAL PLACE="12 12 12 13">4</NUMERAL>
+            </SUBRANGE>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="13 1 14 19">
+          <VARDECL PLACE="14 3 14 19">
+            <IDENTIFIER PLACE="14 3 14 10">reading</IDENTIFIER>
+            <TYPENAME PLACE="14 12 14 19">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="15 3 15 25" CHAIN="YES">
+            <IDENTIFIER PLACE="15 3 15 8">rpair</IDENTIFIER>
+            <TYPENAME PLACE="15 18 15 25">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL>
+            <IDENTIFIER PLACE="15 10 15 16">rindex</IDENTIFIER>
+            <TYPENAME PLACE="15 18 15 25">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="16 3 16 14">
+            <IDENTIFIER PLACE="16 3 16 6">rpc</IDENTIFIER>
+            <SUBRANGE PLACE="16 8 16 14">
+              <NUMERAL PLACE="16 9 16 10">0</NUMERAL>
+              <NUMERAL PLACE="16 12 16 13">3</NUMERAL>
+            </SUBRANGE>
+          </VARDECL>
+        </OUTPUTDECL>
+        <LOCALDECL PLACE="17 1 18 12">
+          <VARDECL PLACE="18 3 18 12">
+            <IDENTIFIER PLACE="18 3 18 6">out</IDENTIFIER>
+            <TYPENAME PLACE="18 8 18 12">item</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <INITDECL PLACE="19 1 20 20">
+          <SIMPLEDEFINITION PLACE="20 5 20 20">
+            <NAMEEXPR PLACE="20 5 20 12">reading</NAMEEXPR>
+            <RHSEXPRESSION PLACE="20 13 20 20">
+              <NAMEEXPR PLACE="20 15 20 20">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="20 22 20 35">
+            <NAMEEXPR PLACE="20 22 20 27">rpair</NAMEEXPR>
+            <RHSEXPRESSION PLACE="20 28 20 35">
+              <NAMEEXPR PLACE="20 30 20 35">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="20 37 20 51">
+            <NAMEEXPR PLACE="20 37 20 43">rindex</NAMEEXPR>
+            <RHSEXPRESSION PLACE="20 44 20 51">
+              <NAMEEXPR PLACE="20 46 20 51">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="21 5 21 12">
+            <NAMEEXPR PLACE="21 5 21 8">out</NAMEEXPR>
+            <RHSEXPRESSION PLACE="21 9 21 12">
+              <NUMERAL PLACE="21 11 21 12">0</NUMERAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="22 5 22 11">
+            <NAMEEXPR PLACE="22 5 22 8">rpc</NAMEEXPR>
+            <RHSEXPRESSION PLACE="22 9 22 11">
+              <NUMERAL PLACE="22 10 22 11">0</NUMERAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="23 1 47 25">
+          <SOMECOMMANDS PLACE="25 5 47 25">
+            <GUARDEDCOMMAND PLACE="25 5 26 25">
+              <GUARD PLACE="25 5 25 25">
+                <APPLICATION PLACE="25 5 25 25" INFIX="YES">
+                  <NAMEEXPR PLACE="25 13 25 16">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="25 5 25 25">
+                    <APPLICATION PLACE="25 5 25 12" INFIX="YES">
+                      <NAMEEXPR PLACE="25 9 25 10">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="25 5 25 12">
+                        <NAMEEXPR PLACE="25 5 25 8">rpc</NAMEEXPR>
+                        <NUMERAL PLACE="25 11 25 12">0</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="25 17 25 25" INFIX="YES">
+                      <NAMEEXPR PLACE="25 21 25 23">/=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="25 17 25 25">
+                        <NAMEEXPR PLACE="25 17 25 20">wpc</NAMEEXPR>
+                        <NUMERAL PLACE="25 24 25 25">4</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="25 30 26 25">
+                <SIMPLEDEFINITION PLACE="25 30 25 45">
+                  <NEXTOPERATOR PLACE="25 30 25 36">
+                    <NAMEEXPR PLACE="25 30 25 35">rpair</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="25 37 25 45">
+                    <NAMEEXPR PLACE="25 39 25 45">latest</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="26 17 26 25">
+                  <NEXTOPERATOR PLACE="26 17 26 21">
+                    <NAMEEXPR PLACE="26 17 26 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="26 22 26 25">
+                    <NUMERAL PLACE="26 24 26 25">1</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="28 5 29 25">
+              <GUARD PLACE="28 5 28 24">
+                <APPLICATION PLACE="28 5 28 24" INFIX="YES">
+                  <NAMEEXPR PLACE="28 13 28 16">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="28 5 28 24">
+                    <APPLICATION PLACE="28 5 28 12" INFIX="YES">
+                      <NAMEEXPR PLACE="28 9 28 10">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="28 5 28 12">
+                        <NAMEEXPR PLACE="28 5 28 8">rpc</NAMEEXPR>
+                        <NUMERAL PLACE="28 11 28 12">0</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="28 17 28 24" INFIX="YES">
+                      <NAMEEXPR PLACE="28 21 28 22">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="28 17 28 24">
+                        <NAMEEXPR PLACE="28 17 28 20">wpc</NAMEEXPR>
+                        <NUMERAL PLACE="28 23 28 24">4</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="28 29 29 25">
+                <SIMPLEDEFINITION PLACE="28 29 28 42">
+                  <NEXTOPERATOR PLACE="28 29 28 35">
+                    <NAMEEXPR PLACE="28 29 28 34">rpair</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="28 36 28 42">
+                    <NAMEEXPR PLACE="28 38 28 42">TRUE</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="29 17 29 25">
+                  <NEXTOPERATOR PLACE="29 17 29 21">
+                    <NAMEEXPR PLACE="29 17 29 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="29 22 29 25">
+                    <NUMERAL PLACE="29 24 29 25">1</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="31 5 32 25">
+              <GUARD PLACE="31 5 31 24">
+                <APPLICATION PLACE="31 5 31 24" INFIX="YES">
+                  <NAMEEXPR PLACE="31 13 31 16">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="31 5 31 24">
+                    <APPLICATION PLACE="31 5 31 12" INFIX="YES">
+                      <NAMEEXPR PLACE="31 9 31 10">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="31 5 31 12">
+                        <NAMEEXPR PLACE="31 5 31 8">rpc</NAMEEXPR>
+                        <NUMERAL PLACE="31 11 31 12">0</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="31 17 31 24" INFIX="YES">
+                      <NAMEEXPR PLACE="31 21 31 22">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="31 17 31 24">
+                        <NAMEEXPR PLACE="31 17 31 20">wpc</NAMEEXPR>
+                        <NUMERAL PLACE="31 23 31 24">4</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="31 29 32 25">
+                <SIMPLEDEFINITION PLACE="31 29 31 43">
+                  <NEXTOPERATOR PLACE="31 29 31 35">
+                    <NAMEEXPR PLACE="31 29 31 34">rpair</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="31 36 31 43">
+                    <NAMEEXPR PLACE="31 38 31 43">FALSE</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="32 17 32 25">
+                  <NEXTOPERATOR PLACE="32 17 32 21">
+                    <NAMEEXPR PLACE="32 17 32 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="32 22 32 25">
+                    <NUMERAL PLACE="32 24 32 25">1</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="34 5 35 25">
+              <GUARD PLACE="34 5 34 12">
+                <APPLICATION PLACE="34 5 34 12" INFIX="YES">
+                  <NAMEEXPR PLACE="34 9 34 10">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="34 5 34 12">
+                    <NAMEEXPR PLACE="34 5 34 8">rpc</NAMEEXPR>
+                    <NUMERAL PLACE="34 11 34 12">1</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="34 17 35 25">
+                <SIMPLEDEFINITION PLACE="34 17 34 33">
+                  <NEXTOPERATOR PLACE="34 17 34 25">
+                    <NAMEEXPR PLACE="34 17 34 24">reading</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="34 26 34 33">
+                    <NAMEEXPR PLACE="34 28 34 33">rpair</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="35 17 35 25">
+                  <NEXTOPERATOR PLACE="35 17 35 21">
+                    <NAMEEXPR PLACE="35 17 35 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="35 22 35 25">
+                    <NUMERAL PLACE="35 24 35 25">2</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="37 5 38 25">
+              <GUARD PLACE="37 5 37 25">
+                <APPLICATION PLACE="37 5 37 25" INFIX="YES">
+                  <NAMEEXPR PLACE="37 13 37 16">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="37 5 37 25">
+                    <APPLICATION PLACE="37 5 37 12" INFIX="YES">
+                      <NAMEEXPR PLACE="37 9 37 10">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="37 5 37 12">
+                        <NAMEEXPR PLACE="37 5 37 8">rpc</NAMEEXPR>
+                        <NUMERAL PLACE="37 11 37 12">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="37 17 37 25" INFIX="YES">
+                      <NAMEEXPR PLACE="37 21 37 23">/=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="37 17 37 25">
+                        <NAMEEXPR PLACE="37 17 37 20">wpc</NAMEEXPR>
+                        <NUMERAL PLACE="37 24 37 25">3</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="37 30 38 25">
+                <SIMPLEDEFINITION PLACE="37 30 37 52">
+                  <NEXTOPERATOR PLACE="37 30 37 37">
+                    <NAMEEXPR PLACE="37 30 37 36">rindex</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="37 38 37 52">
+                    <ARRAYSELECTION PLACE="37 40 37 52">
+                      <NAMEEXPR PLACE="37 40 37 45">index</NAMEEXPR>
+                      <NAMEEXPR PLACE="37 46 37 51">rpair</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="38 17 38 25">
+                  <NEXTOPERATOR PLACE="38 17 38 21">
+                    <NAMEEXPR PLACE="38 17 38 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="38 22 38 25">
+                    <NUMERAL PLACE="38 24 38 25">3</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="40 5 41 25">
+              <GUARD PLACE="40 5 40 24">
+                <APPLICATION PLACE="40 5 40 24" INFIX="YES">
+                  <NAMEEXPR PLACE="40 13 40 16">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="40 5 40 24">
+                    <APPLICATION PLACE="40 5 40 12" INFIX="YES">
+                      <NAMEEXPR PLACE="40 9 40 10">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="40 5 40 12">
+                        <NAMEEXPR PLACE="40 5 40 8">rpc</NAMEEXPR>
+                        <NUMERAL PLACE="40 11 40 12">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="40 17 40 24" INFIX="YES">
+                      <NAMEEXPR PLACE="40 21 40 22">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="40 17 40 24">
+                        <NAMEEXPR PLACE="40 17 40 20">wpc</NAMEEXPR>
+                        <NUMERAL PLACE="40 23 40 24">3</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="40 29 41 25">
+                <SIMPLEDEFINITION PLACE="40 29 40 43">
+                  <NEXTOPERATOR PLACE="40 29 40 36">
+                    <NAMEEXPR PLACE="40 29 40 35">rindex</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="40 37 40 43">
+                    <NAMEEXPR PLACE="40 39 40 43">TRUE</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="41 17 41 25">
+                  <NEXTOPERATOR PLACE="41 17 41 21">
+                    <NAMEEXPR PLACE="41 17 41 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="41 22 41 25">
+                    <NUMERAL PLACE="41 24 41 25">3</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="43 5 44 25">
+              <GUARD PLACE="43 5 43 24">
+                <APPLICATION PLACE="43 5 43 24" INFIX="YES">
+                  <NAMEEXPR PLACE="43 13 43 16">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="43 5 43 24">
+                    <APPLICATION PLACE="43 5 43 12" INFIX="YES">
+                      <NAMEEXPR PLACE="43 9 43 10">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="43 5 43 12">
+                        <NAMEEXPR PLACE="43 5 43 8">rpc</NAMEEXPR>
+                        <NUMERAL PLACE="43 11 43 12">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="43 17 43 24" INFIX="YES">
+                      <NAMEEXPR PLACE="43 21 43 22">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="43 17 43 24">
+                        <NAMEEXPR PLACE="43 17 43 20">wpc</NAMEEXPR>
+                        <NUMERAL PLACE="43 23 43 24">3</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="43 29 44 25">
+                <SIMPLEDEFINITION PLACE="43 29 43 44">
+                  <NEXTOPERATOR PLACE="43 29 43 36">
+                    <NAMEEXPR PLACE="43 29 43 35">rindex</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="43 37 43 44">
+                    <NAMEEXPR PLACE="43 39 43 44">FALSE</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="44 17 44 25">
+                  <NEXTOPERATOR PLACE="44 17 44 21">
+                    <NAMEEXPR PLACE="44 17 44 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="44 22 44 25">
+                    <NUMERAL PLACE="44 24 44 25">3</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="46 5 47 25">
+              <GUARD PLACE="46 5 46 12">
+                <APPLICATION PLACE="46 5 46 12" INFIX="YES">
+                  <NAMEEXPR PLACE="46 9 46 10">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="46 5 46 12">
+                    <NAMEEXPR PLACE="46 5 46 8">rpc</NAMEEXPR>
+                    <NUMERAL PLACE="46 11 46 12">3</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="46 17 47 25">
+                <SIMPLEDEFINITION PLACE="46 17 46 43">
+                  <NEXTOPERATOR PLACE="46 17 46 21">
+                    <NAMEEXPR PLACE="46 17 46 20">out</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="46 22 46 43">
+                    <ARRAYSELECTION PLACE="46 24 46 43">
+                      <ARRAYSELECTION PLACE="46 24 46 35">
+                        <NAMEEXPR PLACE="46 24 46 28">slot</NAMEEXPR>
+                        <NAMEEXPR PLACE="46 29 46 34">rpair</NAMEEXPR>
+                      </ARRAYSELECTION>
+                      <NAMEEXPR PLACE="46 36 46 42">rindex</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="47 17 47 25">
+                  <NEXTOPERATOR PLACE="47 17 47 21">
+                    <NAMEEXPR PLACE="47 17 47 20">rpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="47 22 47 25">
+                    <NUMERAL PLACE="47 24 47 25">0</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+          </SOMECOMMANDS>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="51 1 90 4">
+      <IDENTIFIER PLACE="51 1 51 7">writer</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="52 1 90 4">
+        <INPUTDECL PLACE="53 1 54 19">
+          <VARDECL PLACE="54 3 54 19">
+            <IDENTIFIER PLACE="54 3 54 10">reading</IDENTIFIER>
+            <TYPENAME PLACE="54 12 54 19">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="55 3 55 14">
+            <IDENTIFIER PLACE="55 3 55 6">rpc</IDENTIFIER>
+            <SUBRANGE PLACE="55 8 55 14">
+              <NUMERAL PLACE="55 9 55 10">0</NUMERAL>
+              <NUMERAL PLACE="55 12 55 13">3</NUMERAL>
+            </SUBRANGE>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="56 1 57 18">
+          <VARDECL PLACE="57 3 57 18">
+            <IDENTIFIER PLACE="57 3 57 9">latest</IDENTIFIER>
+            <TYPENAME PLACE="57 11 57 18">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="58 3 58 34">
+            <IDENTIFIER PLACE="58 3 58 8">index</IDENTIFIER>
+            <ARRAYTYPE PLACE="58 10 58 34">
+              <TYPENAME PLACE="58 16 58 23">BOOLEAN</TYPENAME>
+              <TYPENAME PLACE="58 27 58 34">BOOLEAN</TYPENAME>
+            </ARRAYTYPE>
+          </VARDECL>
+          <VARDECL PLACE="59 3 59 48">
+            <IDENTIFIER PLACE="59 3 59 7">slot</IDENTIFIER>
+            <ARRAYTYPE PLACE="59 10 59 48">
+              <TYPENAME PLACE="59 16 59 23">BOOLEAN</TYPENAME>
+              <ARRAYTYPE PLACE="59 27 59 48">
+                <TYPENAME PLACE="59 33 59 40">BOOLEAN</TYPENAME>
+                <TYPENAME PLACE="59 44 59 48">item</TYPENAME>
+              </ARRAYTYPE>
+            </ARRAYTYPE>
+          </VARDECL>
+          <VARDECL PLACE="60 3 60 25" CHAIN="YES">
+            <IDENTIFIER PLACE="60 3 60 8">wpair</IDENTIFIER>
+            <TYPENAME PLACE="60 18 60 25">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL>
+            <IDENTIFIER PLACE="60 10 60 16">windex</IDENTIFIER>
+            <TYPENAME PLACE="60 18 60 25">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="61 3 61 14">
+            <IDENTIFIER PLACE="61 3 61 6">wpc</IDENTIFIER>
+            <SUBRANGE PLACE="61 8 61 14">
+              <NUMERAL PLACE="61 9 61 10">0</NUMERAL>
+              <NUMERAL PLACE="61 12 61 13">4</NUMERAL>
+            </SUBRANGE>
+          </VARDECL>
+        </OUTPUTDECL>
+        <INITDECL PLACE="62 1 63 19">
+          <SIMPLEDEFINITION PLACE="63 5 63 19">
+            <NAMEEXPR PLACE="63 5 63 11">latest</NAMEEXPR>
+            <RHSEXPRESSION PLACE="63 12 63 19">
+              <NAMEEXPR PLACE="63 14 63 19">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="63 21 63 34">
+            <NAMEEXPR PLACE="63 21 63 26">wpair</NAMEEXPR>
+            <RHSEXPRESSION PLACE="63 27 63 34">
+              <NAMEEXPR PLACE="63 29 63 34">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="63 36 63 50">
+            <NAMEEXPR PLACE="63 36 63 42">windex</NAMEEXPR>
+            <RHSEXPRESSION PLACE="63 43 63 50">
+              <NAMEEXPR PLACE="63 45 63 50">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="64 5 64 12">
+            <NAMEEXPR PLACE="64 5 64 8">wpc</NAMEEXPR>
+            <RHSEXPRESSION PLACE="64 9 64 12">
+              <NUMERAL PLACE="64 11 64 12">0</NUMERAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="65 5 65 24">
+            <ARRAYSELECTION PLACE="65 5 65 16">
+              <NAMEEXPR PLACE="65 5 65 10">index</NAMEEXPR>
+              <NAMEEXPR PLACE="65 11 65 15">TRUE</NAMEEXPR>
+            </ARRAYSELECTION>
+            <RHSEXPRESSION PLACE="65 17 65 24">
+              <NAMEEXPR PLACE="65 19 65 24">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="66 3 66 23">
+            <ARRAYSELECTION PLACE="66 3 66 15">
+              <NAMEEXPR PLACE="66 3 66 8">index</NAMEEXPR>
+              <NAMEEXPR PLACE="66 9 66 14">FALSE</NAMEEXPR>
+            </ARRAYSELECTION>
+            <RHSEXPRESSION PLACE="66 16 66 23">
+              <NAMEEXPR PLACE="66 18 66 23">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="67 5 67 53">
+            <NAMEEXPR PLACE="67 5 67 9">slot</NAMEEXPR>
+            <RHSEXPRESSION PLACE="67 10 67 53">
+              <ARRAYLITERAL PLACE="67 12 67 53">
+                <INDEXVARDECL PLACE="67 15 67 28">
+                  <IDENTIFIER PLACE="67 15 67 18">idx</IDENTIFIER>
+                  <TYPENAME PLACE="67 21 67 28">BOOLEAN</TYPENAME>
+                </INDEXVARDECL>
+                <ARRAYLITERAL PLACE="67 30 67 51">
+                  <INDEXVARDECL PLACE="67 33 67 46">
+                    <IDENTIFIER PLACE="67 33 67 36">idx</IDENTIFIER>
+                    <TYPENAME PLACE="67 39 67 46">BOOLEAN</TYPENAME>
+                  </INDEXVARDECL>
+                  <NUMERAL PLACE="67 48 67 49">0</NUMERAL>
+                </ARRAYLITERAL>
+              </ARRAYLITERAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="68 1 88 25">
+          <SOMECOMMANDS PLACE="70 5 88 25">
+            <LABELEDCOMMAND PLACE="70 5 71 44">
+              <LABEL PLACE="70 5 70 8">ini</LABEL>
+              <GUARDEDCOMMAND PLACE="70 11 71 44">
+                <GUARD PLACE="70 11 70 31">
+                  <APPLICATION PLACE="70 11 70 31" INFIX="YES">
+                    <NAMEEXPR PLACE="70 19 70 22">AND</NAMEEXPR>
+                    <TUPLELITERAL PLACE="70 11 70 31">
+                      <APPLICATION PLACE="70 11 70 18" INFIX="YES">
+                        <NAMEEXPR PLACE="70 15 70 16">=</NAMEEXPR>
+                        <TUPLELITERAL PLACE="70 11 70 18">
+                          <NAMEEXPR PLACE="70 11 70 14">wpc</NAMEEXPR>
+                          <NUMERAL PLACE="70 17 70 18">0</NUMERAL>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <APPLICATION PLACE="70 23 70 31" INFIX="YES">
+                        <NAMEEXPR PLACE="70 27 70 29">/=</NAMEEXPR>
+                        <TUPLELITERAL PLACE="70 23 70 31">
+                          <NAMEEXPR PLACE="70 23 70 26">rpc</NAMEEXPR>
+                          <NUMERAL PLACE="70 30 70 31">1</NUMERAL>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </GUARD>
+                <ASSIGNMENTS PLACE="70 36 71 44">
+                  <SIMPLEDEFINITION PLACE="70 36 70 56">
+                    <NEXTOPERATOR PLACE="70 36 70 42">
+                      <NAMEEXPR PLACE="70 36 70 41">wpair</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="70 43 70 56">
+                      <APPLICATION PLACE="70 45 70 56">
+                        <NAMEEXPR PLACE="70 45 70 48">NOT</NAMEEXPR>
+                        <TUPLELITERAL PLACE="70 49 70 56">
+                          <NAMEEXPR PLACE="70 49 70 56">reading</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                  <SIMPLEDEFINITION PLACE="71 36 71 44">
+                    <NEXTOPERATOR PLACE="71 36 71 40">
+                      <NAMEEXPR PLACE="71 36 71 39">wpc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="71 41 71 44">
+                      <NUMERAL PLACE="71 43 71 44">1</NUMERAL>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </ASSIGNMENTS>
+              </GUARDEDCOMMAND>
+            </LABELEDCOMMAND>
+            <MULTICOMMAND PLACE="73 3 75 26">
+              <VARDECLS PLACE="73 7 73 18">
+                <VARDECL PLACE="73 7 73 18">
+                  <IDENTIFIER PLACE="73 7 73 10">arb</IDENTIFIER>
+                  <TYPENAME PLACE="73 11 73 18">BOOLEAN</TYPENAME>
+                </VARDECL>
+              </VARDECLS>
+              <GUARDEDCOMMAND PLACE="74 5 75 25">
+                <GUARD PLACE="74 5 74 24">
+                  <APPLICATION PLACE="74 5 74 24" INFIX="YES">
+                    <NAMEEXPR PLACE="74 13 74 16">AND</NAMEEXPR>
+                    <TUPLELITERAL PLACE="74 5 74 24">
+                      <APPLICATION PLACE="74 5 74 12" INFIX="YES">
+                        <NAMEEXPR PLACE="74 9 74 10">=</NAMEEXPR>
+                        <TUPLELITERAL PLACE="74 5 74 12">
+                          <NAMEEXPR PLACE="74 5 74 8">wpc</NAMEEXPR>
+                          <NUMERAL PLACE="74 11 74 12">0</NUMERAL>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <APPLICATION PLACE="74 17 74 24" INFIX="YES">
+                        <NAMEEXPR PLACE="74 21 74 22">=</NAMEEXPR>
+                        <TUPLELITERAL PLACE="74 17 74 24">
+                          <NAMEEXPR PLACE="74 17 74 20">rpc</NAMEEXPR>
+                          <NUMERAL PLACE="74 23 74 24">1</NUMERAL>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </GUARD>
+                <ASSIGNMENTS PLACE="74 29 75 25">
+                  <SIMPLEDEFINITION PLACE="74 29 74 41">
+                    <NEXTOPERATOR PLACE="74 29 74 35">
+                      <NAMEEXPR PLACE="74 29 74 34">wpair</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="74 36 74 41">
+                      <NAMEEXPR PLACE="74 38 74 41">arb</NAMEEXPR>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                  <SIMPLEDEFINITION PLACE="75 17 75 25">
+                    <NEXTOPERATOR PLACE="75 17 75 21">
+                      <NAMEEXPR PLACE="75 17 75 20">wpc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="75 22 75 25">
+                      <NUMERAL PLACE="75 24 75 25">1</NUMERAL>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </ASSIGNMENTS>
+              </GUARDEDCOMMAND>
+            </MULTICOMMAND>
+            <GUARDEDCOMMAND PLACE="77 5 78 25">
+              <GUARD PLACE="77 5 77 12">
+                <APPLICATION PLACE="77 5 77 12" INFIX="YES">
+                  <NAMEEXPR PLACE="77 9 77 10">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="77 5 77 12">
+                    <NAMEEXPR PLACE="77 5 77 8">wpc</NAMEEXPR>
+                    <NUMERAL PLACE="77 11 77 12">1</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="77 17 78 25">
+                <SIMPLEDEFINITION PLACE="77 17 77 43">
+                  <NEXTOPERATOR PLACE="77 17 77 24">
+                    <NAMEEXPR PLACE="77 17 77 23">windex</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="77 25 77 43">
+                    <APPLICATION PLACE="77 27 77 43">
+                      <NAMEEXPR PLACE="77 27 77 30">NOT</NAMEEXPR>
+                      <TUPLELITERAL PLACE="77 31 77 43">
+                        <ARRAYSELECTION PLACE="77 31 77 43">
+                          <NAMEEXPR PLACE="77 31 77 36">index</NAMEEXPR>
+                          <NAMEEXPR PLACE="77 37 77 42">wpair</NAMEEXPR>
+                        </ARRAYSELECTION>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="78 17 78 25">
+                  <NEXTOPERATOR PLACE="78 17 78 21">
+                    <NAMEEXPR PLACE="78 17 78 20">wpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="78 22 78 25">
+                    <NUMERAL PLACE="78 24 78 25">2</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <MULTICOMMAND PLACE="80 5 82 26">
+              <VARDECLS PLACE="80 10 80 19">
+                <VARDECL PLACE="80 10 80 19">
+                  <IDENTIFIER PLACE="80 10 80 13">val</IDENTIFIER>
+                  <TYPENAME PLACE="80 15 80 19">item</TYPENAME>
+                </VARDECL>
+              </VARDECLS>
+              <GUARDEDCOMMAND PLACE="81 5 82 25">
+                <GUARD PLACE="81 5 81 12">
+                  <APPLICATION PLACE="81 5 81 12" INFIX="YES">
+                    <NAMEEXPR PLACE="81 9 81 10">=</NAMEEXPR>
+                    <TUPLELITERAL PLACE="81 5 81 12">
+                      <NAMEEXPR PLACE="81 5 81 8">wpc</NAMEEXPR>
+                      <NUMERAL PLACE="81 11 81 12">2</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </GUARD>
+                <ASSIGNMENTS PLACE="81 17 82 25">
+                  <SIMPLEDEFINITION PLACE="81 17 81 43">
+                    <ARRAYSELECTION PLACE="81 17 81 37">
+                      <ARRAYSELECTION PLACE="81 17 81 29">
+                        <NEXTOPERATOR PLACE="81 17 81 22">
+                          <NAMEEXPR PLACE="81 17 81 21">slot</NAMEEXPR>
+                        </NEXTOPERATOR>
+                        <NAMEEXPR PLACE="81 23 81 28">wpair</NAMEEXPR>
+                      </ARRAYSELECTION>
+                      <NAMEEXPR PLACE="81 30 81 36">windex</NAMEEXPR>
+                    </ARRAYSELECTION>
+                    <RHSEXPRESSION PLACE="81 38 81 43">
+                      <NAMEEXPR PLACE="81 40 81 43">val</NAMEEXPR>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                  <SIMPLEDEFINITION PLACE="82 17 82 25">
+                    <NEXTOPERATOR PLACE="82 17 82 21">
+                      <NAMEEXPR PLACE="82 17 82 20">wpc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="82 22 82 25">
+                      <NUMERAL PLACE="82 24 82 25">3</NUMERAL>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </ASSIGNMENTS>
+              </GUARDEDCOMMAND>
+            </MULTICOMMAND>
+            <GUARDEDCOMMAND PLACE="84 5 85 25">
+              <GUARD PLACE="84 5 84 12">
+                <APPLICATION PLACE="84 5 84 12" INFIX="YES">
+                  <NAMEEXPR PLACE="84 9 84 10">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="84 5 84 12">
+                    <NAMEEXPR PLACE="84 5 84 8">wpc</NAMEEXPR>
+                    <NUMERAL PLACE="84 11 84 12">3</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="84 17 85 25">
+                <SIMPLEDEFINITION PLACE="84 17 84 39">
+                  <ARRAYSELECTION PLACE="84 17 84 30">
+                    <NEXTOPERATOR PLACE="84 17 84 23">
+                      <NAMEEXPR PLACE="84 17 84 22">index</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <NAMEEXPR PLACE="84 24 84 29">wpair</NAMEEXPR>
+                  </ARRAYSELECTION>
+                  <RHSEXPRESSION PLACE="84 31 84 39">
+                    <NAMEEXPR PLACE="84 33 84 39">windex</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="85 17 85 25">
+                  <NEXTOPERATOR PLACE="85 17 85 21">
+                    <NAMEEXPR PLACE="85 17 85 20">wpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="85 22 85 25">
+                    <NUMERAL PLACE="85 24 85 25">4</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="87 5 88 25">
+              <GUARD PLACE="87 5 87 12">
+                <APPLICATION PLACE="87 5 87 12" INFIX="YES">
+                  <NAMEEXPR PLACE="87 9 87 10">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="87 5 87 12">
+                    <NAMEEXPR PLACE="87 5 87 8">wpc</NAMEEXPR>
+                    <NUMERAL PLACE="87 11 87 12">4</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="87 17 88 25">
+                <SIMPLEDEFINITION PLACE="87 17 87 32">
+                  <NEXTOPERATOR PLACE="87 17 87 24">
+                    <NAMEEXPR PLACE="87 17 87 23">latest</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="87 25 87 32">
+                    <NAMEEXPR PLACE="87 27 87 32">wpair</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="88 17 88 25">
+                  <NEXTOPERATOR PLACE="88 17 88 21">
+                    <NAMEEXPR PLACE="88 17 88 20">wpc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="88 22 88 25">
+                    <NUMERAL PLACE="88 24 88 25">0</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+          </SOMECOMMANDS>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="92 1 92 34">
+      <IDENTIFIER PLACE="92 1 92 7">system</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <ASYNCHRONOUSCOMPOSITION PLACE="92 18 92 34">
+        <MODULEINSTANCE PLACE="92 18 92 24">
+          <MODULENAME PLACE="92 18 92 24">reader</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <MODULEINSTANCE PLACE="92 28 92 34">
+          <MODULENAME PLACE="92 28 92 34">writer</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+      </ASYNCHRONOUSCOMPOSITION>
+    </MODULEDECLARATION>
+    <ASSERTIONDECLARATION PLACE="94 1 95 73">
+      <IDENTIFIER PLACE="94 1 94 6">mutex</IDENTIFIER>
+      <ASSERTIONFORM PLACE="94 8 94 13">LEMMA</ASSERTIONFORM>
+      <MODULEMODELS PLACE="94 14 95 73">
+        <MODULEINSTANCE PLACE="94 14 94 20">
+          <MODULENAME PLACE="94 14 94 20">system</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="95 9 95 73">
+          <NAMEEXPR PLACE="95 9 95 10">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="95 10 95 73">
+            <APPLICATION PLACE="95 11 95 72" INFIX="YES">
+              <NAMEEXPR PLACE="95 33 95 35">=&gt;</NAMEEXPR>
+              <TUPLELITERAL PLACE="95 11 95 72">
+                <APPLICATION PLACE="95 11 95 32" INFIX="YES" PARENS="1">
+                  <NAMEEXPR PLACE="95 20 95 23">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="95 12 95 31">
+                    <APPLICATION PLACE="95 12 95 19" INFIX="YES">
+                      <NAMEEXPR PLACE="95 16 95 17">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="95 12 95 19">
+                        <NAMEEXPR PLACE="95 12 95 15">wpc</NAMEEXPR>
+                        <NUMERAL PLACE="95 18 95 19">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="95 24 95 31" INFIX="YES">
+                      <NAMEEXPR PLACE="95 28 95 29">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="95 24 95 31">
+                        <NAMEEXPR PLACE="95 24 95 27">rpc</NAMEEXPR>
+                        <NUMERAL PLACE="95 30 95 31">3</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <APPLICATION PLACE="95 36 95 72" INFIX="YES" PARENS="1">
+                  <NAMEEXPR PLACE="95 52 95 54">OR</NAMEEXPR>
+                  <TUPLELITERAL PLACE="95 37 95 71">
+                    <APPLICATION PLACE="95 37 95 51" INFIX="YES">
+                      <NAMEEXPR PLACE="95 43 95 45">/=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="95 37 95 51">
+                        <NAMEEXPR PLACE="95 37 95 42">wpair</NAMEEXPR>
+                        <NAMEEXPR PLACE="95 46 95 51">rpair</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="95 55 95 71" INFIX="YES">
+                      <NAMEEXPR PLACE="95 62 95 64">/=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="95 55 95 71">
+                        <NAMEEXPR PLACE="95 55 95 61">windex</NAMEEXPR>
+                        <NAMEEXPR PLACE="95 65 95 71">rindex</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

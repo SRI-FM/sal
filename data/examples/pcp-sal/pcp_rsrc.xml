@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./pcp_rsrc.sal  -->
+<CONTEXT PLACE="1 1 66 4">
+  <IDENTIFIER PLACE="1 1 1 9">pcp_rsrc</IDENTIFIER>
+  <PARAMETERS PLACE="1 11 3 80">
+    <TYPEDECLS PLACE="1 11 1 27">
+      <TYPEDECL>
+        <IDENTIFIER PLACE="1 11 1 20">Semaphore</IDENTIFIER>
+      </TYPEDECL>
+    </TYPEDECLS>
+    <VARDECLS PLACE="2 11 3 80">
+      <VARDECL PLACE="2 11 2 34">
+        <IDENTIFIER PLACE="2 11 2 24">NumberOfTasks</IDENTIFIER>
+        <TYPENAME PLACE="2 27 2 34">NATURAL</TYPENAME>
+      </VARDECL>
+      <VARDECL PLACE="3 11 3 80">
+        <IDENTIFIER PLACE="3 11 3 27">task_descriptors</IDENTIFIER>
+        <QUALIFIEDTYPENAME PLACE="3 30 3 80">
+          <IDENTIFIER PLACE="3 65 3 80">TaskDescriptors</IDENTIFIER>
+          <CONTEXTNAME PLACE="3 30 3 64">
+            <IDENTIFIER PLACE="3 30 3 38">pcp_task</IDENTIFIER>
+            <ACTUALPARAMETERS PLACE="3 39 3 63">
+              <ACTUALTYPES PLACE="3 39 3 48">
+                <TYPENAME PLACE="3 39 3 48">Semaphore</TYPENAME>
+              </ACTUALTYPES>
+              <ACTUALEXPRS PLACE="3 50 3 63">
+                <NAMEEXPR PLACE="3 50 3 63">NumberOfTasks</NAMEEXPR>
+              </ACTUALEXPRS>
+            </ACTUALPARAMETERS>
+          </CONTEXTNAME>
+        </QUALIFIEDTYPENAME>
+      </VARDECL>
+    </VARDECLS>
+  </PARAMETERS>
+  <CONTEXTBODY PLACE="5 1 66 4">
+    <CONTEXTDECLARATION PLACE="7 3 7 57">
+      <IDENTIFIER PLACE="7 3 7 10">taskCtx</IDENTIFIER>
+      <CONTEXTNAME PLACE="7 23 7 57">
+        <IDENTIFIER PLACE="7 23 7 31">pcp_task</IDENTIFIER>
+        <ACTUALPARAMETERS PLACE="7 32 7 56">
+          <ACTUALTYPES PLACE="7 32 7 41">
+            <TYPENAME PLACE="7 32 7 41">Semaphore</TYPENAME>
+          </ACTUALTYPES>
+          <ACTUALEXPRS PLACE="7 43 7 56">
+            <NAMEEXPR PLACE="7 43 7 56">NumberOfTasks</NAMEEXPR>
+          </ACTUALEXPRS>
+        </ACTUALPARAMETERS>
+      </CONTEXTNAME>
+    </CONTEXTDECLARATION>
+    <CONTEXTDECLARATION PLACE="9 3 9 40">
+      <IDENTIFIER PLACE="9 3 9 12">semSetCtx</IDENTIFIER>
+      <CONTEXTNAME PLACE="9 25 9 40">
+        <IDENTIFIER PLACE="9 25 9 28">set</IDENTIFIER>
+        <ACTUALPARAMETERS PLACE="9 29 0 0">
+          <ACTUALTYPES PLACE="9 29 9 38">
+            <TYPENAME PLACE="9 29 9 38">Semaphore</TYPENAME>
+          </ACTUALTYPES>
+          <ACTUALEXPRS></ACTUALEXPRS>
+        </ACTUALPARAMETERS>
+      </CONTEXTNAME>
+    </CONTEXTDECLARATION>
+    <CONTEXTDECLARATION PLACE="10 3 10 45">
+      <IDENTIFIER PLACE="10 3 10 12">jobSetCtx</IDENTIFIER>
+      <CONTEXTNAME PLACE="10 25 10 45">
+        <IDENTIFIER PLACE="10 25 10 28">set</IDENTIFIER>
+        <ACTUALPARAMETERS PLACE="10 29 0 0">
+          <ACTUALTYPES PLACE="10 29 10 43">
+            <QUALIFIEDTYPENAME PLACE="10 29 10 43">
+              <IDENTIFIER PLACE="10 37 10 43">JobIdx</IDENTIFIER>
+              <CONTEXTNAME PLACE="10 29 10 36">
+                <IDENTIFIER PLACE="10 29 10 36">taskCtx</IDENTIFIER>
+              </CONTEXTNAME>
+            </QUALIFIEDTYPENAME>
+          </ACTUALTYPES>
+          <ACTUALEXPRS></ACTUALEXPRS>
+        </ACTUALPARAMETERS>
+      </CONTEXTNAME>
+    </CONTEXTDECLARATION>
+    <TYPEDECLARATION PLACE="12 3 12 69">
+      <IDENTIFIER PLACE="12 3 12 22">Job2SetOfSemaphores</IDENTIFIER>
+      <ARRAYTYPE PLACE="12 32 12 69">
+        <QUALIFIEDTYPENAME PLACE="12 38 12 52">
+          <IDENTIFIER PLACE="12 46 12 52">JobIdx</IDENTIFIER>
+          <CONTEXTNAME PLACE="12 38 12 45">
+            <IDENTIFIER PLACE="12 38 12 45">taskCtx</IDENTIFIER>
+          </CONTEXTNAME>
+        </QUALIFIEDTYPENAME>
+        <QUALIFIEDTYPENAME PLACE="12 56 12 69">
+          <IDENTIFIER PLACE="12 66 12 69">Set</IDENTIFIER>
+          <CONTEXTNAME PLACE="12 56 12 65">
+            <IDENTIFIER PLACE="12 56 12 65">semSetCtx</IDENTIFIER>
+          </CONTEXTNAME>
+        </QUALIFIEDTYPENAME>
+      </ARRAYTYPE>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="16 3 16 81">
+      <IDENTIFIER PLACE="16 3 16 7">RSRC</IDENTIFIER>
+      <RECORDTYPE PLACE="16 17 16 81">
+        <FIELDDECLARATION PLACE="16 20 16 47">
+          <IDENTIFIER PLACE="16 20 16 25">alloc</IDENTIFIER>
+          <TYPENAME PLACE="16 28 16 47">Job2SetOfSemaphores</TYPENAME>
+        </FIELDDECLARATION>
+        <FIELDDECLARATION PLACE="16 49 16 78">
+          <IDENTIFIER PLACE="16 49 16 56">request</IDENTIFIER>
+          <TYPENAME PLACE="16 59 16 78">Job2SetOfSemaphores</TYPENAME>
+        </FIELDDECLARATION>
+      </RECORDTYPE>
+    </TYPEDECLARATION>
+    <CONSTANTDECLARATION PLACE="18 3 19 82">
+      <IDENTIFIER PLACE="18 3 18 15">initial_rsrc</IDENTIFIER>
+      <TYPENAME PLACE="18 18 18 22">RSRC</TYPENAME>
+      <LETEXPRESSION PLACE="18 25 19 82">
+        <LETDECLARATIONS PLACE="18 29 18 110">
+          <LETDECLARATION PLACE="18 29 18 110">
+            <IDENTIFIER PLACE="18 29 18 42">empty_mapping</IDENTIFIER>
+            <TYPENAME PLACE="18 45 18 64">Job2SetOfSemaphores</TYPENAME>
+            <ARRAYLITERAL PLACE="18 67 18 110">
+              <INDEXVARDECL PLACE="18 70 18 88">
+                <IDENTIFIER PLACE="18 70 18 71">j</IDENTIFIER>
+                <QUALIFIEDTYPENAME PLACE="18 74 18 88">
+                  <IDENTIFIER PLACE="18 82 18 88">JobIdx</IDENTIFIER>
+                  <CONTEXTNAME PLACE="18 74 18 81">
+                    <IDENTIFIER PLACE="18 74 18 81">taskCtx</IDENTIFIER>
+                  </CONTEXTNAME>
+                </QUALIFIEDTYPENAME>
+              </INDEXVARDECL>
+              <QUALIFIEDNAMEEXPR PLACE="18 90 18 109">
+                <IDENTIFIER PLACE="18 100 18 109">empty_set</IDENTIFIER>
+                <CONTEXTNAME PLACE="18 90 18 99">
+                  <IDENTIFIER PLACE="18 90 18 99">semSetCtx</IDENTIFIER>
+                </CONTEXTNAME>
+              </QUALIFIEDNAMEEXPR>
+            </ARRAYLITERAL>
+          </LETDECLARATION>
+        </LETDECLARATIONS>
+        <RECORDLITERAL PLACE="19 28 19 82">
+          <RECORDENTRY PLACE="19 31 19 53">
+            <IDENTIFIER PLACE="19 31 19 36">alloc</IDENTIFIER>
+            <NAMEEXPR PLACE="19 40 19 53">empty_mapping</NAMEEXPR>
+          </RECORDENTRY>
+          <RECORDENTRY PLACE="19 55 19 79">
+            <IDENTIFIER PLACE="19 55 19 62">request</IDENTIFIER>
+            <NAMEEXPR PLACE="19 66 19 79">empty_mapping</NAMEEXPR>
+          </RECORDENTRY>
+        </RECORDLITERAL>
+      </LETEXPRESSION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="22 3 23 60">
+      <IDENTIFIER PLACE="22 3 22 14">ceiling_map</IDENTIFIER>
+      <ARRAYTYPE PLACE="22 17 22 43">
+        <TYPENAME PLACE="22 23 22 32">Semaphore</TYPENAME>
+        <TYPENAME PLACE="22 36 22 43">NATURAL</TYPENAME>
+      </ARRAYTYPE>
+      <ARRAYLITERAL PLACE="23 4 23 60">
+        <INDEXVARDECL PLACE="23 7 23 20">
+          <IDENTIFIER PLACE="23 7 23 8">s</IDENTIFIER>
+          <TYPENAME PLACE="23 11 23 20">Semaphore</TYPENAME>
+        </INDEXVARDECL>
+        <APPLICATION PLACE="23 22 23 58">
+          <QUALIFIEDNAMEEXPR PLACE="23 22 23 37">
+            <IDENTIFIER PLACE="23 30 23 37">ceiling</IDENTIFIER>
+            <CONTEXTNAME PLACE="23 22 23 29">
+              <IDENTIFIER PLACE="23 22 23 29">taskCtx</IDENTIFIER>
+            </CONTEXTNAME>
+          </QUALIFIEDNAMEEXPR>
+          <TUPLELITERAL PLACE="23 37 23 58">
+            <NAMEEXPR PLACE="23 38 23 39">s</NAMEEXPR>
+            <NAMEEXPR PLACE="23 41 23 57">task_descriptors</NAMEEXPR>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </ARRAYLITERAL>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="25 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="25 3 25 10">ceiling</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TYPENAME>Semaphore</TYPENAME>
+        <TYPENAME PLACE="25 28 25 35">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="25 11 25 24">
+            <IDENTIFIER PLACE="25 11 25 12">s</IDENTIFIER>
+            <TYPENAME PLACE="25 15 25 24">Semaphore</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <ARRAYSELECTION PLACE="25 38 25 52">
+          <NAMEEXPR PLACE="25 38 25 49">ceiling_map</NAMEEXPR>
+          <NAMEEXPR PLACE="25 50 25 51">s</NAMEEXPR>
+        </ARRAYSELECTION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <TYPEDECLARATION PLACE="27 3 27 33">
+      <IDENTIFIER PLACE="27 3 27 9">JobIdx</IDENTIFIER>
+      <QUALIFIEDTYPENAME PLACE="27 19 27 33">
+        <IDENTIFIER PLACE="27 27 27 33">JobIdx</IDENTIFIER>
+        <CONTEXTNAME PLACE="27 19 27 26">
+          <IDENTIFIER PLACE="27 19 27 26">taskCtx</IDENTIFIER>
+        </CONTEXTNAME>
+      </QUALIFIEDTYPENAME>
+    </TYPEDECLARATION>
+    <CONSTANTDECLARATION PLACE="29 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="29 3 29 11">priority</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TYPENAME>JobIdx</TYPENAME>
+        <TYPENAME PLACE="29 26 29 33">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="29 12 29 22">
+            <IDENTIFIER PLACE="29 12 29 13">j</IDENTIFIER>
+            <TYPENAME PLACE="29 16 29 22">JobIdx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <APPLICATION PLACE="29 36 29 73">
+          <QUALIFIEDNAMEEXPR PLACE="29 36 29 52">
+            <IDENTIFIER PLACE="29 44 29 52">priority</IDENTIFIER>
+            <CONTEXTNAME PLACE="29 36 29 43">
+              <IDENTIFIER PLACE="29 36 29 43">taskCtx</IDENTIFIER>
+            </CONTEXTNAME>
+          </QUALIFIEDNAMEEXPR>
+          <TUPLELITERAL PLACE="29 52 29 73">
+            <NAMEEXPR PLACE="29 53 29 54">j</NAMEEXPR>
+            <NAMEEXPR PLACE="29 56 29 72">task_descriptors</NAMEEXPR>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="31 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="31 3 31 12">uses_sem?</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>Semaphore</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="31 42 31 49">BOOLEAN</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="31 13 31 23">
+            <IDENTIFIER PLACE="31 13 31 14">j</IDENTIFIER>
+            <TYPENAME PLACE="31 17 31 23">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="31 25 31 38">
+            <IDENTIFIER PLACE="31 25 31 26">s</IDENTIFIER>
+            <TYPENAME PLACE="31 29 31 38">Semaphore</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <APPLICATION PLACE="31 52 31 93">
+          <QUALIFIEDNAMEEXPR PLACE="31 52 31 69">
+            <IDENTIFIER PLACE="31 60 31 69">uses_sem?</IDENTIFIER>
+            <CONTEXTNAME PLACE="31 52 31 59">
+              <IDENTIFIER PLACE="31 52 31 59">taskCtx</IDENTIFIER>
+            </CONTEXTNAME>
+          </QUALIFIEDNAMEEXPR>
+          <TUPLELITERAL PLACE="31 69 31 93">
+            <NAMEEXPR PLACE="31 70 31 71">j</NAMEEXPR>
+            <NAMEEXPR PLACE="31 73 31 74">s</NAMEEXPR>
+            <NAMEEXPR PLACE="31 76 31 92">task_descriptors</NAMEEXPR>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="34 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="34 3 34 6">blk</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>JobIdx</TYPENAME>
+        </TUPLETYPE>
+        <QUALIFIEDTYPENAME PLACE="34 31 34 44">
+          <IDENTIFIER PLACE="34 41 34 44">Set</IDENTIFIER>
+          <CONTEXTNAME PLACE="34 31 34 40">
+            <IDENTIFIER PLACE="34 31 34 40">jobSetCtx</IDENTIFIER>
+          </CONTEXTNAME>
+        </QUALIFIEDTYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="34 7 34 15">
+            <IDENTIFIER PLACE="34 7 34 8">r</IDENTIFIER>
+            <TYPENAME PLACE="34 11 34 15">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="34 17 34 27">
+            <IDENTIFIER PLACE="34 17 34 18">j</IDENTIFIER>
+            <TYPENAME PLACE="34 21 34 27">JobIdx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <LAMBDAABSTRACTION PLACE="35 5 35 127">
+          <VARDECLS PLACE="35 13 35 23">
+            <VARDECL PLACE="35 13 35 23">
+              <IDENTIFIER PLACE="35 13 35 14">k</IDENTIFIER>
+              <TYPENAME PLACE="35 17 35 23">JobIdx</TYPENAME>
+            </VARDECL>
+          </VARDECLS>
+          <APPLICATION PLACE="35 27 35 127" INFIX="YES">
+            <NAMEEXPR PLACE="35 34 35 37">AND</NAMEEXPR>
+            <TUPLELITERAL PLACE="35 27 35 127">
+              <APPLICATION PLACE="35 27 35 33" INFIX="YES">
+                <NAMEEXPR PLACE="35 29 35 31">/=</NAMEEXPR>
+                <TUPLELITERAL PLACE="35 27 35 33">
+                  <NAMEEXPR PLACE="35 27 35 28">k</NAMEEXPR>
+                  <NAMEEXPR PLACE="35 32 35 33">j</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+              <QUANTIFIEDEXPRESSION PLACE="35 38 35 127" PARENS="1">
+                <QUANTIFIER PLACE="35 39 35 45">EXISTS</QUANTIFIER>
+                <VARDECLS PLACE="35 47 35 60">
+                  <VARDECL PLACE="35 47 35 60">
+                    <IDENTIFIER PLACE="35 47 35 48">s</IDENTIFIER>
+                    <TYPENAME PLACE="35 51 35 60">Semaphore</TYPENAME>
+                  </VARDECL>
+                </VARDECLS>
+                <APPLICATION PLACE="35 63 35 126" INFIX="YES">
+                  <NAMEEXPR PLACE="35 97 35 100">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="35 63 35 126">
+                    <APPLICATION PLACE="35 63 35 96">
+                      <QUALIFIEDNAMEEXPR PLACE="35 63 35 82">
+                        <IDENTIFIER PLACE="35 73 35 82">contains?</IDENTIFIER>
+                        <CONTEXTNAME PLACE="35 63 35 72">
+                          <IDENTIFIER PLACE="35 63 35 72">semSetCtx</IDENTIFIER>
+                        </CONTEXTNAME>
+                      </QUALIFIEDNAMEEXPR>
+                      <TUPLELITERAL PLACE="35 82 35 96">
+                        <ARRAYSELECTION PLACE="35 83 35 93">
+                          <RECORDSELECTION PLACE="35 83 35 90">
+                            <NAMEEXPR PLACE="35 83 35 84">r</NAMEEXPR>
+                            <IDENTIFIER PLACE="35 85 35 90">alloc</IDENTIFIER>
+                          </RECORDSELECTION>
+                          <NAMEEXPR PLACE="35 91 35 92">k</NAMEEXPR>
+                        </ARRAYSELECTION>
+                        <NAMEEXPR PLACE="35 94 35 95">s</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="35 101 35 126" INFIX="YES">
+                      <NAMEEXPR PLACE="35 112 35 114">&gt;=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="35 101 35 126">
+                        <APPLICATION PLACE="35 101 35 111">
+                          <NAMEEXPR PLACE="35 101 35 108">ceiling</NAMEEXPR>
+                          <TUPLELITERAL PLACE="35 108 35 111">
+                            <NAMEEXPR PLACE="35 109 35 110">s</NAMEEXPR>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                        <APPLICATION PLACE="35 115 35 126">
+                          <NAMEEXPR PLACE="35 115 35 123">priority</NAMEEXPR>
+                          <TUPLELITERAL PLACE="35 123 35 126">
+                            <NAMEEXPR PLACE="35 124 35 125">j</NAMEEXPR>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </QUANTIFIEDEXPRESSION>
+            </TUPLELITERAL>
+          </APPLICATION>
+        </LAMBDAABSTRACTION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="38 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="38 3 38 11">blocked?</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>JobIdx</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="38 36 38 43">BOOLEAN</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="38 12 38 20">
+            <IDENTIFIER PLACE="38 12 38 13">r</IDENTIFIER>
+            <TYPENAME PLACE="38 16 38 20">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="38 22 38 32">
+            <IDENTIFIER PLACE="38 22 38 23">j</IDENTIFIER>
+            <TYPENAME PLACE="38 26 38 32">JobIdx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <APPLICATION PLACE="39 5 39 75" INFIX="YES">
+          <NAMEEXPR PLACE="39 37 39 40">AND</NAMEEXPR>
+          <TUPLELITERAL PLACE="39 5 39 75">
+            <APPLICATION PLACE="39 5 39 36">
+              <NAMEEXPR PLACE="39 5 39 8">NOT</NAMEEXPR>
+              <TUPLELITERAL PLACE="39 9 39 36">
+                <APPLICATION PLACE="39 9 39 36">
+                  <QUALIFIEDNAMEEXPR PLACE="39 9 39 25">
+                    <IDENTIFIER PLACE="39 19 39 25">empty?</IDENTIFIER>
+                    <CONTEXTNAME PLACE="39 9 39 18">
+                      <IDENTIFIER PLACE="39 9 39 18">jobSetCtx</IDENTIFIER>
+                    </CONTEXTNAME>
+                  </QUALIFIEDNAMEEXPR>
+                  <TUPLELITERAL PLACE="39 25 39 36">
+                    <APPLICATION PLACE="39 26 39 35">
+                      <NAMEEXPR PLACE="39 26 39 29">blk</NAMEEXPR>
+                      <TUPLELITERAL PLACE="39 29 39 35">
+                        <NAMEEXPR PLACE="39 30 39 31">r</NAMEEXPR>
+                        <NAMEEXPR PLACE="39 33 39 34">j</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+            <APPLICATION PLACE="39 41 39 75">
+              <NAMEEXPR PLACE="39 41 39 44">NOT</NAMEEXPR>
+              <TUPLELITERAL PLACE="39 45 39 75">
+                <APPLICATION PLACE="39 45 39 75">
+                  <QUALIFIEDNAMEEXPR PLACE="39 45 39 61">
+                    <IDENTIFIER PLACE="39 55 39 61">empty?</IDENTIFIER>
+                    <CONTEXTNAME PLACE="39 45 39 54">
+                      <IDENTIFIER PLACE="39 45 39 54">semSetCtx</IDENTIFIER>
+                    </CONTEXTNAME>
+                  </QUALIFIEDNAMEEXPR>
+                  <TUPLELITERAL PLACE="39 61 39 75">
+                    <ARRAYSELECTION PLACE="39 62 39 74">
+                      <RECORDSELECTION PLACE="39 62 39 71">
+                        <NAMEEXPR PLACE="39 62 39 63">r</NAMEEXPR>
+                        <IDENTIFIER PLACE="39 64 39 71">request</IDENTIFIER>
+                      </RECORDSELECTION>
+                      <NAMEEXPR PLACE="39 72 39 73">j</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="44 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="44 3 44 13">alloc_step</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>Semaphore</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="44 53 44 57">RSRC</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="44 14 44 22">
+            <IDENTIFIER PLACE="44 14 44 15">r</IDENTIFIER>
+            <TYPENAME PLACE="44 18 44 22">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="44 24 44 34">
+            <IDENTIFIER PLACE="44 24 44 25">j</IDENTIFIER>
+            <TYPENAME PLACE="44 28 44 34">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="44 36 44 49">
+            <IDENTIFIER PLACE="44 36 44 37">s</IDENTIFIER>
+            <TYPENAME PLACE="44 40 44 49">Semaphore</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <CONDITIONAL PLACE="45 5 49 10">
+          <APPLICATION PLACE="45 8 45 35">
+            <QUALIFIEDNAMEEXPR PLACE="45 8 45 24">
+              <IDENTIFIER PLACE="45 18 45 24">empty?</IDENTIFIER>
+              <CONTEXTNAME PLACE="45 8 45 17">
+                <IDENTIFIER PLACE="45 8 45 17">jobSetCtx</IDENTIFIER>
+              </CONTEXTNAME>
+            </QUALIFIEDNAMEEXPR>
+            <TUPLELITERAL PLACE="45 24 45 35">
+              <APPLICATION PLACE="45 25 45 34">
+                <NAMEEXPR PLACE="45 25 45 28">blk</NAMEEXPR>
+                <TUPLELITERAL PLACE="45 28 45 34">
+                  <NAMEEXPR PLACE="45 29 45 30">r</NAMEEXPR>
+                  <NAMEEXPR PLACE="45 32 45 33">j</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </TUPLELITERAL>
+          </APPLICATION>
+          <UPDATEEXPRESSION PLACE="46 7 46 58">
+            <DEPTH>0</DEPTH>
+            <ARRAYSELECTION PLACE="46 7 46 23">
+              <RECORDSELECTION PLACE="46 7 46 20">
+                <NAMEEXPR PLACE="46 7 46 8">r</NAMEEXPR>
+                <IDENTIFIER PLACE="46 15 46 20">alloc</IDENTIFIER>
+              </RECORDSELECTION>
+              <NAMEEXPR PLACE="46 21 46 22">j</NAMEEXPR>
+            </ARRAYSELECTION>
+            <APPLICATION PLACE="46 27 46 58">
+              <QUALIFIEDNAMEEXPR PLACE="46 27 46 43">
+                <IDENTIFIER PLACE="46 37 46 43">insert</IDENTIFIER>
+                <CONTEXTNAME PLACE="46 27 46 36">
+                  <IDENTIFIER PLACE="46 27 46 36">semSetCtx</IDENTIFIER>
+                </CONTEXTNAME>
+              </QUALIFIEDNAMEEXPR>
+              <TUPLELITERAL PLACE="46 43 46 58">
+                <ARRAYSELECTION PLACE="46 44 46 54">
+                  <RECORDSELECTION PLACE="46 44 46 51">
+                    <NAMEEXPR PLACE="46 44 46 45">r</NAMEEXPR>
+                    <IDENTIFIER PLACE="46 46 46 51">alloc</IDENTIFIER>
+                  </RECORDSELECTION>
+                  <NAMEEXPR PLACE="46 52 46 53">j</NAMEEXPR>
+                </ARRAYSELECTION>
+                <NAMEEXPR PLACE="46 56 46 57">s</NAMEEXPR>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </UPDATEEXPRESSION>
+          <UPDATEEXPRESSION PLACE="48 7 48 62">
+            <DEPTH>0</DEPTH>
+            <ARRAYSELECTION PLACE="48 7 48 25">
+              <RECORDSELECTION PLACE="48 7 48 22">
+                <NAMEEXPR PLACE="48 7 48 8">r</NAMEEXPR>
+                <IDENTIFIER PLACE="48 15 48 22">request</IDENTIFIER>
+              </RECORDSELECTION>
+              <NAMEEXPR PLACE="48 23 48 24">j</NAMEEXPR>
+            </ARRAYSELECTION>
+            <APPLICATION PLACE="48 29 48 62">
+              <QUALIFIEDNAMEEXPR PLACE="48 29 48 45">
+                <IDENTIFIER PLACE="48 39 48 45">insert</IDENTIFIER>
+                <CONTEXTNAME PLACE="48 29 48 38">
+                  <IDENTIFIER PLACE="48 29 48 38">semSetCtx</IDENTIFIER>
+                </CONTEXTNAME>
+              </QUALIFIEDNAMEEXPR>
+              <TUPLELITERAL PLACE="48 45 48 62">
+                <ARRAYSELECTION PLACE="48 46 48 58">
+                  <RECORDSELECTION PLACE="48 46 48 55">
+                    <NAMEEXPR PLACE="48 46 48 47">r</NAMEEXPR>
+                    <IDENTIFIER PLACE="48 48 48 55">request</IDENTIFIER>
+                  </RECORDSELECTION>
+                  <NAMEEXPR PLACE="48 56 48 57">j</NAMEEXPR>
+                </ARRAYSELECTION>
+                <NAMEEXPR PLACE="48 60 48 61">s</NAMEEXPR>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </UPDATEEXPRESSION>
+        </CONDITIONAL>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="53 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="53 3 53 15">release_step</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>Semaphore</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="53 55 53 59">RSRC</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="53 16 53 24">
+            <IDENTIFIER PLACE="53 16 53 17">r</IDENTIFIER>
+            <TYPENAME PLACE="53 20 53 24">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="53 26 53 36">
+            <IDENTIFIER PLACE="53 26 53 27">j</IDENTIFIER>
+            <TYPENAME PLACE="53 30 53 36">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="53 38 53 51">
+            <IDENTIFIER PLACE="53 38 53 39">s</IDENTIFIER>
+            <TYPENAME PLACE="53 42 53 51">Semaphore</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <UPDATEEXPRESSION PLACE="54 5 54 56">
+          <DEPTH>0</DEPTH>
+          <ARRAYSELECTION PLACE="54 5 54 21">
+            <RECORDSELECTION PLACE="54 5 54 18">
+              <NAMEEXPR PLACE="54 5 54 6">r</NAMEEXPR>
+              <IDENTIFIER PLACE="54 13 54 18">alloc</IDENTIFIER>
+            </RECORDSELECTION>
+            <NAMEEXPR PLACE="54 19 54 20">j</NAMEEXPR>
+          </ARRAYSELECTION>
+          <APPLICATION PLACE="54 25 54 56">
+            <QUALIFIEDNAMEEXPR PLACE="54 25 54 41">
+              <IDENTIFIER PLACE="54 35 54 41">remove</IDENTIFIER>
+              <CONTEXTNAME PLACE="54 25 54 34">
+                <IDENTIFIER PLACE="54 25 54 34">semSetCtx</IDENTIFIER>
+              </CONTEXTNAME>
+            </QUALIFIEDNAMEEXPR>
+            <TUPLELITERAL PLACE="54 41 54 56">
+              <ARRAYSELECTION PLACE="54 42 54 52">
+                <RECORDSELECTION PLACE="54 42 54 49">
+                  <NAMEEXPR PLACE="54 42 54 43">r</NAMEEXPR>
+                  <IDENTIFIER PLACE="54 44 54 49">alloc</IDENTIFIER>
+                </RECORDSELECTION>
+                <NAMEEXPR PLACE="54 50 54 51">j</NAMEEXPR>
+              </ARRAYSELECTION>
+              <NAMEEXPR PLACE="54 54 54 55">s</NAMEEXPR>
+            </TUPLELITERAL>
+          </APPLICATION>
+        </UPDATEEXPRESSION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="56 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="56 3 56 19">release_all_step</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>JobIdx</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="56 44 56 48">RSRC</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="56 20 56 28">
+            <IDENTIFIER PLACE="56 20 56 21">r</IDENTIFIER>
+            <TYPENAME PLACE="56 24 56 28">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="56 30 56 40">
+            <IDENTIFIER PLACE="56 30 56 31">j</IDENTIFIER>
+            <TYPENAME PLACE="56 34 56 40">JobIdx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <UPDATEEXPRESSION PLACE="57 5 57 86">
+          <DEPTH>0</DEPTH>
+          <ARRAYSELECTION PLACE="57 5 57 63">
+            <RECORDSELECTION PLACE="57 5 57 60">
+              <UPDATEEXPRESSION PLACE="57 5 57 46">
+                <DEPTH>0</DEPTH>
+                <ARRAYSELECTION PLACE="57 6 57 22">
+                  <RECORDSELECTION PLACE="57 6 57 19">
+                    <NAMEEXPR PLACE="57 6 57 7">r</NAMEEXPR>
+                    <IDENTIFIER PLACE="57 14 57 19">alloc</IDENTIFIER>
+                  </RECORDSELECTION>
+                  <NAMEEXPR PLACE="57 20 57 21">j</NAMEEXPR>
+                </ARRAYSELECTION>
+                <QUALIFIEDNAMEEXPR PLACE="57 26 57 45">
+                  <IDENTIFIER PLACE="57 36 57 45">empty_set</IDENTIFIER>
+                  <CONTEXTNAME PLACE="57 26 57 35">
+                    <IDENTIFIER PLACE="57 26 57 35">semSetCtx</IDENTIFIER>
+                  </CONTEXTNAME>
+                </QUALIFIEDNAMEEXPR>
+              </UPDATEEXPRESSION>
+              <IDENTIFIER PLACE="57 53 57 60">request</IDENTIFIER>
+            </RECORDSELECTION>
+            <NAMEEXPR PLACE="57 61 57 62">j</NAMEEXPR>
+          </ARRAYSELECTION>
+          <QUALIFIEDNAMEEXPR PLACE="57 67 57 86">
+            <IDENTIFIER PLACE="57 77 57 86">empty_set</IDENTIFIER>
+            <CONTEXTNAME PLACE="57 67 57 76">
+              <IDENTIFIER PLACE="57 67 57 76">semSetCtx</IDENTIFIER>
+            </CONTEXTNAME>
+          </QUALIFIEDNAMEEXPR>
+        </UPDATEEXPRESSION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="61 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="61 3 61 9">wakeup</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>JobIdx</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="61 34 61 38">RSRC</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="61 10 61 18">
+            <IDENTIFIER PLACE="61 10 61 11">r</IDENTIFIER>
+            <TYPENAME PLACE="61 14 61 18">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="61 20 61 30">
+            <IDENTIFIER PLACE="61 20 61 21">j</IDENTIFIER>
+            <TYPENAME PLACE="61 24 61 30">JobIdx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <CONDITIONAL PLACE="62 5 64 17">
+          <APPLICATION PLACE="62 8 62 43" INFIX="YES">
+            <NAMEEXPR PLACE="62 21 62 23">/=</NAMEEXPR>
+            <TUPLELITERAL PLACE="62 8 62 43">
+              <ARRAYSELECTION PLACE="62 8 62 20">
+                <RECORDSELECTION PLACE="62 8 62 17">
+                  <NAMEEXPR PLACE="62 8 62 9">r</NAMEEXPR>
+                  <IDENTIFIER PLACE="62 10 62 17">request</IDENTIFIER>
+                </RECORDSELECTION>
+                <NAMEEXPR PLACE="62 18 62 19">j</NAMEEXPR>
+              </ARRAYSELECTION>
+              <QUALIFIEDNAMEEXPR PLACE="62 24 62 43">
+                <IDENTIFIER PLACE="62 34 62 43">empty_set</IDENTIFIER>
+                <CONTEXTNAME PLACE="62 24 62 33">
+                  <IDENTIFIER PLACE="62 24 62 33">semSetCtx</IDENTIFIER>
+                </CONTEXTNAME>
+              </QUALIFIEDNAMEEXPR>
+            </TUPLELITERAL>
+          </APPLICATION>
+          <UPDATEEXPRESSION PLACE="63 10 63 113">
+            <DEPTH>0</DEPTH>
+            <ARRAYSELECTION PLACE="63 10 63 68">
+              <RECORDSELECTION PLACE="63 10 63 65">
+                <UPDATEEXPRESSION PLACE="63 10 63 53">
+                  <DEPTH>0</DEPTH>
+                  <ARRAYSELECTION PLACE="63 11 63 29">
+                    <RECORDSELECTION PLACE="63 11 63 26">
+                      <NAMEEXPR PLACE="63 11 63 12">r</NAMEEXPR>
+                      <IDENTIFIER PLACE="63 19 63 26">request</IDENTIFIER>
+                    </RECORDSELECTION>
+                    <NAMEEXPR PLACE="63 27 63 28">j</NAMEEXPR>
+                  </ARRAYSELECTION>
+                  <QUALIFIEDNAMEEXPR PLACE="63 33 63 52">
+                    <IDENTIFIER PLACE="63 43 63 52">empty_set</IDENTIFIER>
+                    <CONTEXTNAME PLACE="63 33 63 42">
+                      <IDENTIFIER PLACE="63 33 63 42">semSetCtx</IDENTIFIER>
+                    </CONTEXTNAME>
+                  </QUALIFIEDNAMEEXPR>
+                </UPDATEEXPRESSION>
+                <IDENTIFIER PLACE="63 60 63 65">alloc</IDENTIFIER>
+              </RECORDSELECTION>
+              <NAMEEXPR PLACE="63 66 63 67">j</NAMEEXPR>
+            </ARRAYSELECTION>
+            <APPLICATION PLACE="63 72 63 113">
+              <QUALIFIEDNAMEEXPR PLACE="63 72 63 87">
+                <IDENTIFIER PLACE="63 82 63 87">union</IDENTIFIER>
+                <CONTEXTNAME PLACE="63 72 63 81">
+                  <IDENTIFIER PLACE="63 72 63 81">semSetCtx</IDENTIFIER>
+                </CONTEXTNAME>
+              </QUALIFIEDNAMEEXPR>
+              <TUPLELITERAL PLACE="63 87 63 113">
+                <ARRAYSELECTION PLACE="63 88 63 98">
+                  <RECORDSELECTION PLACE="63 88 63 95">
+                    <NAMEEXPR PLACE="63 88 63 89">r</NAMEEXPR>
+                    <IDENTIFIER PLACE="63 90 63 95">alloc</IDENTIFIER>
+                  </RECORDSELECTION>
+                  <NAMEEXPR PLACE="63 96 63 97">j</NAMEEXPR>
+                </ARRAYSELECTION>
+                <ARRAYSELECTION PLACE="63 100 63 112">
+                  <RECORDSELECTION PLACE="63 100 63 109">
+                    <NAMEEXPR PLACE="63 100 63 101">r</NAMEEXPR>
+                    <IDENTIFIER PLACE="63 102 63 109">request</IDENTIFIER>
+                  </RECORDSELECTION>
+                  <NAMEEXPR PLACE="63 110 63 111">j</NAMEEXPR>
+                </ARRAYSELECTION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </UPDATEEXPRESSION>
+          <NAMEEXPR PLACE="64 10 64 11">r</NAMEEXPR>
+        </CONDITIONAL>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

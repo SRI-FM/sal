@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="author" content="Leonardo de Moura"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="SAL: Symbolic Analysis Laboratory"/>
+<meta name="keywords" content="model checker, symbolic model checker, bounded model checker, formal methods, software verification, hardware verification, test-case generation, decision procedures"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<link rel="shortcut icon" href="images/sal-small.gif"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+    <link rel="stylesheet" type="text/css" href="fm-style.css" />
+    <title>SAL 2.2 Cygwin Installation</title>
+  </head>
+  <body>
+    <div class="nav">
+<img class="rfloat" src="images/sal3.jpg" alt="SAL"/>
+<table class="navbar">
+<tr>
+<th><a href="index.html">Home</a></th>
+<th>&bull;</th>
+<th><a href="introduction.html">Intro</a></th>
+<th>&bull;</th>
+<th><a href="documentation.html">Docs</a></th>
+<th>&bull;</th>
+<th><a href="download.html">Download</a></th>
+<th>&bull;</th>
+<th><a href="mailing_lists.html">Mail</a></th>
+<th>&bull;</th>
+<th><a href="http://fm.csl.sri.com">FM&nbsp;Tools</a></th>
+</tr>
+</table>
+</div>
+
+    <h1>SAL 2.2 Cygwin Installation</h1>
+    <div class="body">
+
+<p>
+Cygwin is a Unix-like environment that runs on Windows.   If you want
+to use SAL in Windows, you must first install Cygwin.   For Windows
+XP, this goes as follows (please send us corrections for other
+versions of Windows):
+</p>
+
+Go to <a
+href="http://www.cygwin.com">www.cygwin.com</a>:
+<ol>
+<li> Click on the <tt>Install or update now!</tt> button</li>
+
+<li> This will request permission to open the file <tt>setup.exe</tt></li>
+
+<li> The next screens ask some questions.   You want to <tt>Install
+From The Internet</tt> and may as well accept the default root
+directory <tt>c:\cygwin</tt> and <tt>Install For All
+Users</tt>.   If you want to use Windows editors to prepare and edit SAL files,
+then change the <tt>Default Text File Type</tt> to <tt>DOS</tt>.
+</li>
+
+<li>The next couple of screens ask how you connect to the internet, and
+then you are asked to choose  a download site; pick one near you (from
+the USA, the University of Delaware site seems fast and reliable).
+</li>
+
+<li><tt>setup.exe</tt> will be downloaded and opened and the next
+screen will ask you to select packages.   You can just click on
+the next button to install the default configuration, but
+  <ul>
+  <li>If you have no interest in Cygwin other than to run SAL, you can
+      save download time and file space by deselecting XFree86,
+  </li>
+  <li>If you want to prepare and edit SAL files with a Unix editor,
+      select your favorite editor (e.g., ed, vi, or emacs) from  the Editors entry.
+  </li>
+  </ul>
+</li>
+
+<li>The default installation takes about 15 minutes to download over a
+DSL connection, and another 5 minutes to build and install itself.
+</li>
+
+<li>You should now be able to start Cygwin (it puts an icon on the
+desktop by default).  You will see a tty-like window.  Type
+<tt>pwd</tt> -- this will tell you the current directory in Cygwin
+terms.   It should be something like <tt>/home/foo</tt> where
+<tt>foo</tt> is your Windows user name.   This Cygwin directory will
+correspond to the Windows directory <tt>c:\cygwin\home\foo</tt>.
+</li>
+
+<li>From Windows, download the
+<a href="http://sal.csl.sri.com/download-binaries/sal-2.2-bin-i686-pc-cygwin.tar.gz">SAL for Cygwin</a> file into this directory.
+</li>
+
+<li>In Cygwin, type <tt>tar xzf sal-2.2-bin-i686-pc-cygwin.tar.gz</tt>
+(the tab key provides completion, and the filename will change with
+different versions of SAL).
+</li>
+
+<li>Then type <tt>cd sal-2.2</tt> (or whatever the current version is)
+and then <tt>./install.sh</tt>
+</li>
+
+<li>Next, in Windows, copy the license file that was mailed to you to a directory
+<tt>somewhere</tt> under <tt>c:\cygwin\home\foo</tt>.
+</li>
+
+<li>Using a Unix editor, edit the file <tt>.bashrc</tt>, or with a
+Windows editor, the file <tt>c:\cygwin\home\foo\.bashrc</tt>, and
+append the following lines
+<pre>
+PATH=$PATH:$HOME/sal-2.2/bin
+SAL_LICENSE_CERTIFICATE=$HOME/somewhere/certificate
+export SAL_LICENSE_CERTIFICATE
+ICS_LICENSE_CERTIFICATE=$HOME/somewhere/certificate
+export ICS_LICENSE_CERTIFICATE
+SALPATH=.:/$HOME/somewhere-else
+export SALPATH
+</pre>
+where <tt>somewhere-else</tt> is the name of the directory where you
+intend to keep SAL files (use a colon-separated list if there is more
+than one of them; the dot at the front ensures SAL will always look in the
+current directory first).
+</li>
+
+<li>Finally, exit Cygwin and start it again and SAL should run
+nicely (try typing <tt>sal-smc --help</tt>).
+</li>
+
+</ol>
+
+</div>
+  <div class="footer">
+    <footer class="page-footer"><hr />Last modified: <script>let lmod = new Date(document.lastModified);document.write(lmod.toDateString());</script>&nbsp; | &nbsp;Webmaster: <a href="mailto:owre@csl.sri.com">Sam Owre</a> &#149; <a href="mailto:shankar@csl.sri.com">N. Shankar</a> </footer>
+  </div>
+</body>
+</html>

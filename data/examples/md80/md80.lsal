@@ -1,0 +1,68 @@
+(context md80 () ()
+
+  (define-type pitch-modes (scalar vert_speed ias alt_cap alt_hold))
+
+  (define-type action (scalar VSPD IAS CAP HLD near arrived))
+
+  (define-module env
+    (begin
+      (output event::action)
+      (initialization 
+       (= event VSPD))
+      (transition
+        (in event' (set-list VSPD IAS CAP HLD near arrived)))))
+
+  (define-module md80
+    (begin
+      (input event::action)
+      (output mode::pitch-modes)
+      (output capture_mode::bool)
+      (initialization 
+       (= mode ias) 
+       (= capture_mode false))
+      (transition
+        ([] ((= event VSPD) --> (= mode' vert_speed))
+            ((= event IAS) --> (= mode' ias))
+            ((= event CAP) --> (= capture_mode' (not capture_mode)))
+            ((= event HLD) --> (= mode' alt_hold))
+            ((and (= event near) capture_mode)
+             -->
+             (= mode' alt_cap)
+             (= capture_mode' false))
+            ((and (= event arrived) 
+                  (or (= mode alt_cap) capture_mode))
+             -->
+             (= mode' alt_hold)
+             (= capture_mode' false))
+						(else 
+						 -->
+						 )))))
+
+  (define-module mental
+    (begin
+      (input event::action)
+      (output mental_mode::pitch-modes)
+      (output mental_capture::bool)
+      (initialization
+        (= mental_mode ias)
+        (= mental_capture false))
+      (transition
+        ([] ((= event VSPD) --> (= mental_mode' vert_speed))
+            ((= event IAS) --> (= mental_mode' ias))
+            ((= event CAP) --> (= mental_capture' (not mental_capture)))
+            ((= event HLD) --> (= mental_mode' alt_hold))
+            ((and (= event arrived) mental_capture)
+             -->
+             (= mental_mode' alt_hold)
+             (= mental_capture' false))
+						(else 
+						 --> 
+						 )))))
+
+  (define-module system (|| env (|| md80 mental)))
+
+  (theorem no-surprise
+    (|- system
+        (G (= mental_capture (or capture_mode (= mode alt_cap))))))
+
+  )

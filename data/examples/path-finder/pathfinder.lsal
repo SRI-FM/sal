@@ -1,0 +1,68 @@
+(context pathfinder () ()
+  
+  (define-type mutex-state (scalar busy free))
+  (define-type process-state (scalar waiting running idle))
+  (define-type process-id (scalar low high))
+  
+  (define-module (process id::process-id)
+    (begin
+      (output pc::process-state)
+      (global mutex::mutex-state)
+      (input turn::process-id)
+      (initialization
+       (= pc idle))
+      (transition
+       ([]
+        ((and (= turn' id) (= pc idle))
+         -->
+         (= pc' waiting))
+        ((and (= turn' id) (= pc waiting) (= mutex free))
+         -->
+         (= pc' running)
+         (= mutex' busy))
+        ((and (= turn' id) (= pc running))
+         -->
+         (= pc' idle)
+         (= mutex' free))
+				(else --> )))))
+
+  (define-module scheduler
+    (begin
+      (input pc-high-priority::process-state)
+      (input pc-low-priority::process-state)
+      (output turn::process-id)
+      (local high-running::bool)
+      (local low-running::bool)
+      (initialization
+       (= high-running true)
+       (= low-running true)
+       (in turn (set-list low high)))
+      (transition
+       (= high-running' (/= pc-high-priority' pc-high-priority))
+       (= low-running' (/= pc-low-priority' pc-low-priority))
+       ([]
+        ((= pc-high-priority idle)
+         -->
+         (in turn' (set-list low high)))
+        ((or (= pc-high-priority waiting)
+             (= pc-high-priority running))
+         -->
+         (= turn' high))))))
+
+  (define-module low-priority-process 
+    (rename ((pc pc-low-priority))
+      (process low)))
+
+  (define-module high-priority-process
+    (rename ((pc pc-high-priority))
+      (process high)))
+
+  (define-module system
+    (|| scheduler ([] low-priority-process high-priority-process)))
+
+  (theorem deadlock-free
+    (|- system (G (or low-running high-running))))
+
+
+  )
+  

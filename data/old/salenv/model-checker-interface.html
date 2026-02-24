@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>SAL Model Checker WWW interface</title>
+
+<META 
+name="description" 
+content="This is an easy to use WWW interface to the SAL Model Checker.
+ From this page you can access SAL-MC and submit your own specifications for verification.">
+
+<META 
+name="keywords" content="formal verification, verification, model checking, formal methods, model checkers">
+
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="0000FF">
+
+<h1>SAL Model Checker</h1>
+<h2>WWW File Interface</h2>
+
+<p>In the space below, enter the name of the file containing the
+SAL Specification you want to check.  Alternately, you can use the
+browse button to select a filename from the menu.
+</p>
+
+<p>
+This HTML interface is for demonstration purposes only. It is not intended 
+to be used to verify real examples. </p>
+
+<form method='POST' enctype='multipart/form-data' 
+action="http://internal/~demoura/cgi-bin/model-checker-interface.cgi">
+<INPUT TYPE=hidden NAME=screen VALUE=interface_screen>
+<b>Specification (`.sal' or `.xml' file):</b><br>
+<input type=file name=specification><br>
+<b>Assertion Name:</b><br>
+<input type=text size=90 name="assertion" value=""><br>
+<b>Extra Arguments (type `--help' for help): </b><br>
+<input type=text size=90 name="arguments" value=""><br>
+<input type=submit value=Press> to start SAL-MC!
+</form>
+
+
+<p><i>It may take up to a few minutes to produce an answer.  Thank you
+for your patience.</i></p>
+
+<hr noshade>
+<i>
+<font size=-1>
+Last updated Jul 22 2002 by
+  <a href="mailto: demoura@csl.sri.com">Leonardo de Moura</a>
+</font>
+</i>
+
+</body>
+</html>

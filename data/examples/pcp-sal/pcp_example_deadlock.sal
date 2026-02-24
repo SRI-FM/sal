@@ -1,0 +1,143 @@
+pcp_example_deadlock : CONTEXT =
+BEGIN
+
+  Semaphore : TYPE = {sem1,sem2};
+
+  semSetCtx : CONTEXT = simple_set{Semaphore;};
+
+  NumberOfTasks : NATURAL = 2;
+
+  taskCtx : CONTEXT = pcp_task{Semaphore; NumberOfTasks};
+
+  JobIdx : TYPE = taskCtx!JobIdx;
+
+  task1 : taskCtx!TaskDescriptor = 
+                  (# priority := 100, 
+                     period := 8, 
+                     semaphores := semSetCtx!insert(sem2, semSetCtx!insert(sem1, semSetCtx!empty_set))
+                   #);
+
+  task2 : taskCtx!TaskDescriptor = 
+                  (# priority := 50, 
+                     period := 12, 
+                     semaphores := semSetCtx!insert(sem2, semSetCtx!insert(sem1, semSetCtx!empty_set))
+                   #);
+
+
+  tasks : taskCtx!TaskDescriptors = 
+          [ [i : JobIdx]
+	          IF i = 1 THEN task1
+            ELSE task2 ENDIF ];
+	
+  rsrcCtx : CONTEXT = pcp_rsrc{Semaphore; NumberOfTasks, tasks};
+
+  schCtx : CONTEXT = pcp_scheduler{Semaphore; NumberOfTasks, tasks};
+
+  RSRC : TYPE = rsrcCtx!RSRC;
+
+  Turn : TYPE = schCtx!Turn;
+
+  alloc_step(r : RSRC, j : JobIdx, s : Semaphore) : RSRC =
+    rsrcCtx!alloc_step(r,j,s);
+
+  release_step(r : RSRC, j : JobIdx, s : Semaphore) : RSRC =
+    rsrcCtx!release_step(r,j,s);
+
+  turn?(t : Turn, j : JobIdx) : BOOLEAN = schCtx!turn?(t, j);
+
+  SIMPLE_PC : TYPE = {l1, l2, l3, l4, l5, l6};
+
+  JobStatus : TYPE = schCtx!JobStatus;
+
+  precedes?(j : JobIdx, k : JobIdx) : BOOLEAN =
+    schCtx!precedes?(j,k);
+
+  priority(j : JobIdx) : NATURAL =
+    schCtx!priority(j);
+
+  lock(r : RSRC, j : JobIdx, s : Semaphore) : RSRC =
+		schCtx!lock(r,j,s);
+
+  unlock(r : RSRC, j : JobIdx, s : Semaphore) : RSRC = 
+    schCtx!unlock(r,j,s);
+
+  step(r : RSRC, j : JobIdx) : RSRC =
+    schCtx!step(r,j);
+
+  simple_job1 : MODULE =
+	BEGIN
+    INPUT turn : Turn
+    OUTPUT status : JobStatus
+    GLOBAL rsrc : RSRC
+    OUTPUT pc1 : SIMPLE_PC
+  INITIALIZATION
+    status = schCtx!finished;
+    pc1 = l1
+	TRANSITION
+    [
+       pc1 = l1 AND turn?(turn',1) --> status' = schCtx!started;
+                                       rsrc' = lock(rsrc, 1, sem1);
+                                       pc1' = l2
+       []
+       pc1 = l2 AND turn?(turn',1) --> rsrc' = step(rsrc, 1);
+                                       pc1' = l3
+       []
+       pc1 = l3 AND turn?(turn',1) --> rsrc' = lock(rsrc, 1, sem2);
+                                       pc1' = l4
+       []
+       pc1 = l4 AND turn?(turn',1) --> rsrc' = step(rsrc, 1);
+                                       pc1' = l5
+       []
+       pc1 = l5 AND turn?(turn',1) --> rsrc' = unlock(unlock(rsrc, 1, sem2), 1, sem1);
+                                       status' = schCtx!finished;
+                                       pc1' = l1
+   ]
+	END;
+
+  simple_job2 : MODULE =
+	BEGIN
+    INPUT turn : Turn
+    OUTPUT status : JobStatus
+    GLOBAL rsrc : RSRC
+    OUTPUT pc2 : SIMPLE_PC
+  INITIALIZATION
+    status = schCtx!finished;
+    pc2 = l1
+	TRANSITION
+    [
+       pc2 = l1 AND turn?(turn',2) --> status' = schCtx!started;
+                                       rsrc' = lock(rsrc, 2, sem2);
+                                       pc2' = l2
+			 []
+       pc2 = l2 AND turn?(turn',2) --> rsrc' = step(rsrc, 2);
+                                       pc2' = l3
+       []
+       pc2 = l3 AND turn?(turn',2) --> rsrc' = step(rsrc, 2);
+                                       pc2' = l4
+       []
+       pc2 = l4 AND turn?(turn',2) --> rsrc' = lock(rsrc, 2, sem1);
+                                       pc2' = l5
+       []
+       pc2 = l5 AND turn?(turn',2) --> rsrc' = step(rsrc, 2);
+                                       pc2' = l6
+       []
+       pc2 = l6 AND turn?(turn',2) --> pc2' = l1;
+                                       rsrc' = unlock(unlock(rsrc,2,sem2), 2, sem1);
+                                       status' = schCtx!finished
+    ]
+	END;
+
+
+
+  system : MODULE = 
+  schCtx!scheduler ||
+  ((WITH OUTPUT job_status : ARRAY JobIdx OF JobStatus
+		(RENAME status TO job_status[1] 
+     IN simple_job1)
+    []
+    (RENAME status TO job_status[2]
+     IN simple_job2))
+    []
+    schCtx!idle_process);  
+
+END

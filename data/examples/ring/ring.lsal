@@ -1,0 +1,29 @@
+(context ring () (N::nznat)
+
+  (define-module (inverter initial::bool)
+    (begin
+      (input inp::bool)
+      (output out::bool)
+      (initialization
+       (= out initial))
+      (transition
+       (= out' inp))))
+
+  (define-module ring
+    (with ((output ring-data::(array (subrange 1 N) bool)))
+          (||
+           (rename ((inp ring-data[N]) (out ring-data[1]))
+             (inverter true))
+           (|| (idx::(subrange 2 N))
+               (rename ((inp ring-data[(- idx 1)]) (out ring-data[idx]))
+                 (inverter false))))))
+
+  (theorem every-element-is-eventually-true (|- ring (for-all (idx::(subrange 1 N))
+                                                       (G (F ring-data[idx])))))
+  
+  (theorem only-one-element-is-true (|- ring (G (exists (idx::(subrange 1 N))
+                                                  (and ring-data[idx]
+                                                       (for-all (idx2::(subrange 1 N))
+                                                         (implies (/= idx idx2)
+                                                                  (not ring-data[idx2]))))))))
+  )

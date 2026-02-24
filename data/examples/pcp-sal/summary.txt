@@ -1,0 +1,140 @@
+
+
+Explicit state model checker (ESMC)
+
+ESMC can be seen as a standard simulator. However, in most cases
+ESMC will perform exhaustive search of the state space. ESMC is
+specially useful in the initial steps of development, since
+it can detect trivial bugs quite fast. Most ESMCs support partial
+exploration of the state space using heuristics such as: the supertrace
+algorithm used in SPIN. ESMCs usually do not force the user to provide
+a specification that can be mapped to booleans, that is, the user
+may even use an ESMC to check infinite state space systems, although,
+in this context, it is used as a refutation engine. Partial order
+reduction and symmetry reduction are popular techniques used in
+ESMCs to avoid the state space explosion. In general, ESMCs
+can only be used to prove properties of systems with less than
+5 million states (after partial order/symmetry reduction, slicing, 
+abstraction, etc). 
+
+Symbolic model checker (SMC)
+
+SMCs represent the state space and transition relation symbolically
+(e.g., using BDD). SMCs can process state space with more than 10^1000
+states. It is important to notice that theres isn't a clear relationship between
+the size of the state space, and the size of the symbolic representation
+(e.g., BDD) used to represent it. So, a SMC may fail to verify a small
+problem (10^7 states) because there isn't a compact symbolic representation
+(BDD) to represent, for instance, the transition relation. SMCs can verify
+properties performing forward/backward reachability, however, in practice,
+it seems that forward reachability is usually more efficient. Fixpoint
+computations, are partitioned transition relation are the main techiniques
+used in SMC. In most cases, a SMC can only verify systems that can be 
+encoded in propositional logic. 
+
+Bounded model checker (BMC)
+
+BMC simply converts a verification task in a constraint satisfaction problem (CSP).
+In other words, a BMC generates the following CSP: "Is there a bug upto depth n?".
+BMC is very effective in detecting shallow bugs. It most BMCs, the verification
+problem is translated to a boolean satisfiability problem, and an off-the-shelf
+SAT solver is used. However, BMC can be applied in infinite state space systems
+if a more powerful CSP engine is used. BMCs do not suffer from BDD explosion problems
+found in SMCs. BMC is mainly a refutation tool, since it is necessary to know
+the diameter (the longest shortest path to any reachable state) of the system 
+to use it as a verification engine. In most of the cases, it is quite expensive
+to compute the diameter of the system, and for infinite state space systems, the
+diameter may be infinite. An interesting research area tries 
+It seems that BMC and ESMC An interesting research is the combination of BMC and ESMC.
+
+K-Induction 
+
+K-induction is a complementary technique for BMC, and can be used to prove
+safety properties. This induction rule generalizes BMC in that it 
+requires demonstrating the invariance of a property $p$ in the first $k$ states of
+any execution.  Consequently, error traces of length $k$ are detected.
+This induction rule also generalizes the usual invariance rule in that it 
+requires showing that if $p$ holds in every state of every execution 
+of length $k$,  then every successor state also satisfies $p$.
+In its pure form, however, k-induction does not require the invention 
+of a strengthened inductive invariant. K-induction is not restricted to
+finite systems. Although the technique is complete for finite systems, 
+in practice, it only works for small values of $k$ (< 20).
+
+Examples:
+They are located at:
+/homes/demoura/project/sal/salenv2/examples/pcp-sal/
+
+
+=========================== EXPERIMENTS ==========================
+
+------ Instance 1 -------
+File: tst_pcp.sal
+3 jobs and 3 semaphores
+(priority = 100, period = 8, budget = 3, sem = {1, 3}) 
+(priority = 50, period = 12, budget = 4, sem = {1, 2})
+(priority = 25, period = 20, budget = 5, sem = {1, 2, 3})
+
+state space: 209737024.0
+diameter:    194
+
+Property: deadlock_free
+Valid
+sal-smc (forward reachability) time:  76.21 secs
+sal-smc (backward reachability) time: 4.24 secs 
+sal-bmc time : 6.4 secs proved with k-induction (k=1)
+
+Property: deadline_missed
+*** invalid property ***
+
+sal-smc (forward reachability) time: 7.64 secs
+sal-smc (backward reachability) time: timeout
+sal-bmc time: 7.7 secs
+
+------ Instance 2 -------
+File: tst_pcp2.sal
+3 jobs and 3 semaphores
+(priority = 100, period = 28, budget = 4, sem = {1, 3}) 
+(priority = 50, period =  16, budget = 4, sem = {1, 2})
+(priority = 25, period =  16, budget = 4, sem = {1, 2, 3})
+
+diameter:    112
+reachable states: 4992.0
+
+Property: deadlock_free
+Valid
+sal-smc (forward reachability) time:  9.46 secs
+sal-smc (backward reachability) time: 8.24 secs
+sal-bmc time : 4.15 secs proved with k-induction (k=1)
+
+Property: deadline_missed
+Valid
+sal-smc (forward reachability): 9.68 secs
+sal-smc (backward reachability): timeout
+sal-bmc: 9.45 secs - no bug upto depth 40 (k-induction fails)
+
+------ Instance 3 -------
+File: tst_pcp3.sal
+5 jobs and 3 semaphores
+
+(priority = 100, period = 10, budget = 3, sem = {1}) 
+(priority = 75, period =  16, budget = 4, sem = {2, 3})
+(priority = 50, period =  8,  budget = 7, sem = {1, 3})
+(priority = 50, period =  12, budget = 6, sem = {1, 2})
+(priority = 25, period =  20, budget = 5, sem = {1, 2, 3})
+
+state space: 329924301744.0
+diameter:    437
+
+Property: deadlock_free
+Valid
+sal-smc (forward reachability) time:  7055.6 secs
+sal-smc (backward reachability) time: 16.54 secs
+sal-bmc time : 8.49 secs proved with k-induction (k=1)
+
+
+Property: deadline_missed
+*** invalid property ***
+sal-smc (forward reachability): 17.32 secs
+sal-smc (backward reachability): timeout
+sal-bmc: 11.38 secs

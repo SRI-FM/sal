@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-16"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+
+<HEAD>
+<LINK REL="SHORTCUT ICON" HREF="images/sal-small.jpg">
+<TITLE>SAL --- Cygwin</TITLE>
+</HEAD>
+<link rel="stylesheet" href="http://fm.csl.sri.com/style.css" type="text/css" />
+<BODY>
+<IMG SRC="../images/sal2.jpg" ALT="SAL">
+<h1>SAL 2.0 Cygwin Installation</h1>
+
+<hr noshade>
+
+
+Cygwin is a Unix-like environment that runs under Windows.
+<ul>
+<li>
+If
+you do not have it already, you first need to install the <a
+href="http://java.sun.com/j2se/downloads.html">Java runtime</a>
+<li>
+Then make sure it is in your Windows path: open a Command Prompt
+(MSDOS) window and type "java".  If you get no response, go to
+<tt>Start -> Settings -> Control Panel -> System -> Advanced ->
+Environment Variables</tt>, highlight <tt>path</tt> and press
+<tt>edit</tt> and append a semicolon and the location of the java
+runtime (probably <tt>c:\Program Files\j2sdk_nb\jvm\bin</tt>).  Start
+a new command prompt window and check for "java" again.
+
+<li>
+Next, install Cygwin from <a
+href=http://www.cygwin.com>www.cygwin.com</a> (version >= 1.5.3) and check that "java" works from there, too.   
+
+<li>
+Then download  the SAL 
+<a href="download-binaries/sal-2.0-bin-i686-pc-cygwin.tar.gz">Cygwin</a> tar file into
+your Cygwin directory.  
+
+<li>
+In Cygwin, type <tt>tar xzf
+sal-2.0-bin-i686-pc-cygwin.tar.gz</tt>, then <tt>cd sal-2.0</tt> and 
+<tt>./install.sh</tt>.  
+
+<li>
+Copy your license certificate to this
+directory, then type <tt>sal-smc</tt> and check that it seems to be working.
+</ul>
+
+<a href="download.html">Back to the SAL download homepage</a>
+
+<!-- END HEADER BLURB -->
+<br clear=all>
+<hr noshade>
+<i>
+<font size=-1>
+<!-- hhmts start --> Last modified: Nov 14 2003 <!-- hhmts end -->
+by <a href="mailto: Rushby@csl.sri.com">John Rushby</a>
+</font>
+</i>
+
+</body>
+</html>

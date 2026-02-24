@@ -1,0 +1,32 @@
+<!--#if expr="$base = ''" -->
+<!--#set var="base" value="" -->
+<!--#endif -->
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta name="author" content="Leonardo de Moura" />
+<meta name="description" content="SAL: Symbolic Analysis Laboratory" />
+<meta name="keywords" content="model checker, symbolic model checker, bounded model checker, formal methods, software verification, hardware verification, test-case generation, decision procedures" />
+
+<!--#if expr="$base != ''" -->
+<base href="<!--#echo var="base" -->"/>
+<!--#endif -->
+<link rel="shortcut icon" href="<!--#echo var="base" -->images/sal-small.gif" />
+<link rel="stylesheet" href="<!--#echo var="base" -->fm-style.css" type="text/css" />
+<title><!--#echo var="title" --></title>
+</head>
+
+<body>
+
+<!--#if expr="\"$HTTP_USER_AGENT\" = \"/Mozilla/4.*/\" && \"$HTTP_USER_AGENT\" != \"/.*MSIE.*/\"" -->
+<!--#set var="oldbrowser" value="yes" -->
+<!--#endif -->
+
+<!--#include file="navbar.html" -->
+
+<img class="rfloat" src="<!--#echo var="base" -->images/sal3.jpg" alt="SAL" />
+<h1><!--#echo var="title" --></h1>
+
+

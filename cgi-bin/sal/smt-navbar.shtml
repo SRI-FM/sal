@@ -1,0 +1,54 @@
+
+<!--#if expr="$oldbrowser" -->
+<hr />
+<table.centered-small>
+  <tr>
+    <th> <a href="<!--#echo var="base" -->index.shtml">Home</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->introduction.shtml">Intro</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->rules.shtml">Rules</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->format.shtml">Format</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->tools.shtml">Tools</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->benchmarks.shtml">Bench</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->registration.shtml">Register</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->timeline.shtml">Time</a> </th>
+    <th> - </th>
+    <th> <a href="<!--#echo var="base" -->organizers.shtml">Org</a> </th>
+    <th> - </th>
+    <th> <a href="http://goedel.cs.uiowa.edu/smtlib/">SMT-LIB</a> </th>
+  </tr>
+</table>
+<hr />
+<!--#else -->
+
+<table class="centered-small">
+  <tr>
+    <th> <a href="<!--#echo var="base" -->index.shtml">Home</a> </th>
+    <th> &bull; </th>
+    <th> <a href="<!--#echo var="base" -->introduction.shtml">Intro</a> </th>
+    <th> &bull; </th>
+    <th> <a href="<!--#echo var="base" -->rules.shtml">Rules</a> </th>
+    <th> &bull; </th> 
+    <th> <a href="<!--#echo var="base" -->format.shtml">Format</a> </th>
+    <th> &bull; </th> 
+    <th> <a href="<!--#echo var="base" -->tools.shtml">Tools</a> </th>
+    <th> &bull; </th> 
+    <th> <a href="<!--#echo var="base" -->benchmarks.shtml">Bench</a> </th>
+    <th> &bull; </th> 
+    <th> <a href="<!--#echo var="base" -->registration.shtml">Register</a> </th>
+    <th> &bull; </th>
+    <th> <a href="<!--#echo var="base" -->timeline.shtml">Time</a> </th>
+    <th> &bull; </th>
+    <th> <a href="<!--#echo var="base" -->organizers.shtml">Org</a> </th>
+    <th> &bull; </th>
+    <th> <a href="http://goedel.cs.uiowa.edu/smtlib/">SMT-LIB</a> </th>
+  </tr>
+</table>
+
+<!--#endif -->

@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./pipeline.sal  -->
+<CONTEXT PLACE="1 1 193 4">
+  <IDENTIFIER PLACE="1 1 1 9">pipeline</IDENTIFIER>
+  <PARAMETERS></PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 193 4">
+    <TYPEDECLARATION PLACE="3 3 3 5">
+      <IDENTIFIER PLACE="3 3 3 5">PC</IDENTIFIER>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="4 3 4 7">
+      <IDENTIFIER PLACE="4 3 4 7">Data</IDENTIFIER>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="5 3 5 11">
+      <IDENTIFIER PLACE="5 3 5 11">Register</IDENTIFIER>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="6 3 6 12">
+      <IDENTIFIER PLACE="6 3 6 12">Operation</IDENTIFIER>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="7 3 7 48">
+      <IDENTIFIER PLACE="7 3 7 16">Register_File</IDENTIFIER>
+      <ARRAYTYPE PLACE="7 26 7 48">
+        <TYPENAME PLACE="7 32 7 40">Register</TYPENAME>
+        <TYPENAME PLACE="7 44 7 48">Data</TYPENAME>
+      </ARRAYTYPE>
+    </TYPEDECLARATION>
+    <CONSTANTDECLARATION PLACE="9 3 9 11">
+      <IDENTIFIER PLACE="9 3 9 6">pc0</IDENTIFIER>
+      <TYPENAME PLACE="9 9 9 11">PC</TYPENAME>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="10 3 10 22">
+      <IDENTIFIER PLACE="10 3 10 6">rf0</IDENTIFIER>
+      <TYPENAME PLACE="10 9 10 22">Register_File</TYPENAME>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="12 3 12 31">
+      <IDENTIFIER PLACE="12 3 12 5">op</IDENTIFIER>
+      <FUNCTIONTYPE PLACE="12 12 12 31">
+        <TYPENAME PLACE="12 14 12 16">PC</TYPENAME>
+        <TYPENAME PLACE="12 20 12 29">Operation</TYPENAME>
+      </FUNCTIONTYPE>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="13 3 13 31">
+      <IDENTIFIER PLACE="13 3 13 7">src1</IDENTIFIER>
+      <FUNCTIONTYPE PLACE="13 12 13 31">
+        <TYPENAME PLACE="13 14 13 16">PC</TYPENAME>
+        <TYPENAME PLACE="13 20 13 28">Register</TYPENAME>
+      </FUNCTIONTYPE>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="14 3 14 31">
+      <IDENTIFIER PLACE="14 3 14 7">src2</IDENTIFIER>
+      <FUNCTIONTYPE PLACE="14 12 14 31">
+        <TYPENAME PLACE="14 14 14 16">PC</TYPENAME>
+        <TYPENAME PLACE="14 20 14 28">Register</TYPENAME>
+      </FUNCTIONTYPE>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="15 3 15 31">
+      <IDENTIFIER PLACE="15 3 15 7">dest</IDENTIFIER>
+      <FUNCTIONTYPE PLACE="15 12 15 31">
+        <TYPENAME PLACE="15 14 15 16">PC</TYPENAME>
+        <TYPENAME PLACE="15 20 15 28">Register</TYPENAME>
+      </FUNCTIONTYPE>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="16 3 16 24">
+      <IDENTIFIER PLACE="16 3 16 9">new_pc</IDENTIFIER>
+      <FUNCTIONTYPE PLACE="16 12 16 24">
+        <TYPENAME PLACE="16 14 16 16">PC</TYPENAME>
+        <TYPENAME PLACE="16 20 16 22">PC</TYPENAME>
+      </FUNCTIONTYPE>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="17 3 17 47">
+      <IDENTIFIER PLACE="17 3 17 6">alu</IDENTIFIER>
+      <FUNCTIONTYPE PLACE="17 12 17 47">
+        <TUPLETYPE PLACE="17 14 17 37">
+          <TYPENAME PLACE="17 15 17 24">Operation</TYPENAME>
+          <TYPENAME PLACE="17 26 17 30">Data</TYPENAME>
+          <TYPENAME PLACE="17 32 17 36">Data</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="17 41 17 45">Data</TYPENAME>
+      </FUNCTIONTYPE>
+    </CONSTANTDECLARATION>
+    <MODULEDECLARATION PLACE="20 3 58 6">
+      <IDENTIFIER PLACE="20 3 20 7">spec</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="21 3 58 6">
+        <INPUTDECL PLACE="23 5 23 24">
+          <VARDECL PLACE="23 11 23 24">
+            <IDENTIFIER PLACE="23 11 23 14">isa</IDENTIFIER>
+            <TYPENAME PLACE="23 17 23 24">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <INPUTDECL PLACE="26 5 26 33">
+          <VARDECL PLACE="26 11 26 33">
+            <IDENTIFIER PLACE="26 11 26 23">project_impl</IDENTIFIER>
+            <TYPENAME PLACE="26 26 26 33">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="29 5 29 20">
+          <VARDECL PLACE="29 12 29 20">
+            <IDENTIFIER PLACE="29 12 29 15">sPC</IDENTIFIER>
+            <TYPENAME PLACE="29 18 29 20">PC</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <OUTPUTDECL PLACE="30 5 30 31">
+          <VARDECL PLACE="30 12 30 31">
+            <IDENTIFIER PLACE="30 12 30 15">sRF</IDENTIFIER>
+            <TYPENAME PLACE="30 18 30 31">Register_File</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <LOCALDECL PLACE="33 5 33 22">
+          <VARDECL PLACE="33 11 33 22">
+            <IDENTIFIER PLACE="33 11 33 15">arg1</IDENTIFIER>
+            <TYPENAME PLACE="33 18 33 22">Data</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="34 5 34 22">
+          <VARDECL PLACE="34 11 34 22">
+            <IDENTIFIER PLACE="34 11 34 15">arg2</IDENTIFIER>
+            <TYPENAME PLACE="34 18 34 22">Data</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="35 5 35 22">
+          <VARDECL PLACE="35 11 35 22">
+            <IDENTIFIER PLACE="35 11 35 14">val</IDENTIFIER>
+            <TYPENAME PLACE="35 18 35 22">Data</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <INPUTDECL PLACE="38 5 38 20">
+          <VARDECL PLACE="38 12 38 20">
+            <IDENTIFIER PLACE="38 12 38 15">pPC</IDENTIFIER>
+            <TYPENAME PLACE="38 18 38 20">PC</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <INPUTDECL PLACE="39 5 39 31">
+          <VARDECL PLACE="39 12 39 31">
+            <IDENTIFIER PLACE="39 12 39 15">pRF</IDENTIFIER>
+            <TYPENAME PLACE="39 18 39 31">Register_File</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <DEFDECL PLACE="41 5 43 28">
+          <SIMPLEDEFINITION PLACE="43 7 43 28">
+            <NAMEEXPR PLACE="43 7 43 11">arg1</NAMEEXPR>
+            <RHSEXPRESSION PLACE="43 12 43 28">
+              <ARRAYSELECTION PLACE="43 14 43 28">
+                <NAMEEXPR PLACE="43 14 43 17">sRF</NAMEEXPR>
+                <APPLICATION PLACE="43 18 43 27">
+                  <NAMEEXPR PLACE="43 18 43 22">src1</NAMEEXPR>
+                  <TUPLELITERAL PLACE="43 22 43 27">
+                    <NAMEEXPR PLACE="43 23 43 26">sPC</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </ARRAYSELECTION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="44 7 44 28">
+            <NAMEEXPR PLACE="44 7 44 11">arg2</NAMEEXPR>
+            <RHSEXPRESSION PLACE="44 12 44 28">
+              <ARRAYSELECTION PLACE="44 14 44 28">
+                <NAMEEXPR PLACE="44 14 44 17">sRF</NAMEEXPR>
+                <APPLICATION PLACE="44 18 44 27">
+                  <NAMEEXPR PLACE="44 18 44 22">src2</NAMEEXPR>
+                  <TUPLELITERAL PLACE="44 22 44 27">
+                    <NAMEEXPR PLACE="44 23 44 26">sPC</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </ARRAYSELECTION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="45 7 45 38">
+            <NAMEEXPR PLACE="45 7 45 10">val</NAMEEXPR>
+            <RHSEXPRESSION PLACE="45 12 45 38">
+              <APPLICATION PLACE="45 14 45 38">
+                <NAMEEXPR PLACE="45 14 45 17">alu</NAMEEXPR>
+                <TUPLELITERAL PLACE="45 17 45 38">
+                  <APPLICATION PLACE="45 18 45 25">
+                    <NAMEEXPR PLACE="45 18 45 20">op</NAMEEXPR>
+                    <TUPLELITERAL PLACE="45 20 45 25">
+                      <NAMEEXPR PLACE="45 21 45 24">sPC</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <NAMEEXPR PLACE="45 27 45 31">arg1</NAMEEXPR>
+                  <NAMEEXPR PLACE="45 33 45 37">arg2</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </DEFDECL>
+        <INITDECL PLACE="47 5 48 17">
+          <SIMPLEDEFINITION PLACE="48 7 48 17">
+            <NAMEEXPR PLACE="48 7 48 10">sPC</NAMEEXPR>
+            <RHSEXPRESSION PLACE="48 12 48 17">
+              <NAMEEXPR PLACE="48 14 48 17">pc0</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="49 7 49 17">
+            <NAMEEXPR PLACE="49 7 49 10">sRF</NAMEEXPR>
+            <RHSEXPRESSION PLACE="49 12 49 17">
+              <NAMEEXPR PLACE="49 14 49 17">rf0</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="51 5 54 39">
+          <SIMPLEDEFINITION PLACE="52 7 54 39">
+            <NEXTOPERATOR PLACE="52 7 52 11">
+              <NAMEEXPR PLACE="52 7 52 10">sPC</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="52 12 54 39">
+              <CONDITIONAL PLACE="52 14 54 39">
+                <NAMEEXPR PLACE="52 21 52 33">project_impl</NAMEEXPR>
+                <NAMEEXPR PLACE="52 39 52 42">pPC</NAMEEXPR>
+                <CONDITIONAL ELSIF="YES">
+                  <NAMEEXPR PLACE="53 21 53 24">isa</NAMEEXPR>
+                  <APPLICATION PLACE="53 39 53 50">
+                    <NAMEEXPR PLACE="53 39 53 45">new_pc</NAMEEXPR>
+                    <TUPLELITERAL PLACE="53 45 53 50">
+                      <NAMEEXPR PLACE="53 46 53 49">sPC</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <NAMEEXPR PLACE="54 21 54 24">sPC</NAMEEXPR>
+                </CONDITIONAL>
+              </CONDITIONAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="55 7 57 39">
+            <NEXTOPERATOR PLACE="55 7 55 11">
+              <NAMEEXPR PLACE="55 7 55 10">sRF</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="55 12 57 39">
+              <CONDITIONAL PLACE="55 14 57 39">
+                <NAMEEXPR PLACE="55 21 55 33">project_impl</NAMEEXPR>
+                <NAMEEXPR PLACE="55 39 55 42">pRF</NAMEEXPR>
+                <CONDITIONAL ELSIF="YES">
+                  <NAMEEXPR PLACE="56 21 56 24">isa</NAMEEXPR>
+                  <UPDATEEXPRESSION PLACE="56 39 56 68" PARENS="1">
+                    <DEPTH>0</DEPTH>
+                    <ARRAYSELECTION PLACE="56 40 56 60">
+                      <NAMEEXPR PLACE="56 40 56 43">sRF</NAMEEXPR>
+                      <APPLICATION PLACE="56 50 56 59">
+                        <NAMEEXPR PLACE="56 50 56 54">dest</NAMEEXPR>
+                        <TUPLELITERAL PLACE="56 54 56 59">
+                          <NAMEEXPR PLACE="56 55 56 58">sPC</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </ARRAYSELECTION>
+                    <NAMEEXPR PLACE="56 64 56 67">val</NAMEEXPR>
+                  </UPDATEEXPRESSION>
+                  <NAMEEXPR PLACE="57 21 57 24">sRF</NAMEEXPR>
+                </CONDITIONAL>
+              </CONDITIONAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="60 3 115 6">
+      <IDENTIFIER PLACE="60 3 60 7">impl</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="61 3 115 6">
+        <INPUTDECL PLACE="62 5 62 26">
+          <VARDECL PLACE="62 11 62 26">
+            <IDENTIFIER PLACE="62 11 62 16">flush</IDENTIFIER>
+            <TYPENAME PLACE="62 19 62 26">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="65 5 65 20">
+          <VARDECL PLACE="65 12 65 20">
+            <IDENTIFIER PLACE="65 12 65 15">pPC</IDENTIFIER>
+            <TYPENAME PLACE="65 18 65 20">PC</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <OUTPUTDECL PLACE="66 5 66 31">
+          <VARDECL PLACE="66 12 66 31">
+            <IDENTIFIER PLACE="66 12 66 15">pRF</IDENTIFIER>
+            <TYPENAME PLACE="66 18 66 31">Register_File</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <LOCALDECL PLACE="68 5 68 29">
+          <VARDECL PLACE="68 12 68 29">
+            <IDENTIFIER PLACE="68 12 68 15">eOP</IDENTIFIER>
+            <TYPENAME PLACE="68 20 68 29">Operation</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="69 5 69 28">
+          <VARDECL PLACE="69 12 69 28">
+            <IDENTIFIER PLACE="69 12 69 17">eSRC2</IDENTIFIER>
+            <TYPENAME PLACE="69 20 69 28">Register</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="70 5 70 24">
+          <VARDECL PLACE="70 12 70 24">
+            <IDENTIFIER PLACE="70 12 70 17">eARG1</IDENTIFIER>
+            <TYPENAME PLACE="70 20 70 24">Data</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="71 5 71 24">
+          <VARDECL PLACE="71 12 71 24">
+            <IDENTIFIER PLACE="71 12 71 17">eARG2</IDENTIFIER>
+            <TYPENAME PLACE="71 20 71 24">Data</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="72 5 72 28">
+          <VARDECL PLACE="72 12 72 28">
+            <IDENTIFIER PLACE="72 12 72 17">eDEST</IDENTIFIER>
+            <TYPENAME PLACE="72 20 72 28">Register</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="73 5 73 27">
+          <VARDECL PLACE="73 12 73 27">
+            <IDENTIFIER PLACE="73 12 73 16">eWRT</IDENTIFIER>
+            <TYPENAME PLACE="73 20 73 27">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="75 5 75 24">
+          <VARDECL PLACE="75 12 75 24">
+            <IDENTIFIER PLACE="75 12 75 16">wVAL</IDENTIFIER>
+            <TYPENAME PLACE="75 20 75 24">Data</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="76 5 76 28">
+          <VARDECL PLACE="76 12 76 28">
+            <IDENTIFIER PLACE="76 12 76 17">wDEST</IDENTIFIER>
+            <TYPENAME PLACE="76 20 76 28">Register</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="77 5 77 27">
+          <VARDECL PLACE="77 12 77 27">
+            <IDENTIFIER PLACE="77 12 77 16">wWRT</IDENTIFIER>
+            <TYPENAME PLACE="77 20 77 27">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="80 5 80 27">
+          <VARDECL PLACE="80 12 80 27">
+            <IDENTIFIER PLACE="80 12 80 17">stall</IDENTIFIER>
+            <TYPENAME PLACE="80 20 80 27">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="81 5 81 24">
+          <VARDECL PLACE="81 12 81 24">
+            <IDENTIFIER PLACE="81 12 81 15">fwd</IDENTIFIER>
+            <TYPENAME PLACE="81 20 81 24">Data</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <DEFDECL PLACE="83 5 86 43">
+          <SIMPLEDEFINITION PLACE="86 7 86 43">
+            <NAMEEXPR PLACE="86 7 86 12">stall</NAMEEXPR>
+            <RHSEXPRESSION PLACE="86 13 86 43">
+              <APPLICATION PLACE="86 15 86 43" INFIX="YES">
+                <NAMEEXPR PLACE="86 20 86 23">AND</NAMEEXPR>
+                <TUPLELITERAL PLACE="86 15 86 43">
+                  <NAMEEXPR PLACE="86 15 86 19">eWRT</NAMEEXPR>
+                  <APPLICATION PLACE="86 24 86 43" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="86 35 86 36">=</NAMEEXPR>
+                    <TUPLELITERAL PLACE="86 25 86 42">
+                      <APPLICATION PLACE="86 25 86 34">
+                        <NAMEEXPR PLACE="86 25 86 29">src1</NAMEEXPR>
+                        <TUPLELITERAL PLACE="86 29 86 34">
+                          <NAMEEXPR PLACE="86 30 86 33">pPC</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <NAMEEXPR PLACE="86 37 86 42">eDEST</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="89 7 90 31">
+            <NAMEEXPR PLACE="89 7 89 10">fwd</NAMEEXPR>
+            <RHSEXPRESSION PLACE="89 13 90 31">
+              <CONDITIONAL PLACE="89 15 90 31">
+                <APPLICATION PLACE="89 18 89 42" INFIX="YES">
+                  <NAMEEXPR PLACE="89 23 89 26">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="89 18 89 42">
+                    <NAMEEXPR PLACE="89 18 89 22">wWRT</NAMEEXPR>
+                    <APPLICATION PLACE="89 27 89 42" INFIX="YES" PARENS="1">
+                      <NAMEEXPR PLACE="89 34 89 35">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="89 28 89 41">
+                        <NAMEEXPR PLACE="89 28 89 33">wDEST</NAMEEXPR>
+                        <NAMEEXPR PLACE="89 36 89 41">eSRC2</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <NAMEEXPR PLACE="89 48 89 52">wVAL</NAMEEXPR>
+                <NAMEEXPR PLACE="90 20 90 25">eARG2</NAMEEXPR>
+              </CONDITIONAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </DEFDECL>
+        <INITDECL PLACE="92 5 93 18">
+          <SIMPLEDEFINITION PLACE="93 7 93 18">
+            <NAMEEXPR PLACE="93 7 93 10">pPC</NAMEEXPR>
+            <RHSEXPRESSION PLACE="93 13 93 18">
+              <NAMEEXPR PLACE="93 15 93 18">pc0</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="94 7 94 18">
+            <NAMEEXPR PLACE="94 7 94 10">pRF</NAMEEXPR>
+            <RHSEXPRESSION PLACE="94 13 94 18">
+              <NAMEEXPR PLACE="94 15 94 18">rf0</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="96 5 99 40">
+          <SIMPLEDEFINITION PLACE="98 7 99 40">
+            <NEXTOPERATOR PLACE="98 7 98 11">
+              <NAMEEXPR PLACE="98 7 98 10">pPC</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="98 15 99 40">
+              <CONDITIONAL PLACE="98 17 99 40">
+                <APPLICATION PLACE="98 20 98 34" INFIX="YES">
+                  <NAMEEXPR PLACE="98 26 98 28">OR</NAMEEXPR>
+                  <TUPLELITERAL PLACE="98 20 98 34">
+                    <NAMEEXPR PLACE="98 20 98 25">flush</NAMEEXPR>
+                    <NAMEEXPR PLACE="98 29 98 34">stall</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <NAMEEXPR PLACE="98 40 98 43">pPC</NAMEEXPR>
+                <APPLICATION PLACE="99 22 99 33">
+                  <NAMEEXPR PLACE="99 22 99 28">new_pc</NAMEEXPR>
+                  <TUPLELITERAL PLACE="99 28 99 33">
+                    <NAMEEXPR PLACE="99 29 99 32">pPC</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </CONDITIONAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="101 7 102 31">
+            <NEXTOPERATOR PLACE="101 7 101 11">
+              <NAMEEXPR PLACE="101 7 101 10">pRF</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="101 15 102 31">
+              <CONDITIONAL PLACE="101 17 102 31">
+                <NAMEEXPR PLACE="101 20 101 24">wWRT</NAMEEXPR>
+                <UPDATEEXPRESSION PLACE="101 30 101 56" PARENS="1">
+                  <DEPTH>0</DEPTH>
+                  <ARRAYSELECTION PLACE="101 31 101 47">
+                    <NAMEEXPR PLACE="101 31 101 34">pRF</NAMEEXPR>
+                    <NAMEEXPR PLACE="101 41 101 46">wDEST</NAMEEXPR>
+                  </ARRAYSELECTION>
+                  <NAMEEXPR PLACE="101 51 101 55">wVAL</NAMEEXPR>
+                </UPDATEEXPRESSION>
+                <NAMEEXPR PLACE="102 22 102 25">pRF</NAMEEXPR>
+              </CONDITIONAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="103 7 103 24">
+            <NEXTOPERATOR PLACE="103 7 103 11">
+              <NAMEEXPR PLACE="103 7 103 10">eOP</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="103 15 103 24">
+              <APPLICATION PLACE="103 17 103 24">
+                <NAMEEXPR PLACE="103 17 103 19">op</NAMEEXPR>
+                <TUPLELITERAL PLACE="103 19 103 24">
+                  <NAMEEXPR PLACE="103 20 103 23">pPC</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="104 7 104 26">
+            <NEXTOPERATOR PLACE="104 7 104 13">
+              <NAMEEXPR PLACE="104 7 104 12">eSRC2</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="104 15 104 26">
+              <APPLICATION PLACE="104 17 104 26">
+                <NAMEEXPR PLACE="104 17 104 21">src2</NAMEEXPR>
+                <TUPLELITERAL PLACE="104 21 104 26">
+                  <NAMEEXPR PLACE="104 22 104 25">pPC</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="108 7 108 32">
+            <NEXTOPERATOR PLACE="108 7 108 13">
+              <NAMEEXPR PLACE="108 7 108 12">eARG1</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="108 15 108 32">
+              <ARRAYSELECTION PLACE="108 17 108 32">
+                <NEXTOPERATOR PLACE="108 17 108 21">
+                  <NAMEEXPR PLACE="108 17 108 20">pRF</NAMEEXPR>
+                </NEXTOPERATOR>
+                <APPLICATION PLACE="108 22 108 31">
+                  <NAMEEXPR PLACE="108 22 108 26">src1</NAMEEXPR>
+                  <TUPLELITERAL PLACE="108 26 108 31">
+                    <NAMEEXPR PLACE="108 27 108 30">pPC</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </ARRAYSELECTION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="109 7 109 32">
+            <NEXTOPERATOR PLACE="109 7 109 13">
+              <NAMEEXPR PLACE="109 7 109 12">eARG2</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="109 15 109 32">
+              <ARRAYSELECTION PLACE="109 17 109 32">
+                <NEXTOPERATOR PLACE="109 17 109 21">
+                  <NAMEEXPR PLACE="109 17 109 20">pRF</NAMEEXPR>
+                </NEXTOPERATOR>
+                <APPLICATION PLACE="109 22 109 31">
+                  <NAMEEXPR PLACE="109 22 109 26">src2</NAMEEXPR>
+                  <TUPLELITERAL PLACE="109 26 109 31">
+                    <NAMEEXPR PLACE="109 27 109 30">pPC</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </ARRAYSELECTION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="110 7 110 26">
+            <NEXTOPERATOR PLACE="110 7 110 13">
+              <NAMEEXPR PLACE="110 7 110 12">eDEST</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="110 15 110 26">
+              <APPLICATION PLACE="110 17 110 26">
+                <NAMEEXPR PLACE="110 17 110 21">dest</NAMEEXPR>
+                <TUPLELITERAL PLACE="110 21 110 26">
+                  <NAMEEXPR PLACE="110 22 110 25">pPC</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="111 7 111 44">
+            <NEXTOPERATOR PLACE="111 7 111 12">
+              <NAMEEXPR PLACE="111 7 111 11">eWRT</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="111 15 111 44">
+              <APPLICATION PLACE="111 17 111 44" INFIX="YES">
+                <NAMEEXPR PLACE="111 29 111 32">AND</NAMEEXPR>
+                <TUPLELITERAL PLACE="111 17 111 44">
+                  <APPLICATION PLACE="111 17 111 28" PARENS="1">
+                    <NAMEEXPR PLACE="111 18 111 21">NOT</NAMEEXPR>
+                    <TUPLELITERAL PLACE="111 22 111 27">
+                      <NAMEEXPR PLACE="111 22 111 27">stall</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <APPLICATION PLACE="111 33 111 44" PARENS="1">
+                    <NAMEEXPR PLACE="111 34 111 37">NOT</NAMEEXPR>
+                    <TUPLELITERAL PLACE="111 38 111 43">
+                      <NAMEEXPR PLACE="111 38 111 43">flush</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="112 7 112 37">
+            <NEXTOPERATOR PLACE="112 7 112 12">
+              <NAMEEXPR PLACE="112 7 112 11">wVAL</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="112 15 112 37">
+              <APPLICATION PLACE="112 17 112 37">
+                <NAMEEXPR PLACE="112 17 112 20">alu</NAMEEXPR>
+                <TUPLELITERAL PLACE="112 20 112 37">
+                  <NAMEEXPR PLACE="112 21 112 24">eOP</NAMEEXPR>
+                  <NAMEEXPR PLACE="112 26 112 31">eARG1</NAMEEXPR>
+                  <NAMEEXPR PLACE="112 33 112 36">fwd</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="113 7 113 22">
+            <NEXTOPERATOR PLACE="113 7 113 13">
+              <NAMEEXPR PLACE="113 7 113 12">wDEST</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="113 15 113 22">
+              <NAMEEXPR PLACE="113 17 113 22">eDEST</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="114 7 114 21">
+            <NEXTOPERATOR PLACE="114 7 114 12">
+              <NAMEEXPR PLACE="114 7 114 11">wWRT</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="114 15 114 21">
+              <NAMEEXPR PLACE="114 17 114 21">eWRT</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="124 3 131 6">
+      <IDENTIFIER PLACE="124 3 124 7">step</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="125 3 131 6">
+        <OUTPUTDECL PLACE="126 5 126 28">
+          <VARDECL PLACE="126 12 126 28">
+            <IDENTIFIER PLACE="126 12 126 18">c_step</IDENTIFIER>
+            <TYPENAME PLACE="126 21 126 28">NATURAL</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <INITDECL PLACE="127 5 128 18">
+          <SIMPLEDEFINITION PLACE="128 7 128 18">
+            <NAMEEXPR PLACE="128 7 128 13">c_step</NAMEEXPR>
+            <RHSEXPRESSION PLACE="128 15 128 18">
+              <NUMERAL PLACE="128 17 128 18">0</NUMERAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="129 5 130 27">
+          <SIMPLEDEFINITION PLACE="130 7 130 27">
+            <NEXTOPERATOR PLACE="130 7 130 14">
+              <NAMEEXPR PLACE="130 7 130 13">c_step</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="130 15 130 27">
+              <APPLICATION PLACE="130 17 130 27" INFIX="YES">
+                <NAMEEXPR PLACE="130 24 130 25">+</NAMEEXPR>
+                <TUPLELITERAL PLACE="130 17 130 27">
+                  <NAMEEXPR PLACE="130 17 130 23">c_step</NAMEEXPR>
+                  <NUMERAL PLACE="130 26 130 27">1</NUMERAL>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="136 3 153 20">
+      <IDENTIFIER PLACE="136 3 136 8">part1</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <HIDING PLACE="137 5 153 20">
+        <IDENTIFIERS PLACE="137 11 137 26">
+          <IDENTIFIER PLACE="137 11 137 16">flush</IDENTIFIER>
+          <IDENTIFIER PLACE="137 18 137 21">pPC</IDENTIFIER>
+          <IDENTIFIER PLACE="137 23 137 26">pRF</IDENTIFIER>
+        </IDENTIFIERS>
+        <SYNCHRONOUSCOMPOSITION PLACE="138 9 153 20" PARENS="1">
+          <MODULEINSTANCE PLACE="138 9 138 13">
+            <MODULENAME PLACE="138 9 138 13">impl</MODULENAME>
+            <MODULEACTUALS></MODULEACTUALS>
+          </MODULEINSTANCE>
+          <BASEMODULE PLACE="138 17 153 20">
+            <INPUTDECL PLACE="139 19 139 42">
+              <VARDECL PLACE="139 26 139 42">
+                <IDENTIFIER PLACE="139 26 139 32">c_step</IDENTIFIER>
+                <TYPENAME PLACE="139 35 139 42">NATURAL</TYPENAME>
+              </VARDECL>
+            </INPUTDECL>
+            <OUTPUTDECL PLACE="140 19 140 42">
+              <VARDECL PLACE="140 26 140 42">
+                <IDENTIFIER PLACE="140 26 140 31">flush</IDENTIFIER>
+                <TYPENAME PLACE="140 35 140 42">BOOLEAN</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="141 19 141 37">
+              <VARDECL PLACE="141 26 141 37">
+                <IDENTIFIER PLACE="141 26 141 30">I_pc</IDENTIFIER>
+                <TYPENAME PLACE="141 35 141 37">PC</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="142 19 142 48">
+              <VARDECL PLACE="142 26 142 48">
+                <IDENTIFIER PLACE="142 26 142 30">I_rf</IDENTIFIER>
+                <TYPENAME PLACE="142 35 142 48">Register_File</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <INPUTDECL PLACE="144 19 144 37">
+              <VARDECL PLACE="144 26 144 37">
+                <IDENTIFIER PLACE="144 26 144 29">pPC</IDENTIFIER>
+                <TYPENAME PLACE="144 35 144 37">PC</TYPENAME>
+              </VARDECL>
+            </INPUTDECL>
+            <INPUTDECL PLACE="145 19 145 48">
+              <VARDECL PLACE="145 26 145 48">
+                <IDENTIFIER PLACE="145 26 145 29">pRF</IDENTIFIER>
+                <TYPENAME PLACE="145 35 145 48">Register_File</TYPENAME>
+              </VARDECL>
+            </INPUTDECL>
+            <DEFDECL PLACE="146 19 147 43">
+              <SIMPLEDEFINITION PLACE="147 21 147 43">
+                <NAMEEXPR PLACE="147 21 147 26">flush</NAMEEXPR>
+                <RHSEXPRESSION PLACE="147 28 147 43">
+                  <APPLICATION PLACE="147 30 147 43" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="147 38 147 40">/=</NAMEEXPR>
+                    <TUPLELITERAL PLACE="147 31 147 42">
+                      <NAMEEXPR PLACE="147 31 147 37">c_step</NAMEEXPR>
+                      <NUMERAL PLACE="147 41 147 42">0</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+            </DEFDECL>
+            <TRANSDECL PLACE="148 19 150 46">
+              <SIMPLEDEFINITION PLACE="149 21 150 46">
+                <NEXTOPERATOR PLACE="149 21 149 26">
+                  <NAMEEXPR PLACE="149 21 149 25">I_pc</NAMEEXPR>
+                </NEXTOPERATOR>
+                <RHSEXPRESSION PLACE="149 29 150 46">
+                  <CONDITIONAL PLACE="149 31 150 46">
+                    <APPLICATION PLACE="149 34 149 44" INFIX="YES">
+                      <NAMEEXPR PLACE="149 41 149 42">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="149 34 149 44">
+                        <NAMEEXPR PLACE="149 34 149 40">c_step</NAMEEXPR>
+                        <NUMERAL PLACE="149 43 149 44">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NEXTOPERATOR PLACE="149 50 149 54">
+                      <NAMEEXPR PLACE="149 50 149 53">pPC</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <NAMEEXPR PLACE="150 36 150 40">I_pc</NAMEEXPR>
+                  </CONDITIONAL>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+              <SIMPLEDEFINITION PLACE="151 21 152 46">
+                <NEXTOPERATOR PLACE="151 21 151 26">
+                  <NAMEEXPR PLACE="151 21 151 25">I_rf</NAMEEXPR>
+                </NEXTOPERATOR>
+                <RHSEXPRESSION PLACE="151 29 152 46">
+                  <CONDITIONAL PLACE="151 31 152 46">
+                    <APPLICATION PLACE="151 34 151 44" INFIX="YES">
+                      <NAMEEXPR PLACE="151 41 151 42">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="151 34 151 44">
+                        <NAMEEXPR PLACE="151 34 151 40">c_step</NAMEEXPR>
+                        <NUMERAL PLACE="151 43 151 44">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NEXTOPERATOR PLACE="151 50 151 54">
+                      <NAMEEXPR PLACE="151 50 151 53">pRF</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <NAMEEXPR PLACE="152 36 152 40">I_rf</NAMEEXPR>
+                  </CONDITIONAL>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+            </TRANSDECL>
+          </BASEMODULE>
+        </SYNCHRONOUSCOMPOSITION>
+      </HIDING>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="158 3 186 12">
+      <IDENTIFIER PLACE="158 3 158 8">part2</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <HIDING PLACE="159 5 186 12">
+        <IDENTIFIERS PLACE="159 11 159 36">
+          <IDENTIFIER PLACE="159 11 159 16">flush</IDENTIFIER>
+          <IDENTIFIER PLACE="159 18 159 21">pPC</IDENTIFIER>
+          <IDENTIFIER PLACE="159 23 159 26">pRF</IDENTIFIER>
+          <IDENTIFIER PLACE="159 28 159 31">sPC</IDENTIFIER>
+          <IDENTIFIER PLACE="159 33 159 36">sRF</IDENTIFIER>
+        </IDENTIFIERS>
+        <SYNCHRONOUSCOMPOSITION PLACE="160 9 186 12" PARENS="1">
+          <SYNCHRONOUSCOMPOSITION PLACE="160 9 160 21">
+            <MODULEINSTANCE PLACE="160 9 160 13">
+              <MODULENAME PLACE="160 9 160 13">impl</MODULENAME>
+              <MODULEACTUALS></MODULEACTUALS>
+            </MODULEINSTANCE>
+            <MODULEINSTANCE PLACE="160 17 160 21">
+              <MODULENAME PLACE="160 17 160 21">spec</MODULENAME>
+              <MODULEACTUALS></MODULEACTUALS>
+            </MODULEINSTANCE>
+          </SYNCHRONOUSCOMPOSITION>
+          <BASEMODULE PLACE="161 9 186 12">
+            <INPUTDECL PLACE="162 11 162 40">
+              <VARDECL PLACE="162 18 162 40">
+                <IDENTIFIER PLACE="162 18 162 24">c_step</IDENTIFIER>
+                <TYPENAME PLACE="162 33 162 40">NATURAL</TYPENAME>
+              </VARDECL>
+            </INPUTDECL>
+            <OUTPUTDECL PLACE="163 11 163 40">
+              <VARDECL PLACE="163 18 163 40">
+                <IDENTIFIER PLACE="163 18 163 23">flush</IDENTIFIER>
+                <TYPENAME PLACE="163 33 163 40">BOOLEAN</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="164 11 164 40">
+              <VARDECL PLACE="164 18 164 40">
+                <IDENTIFIER PLACE="164 18 164 30">project_impl</IDENTIFIER>
+                <TYPENAME PLACE="164 33 164 40">BOOLEAN</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="165 11 165 40">
+              <VARDECL PLACE="165 18 165 40">
+                <IDENTIFIER PLACE="165 18 165 21">isa</IDENTIFIER>
+                <TYPENAME PLACE="165 33 165 40">BOOLEAN</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="166 11 166 35">
+              <VARDECL PLACE="166 18 166 35">
+                <IDENTIFIER PLACE="166 18 166 23">S_pc0</IDENTIFIER>
+                <TYPENAME PLACE="166 33 166 35">PC</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="167 11 167 46">
+              <VARDECL PLACE="167 18 167 46">
+                <IDENTIFIER PLACE="167 18 167 23">S_rf0</IDENTIFIER>
+                <TYPENAME PLACE="167 33 167 46">Register_File</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="168 11 168 35">
+              <VARDECL PLACE="168 18 168 35">
+                <IDENTIFIER PLACE="168 18 168 23">S_pc1</IDENTIFIER>
+                <TYPENAME PLACE="168 33 168 35">PC</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <OUTPUTDECL PLACE="169 11 169 46">
+              <VARDECL PLACE="169 18 169 46">
+                <IDENTIFIER PLACE="169 18 169 23">S_rf1</IDENTIFIER>
+                <TYPENAME PLACE="169 33 169 46">Register_File</TYPENAME>
+              </VARDECL>
+            </OUTPUTDECL>
+            <INPUTDECL PLACE="171 11 171 29">
+              <VARDECL PLACE="171 18 171 29">
+                <IDENTIFIER PLACE="171 18 171 21">sPC</IDENTIFIER>
+                <TYPENAME PLACE="171 27 171 29">PC</TYPENAME>
+              </VARDECL>
+            </INPUTDECL>
+            <INPUTDECL PLACE="172 11 172 40">
+              <VARDECL PLACE="172 18 172 40">
+                <IDENTIFIER PLACE="172 18 172 21">sRF</IDENTIFIER>
+                <TYPENAME PLACE="172 27 172 40">Register_File</TYPENAME>
+              </VARDECL>
+            </INPUTDECL>
+            <DEFDECL PLACE="173 11 174 32">
+              <SIMPLEDEFINITION PLACE="174 13 174 32">
+                <NAMEEXPR PLACE="174 13 174 18">flush</NAMEEXPR>
+                <RHSEXPRESSION PLACE="174 26 174 32">
+                  <NAMEEXPR PLACE="174 28 174 32">TRUE</NAMEEXPR>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+              <SIMPLEDEFINITION PLACE="175 13 175 40">
+                <NAMEEXPR PLACE="175 13 175 25">project_impl</NAMEEXPR>
+                <RHSEXPRESSION PLACE="175 26 175 40">
+                  <APPLICATION PLACE="175 28 175 40" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="175 36 175 37">=</NAMEEXPR>
+                    <TUPLELITERAL PLACE="175 29 175 39">
+                      <NAMEEXPR PLACE="175 29 175 35">c_step</NAMEEXPR>
+                      <NUMERAL PLACE="175 38 175 39">2</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+              <SIMPLEDEFINITION PLACE="176 13 176 40">
+                <NAMEEXPR PLACE="176 13 176 16">isa</NAMEEXPR>
+                <RHSEXPRESSION PLACE="176 26 176 40">
+                  <APPLICATION PLACE="176 28 176 40" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="176 36 176 37">=</NAMEEXPR>
+                    <TUPLELITERAL PLACE="176 29 176 39">
+                      <NAMEEXPR PLACE="176 29 176 35">c_step</NAMEEXPR>
+                      <NUMERAL PLACE="176 38 176 39">3</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+            </DEFDECL>
+            <TRANSDECL PLACE="177 11 179 44">
+              <SIMPLEDEFINITION PLACE="178 13 179 44">
+                <NEXTOPERATOR PLACE="178 13 178 19">
+                  <NAMEEXPR PLACE="178 13 178 18">S_pc0</NAMEEXPR>
+                </NEXTOPERATOR>
+                <RHSEXPRESSION PLACE="178 26 179 44">
+                  <CONDITIONAL PLACE="178 28 179 44">
+                    <APPLICATION PLACE="178 31 178 41" INFIX="YES">
+                      <NAMEEXPR PLACE="178 38 178 39">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="178 31 178 41">
+                        <NAMEEXPR PLACE="178 31 178 37">c_step</NAMEEXPR>
+                        <NUMERAL PLACE="178 40 178 41">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NEXTOPERATOR PLACE="178 47 178 51">
+                      <NAMEEXPR PLACE="178 47 178 50">sPC</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <NAMEEXPR PLACE="179 33 179 38">S_pc0</NAMEEXPR>
+                  </CONDITIONAL>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+              <SIMPLEDEFINITION PLACE="180 13 181 44">
+                <NEXTOPERATOR PLACE="180 13 180 19">
+                  <NAMEEXPR PLACE="180 13 180 18">S_pc1</NAMEEXPR>
+                </NEXTOPERATOR>
+                <RHSEXPRESSION PLACE="180 26 181 44">
+                  <CONDITIONAL PLACE="180 28 181 44">
+                    <APPLICATION PLACE="180 31 180 41" INFIX="YES">
+                      <NAMEEXPR PLACE="180 38 180 39">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="180 31 180 41">
+                        <NAMEEXPR PLACE="180 31 180 37">c_step</NAMEEXPR>
+                        <NUMERAL PLACE="180 40 180 41">3</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NEXTOPERATOR PLACE="180 47 180 51">
+                      <NAMEEXPR PLACE="180 47 180 50">sPC</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <NAMEEXPR PLACE="181 33 181 38">S_pc1</NAMEEXPR>
+                  </CONDITIONAL>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+              <SIMPLEDEFINITION PLACE="182 13 183 44">
+                <NEXTOPERATOR PLACE="182 13 182 19">
+                  <NAMEEXPR PLACE="182 13 182 18">S_rf0</NAMEEXPR>
+                </NEXTOPERATOR>
+                <RHSEXPRESSION PLACE="182 26 183 44">
+                  <CONDITIONAL PLACE="182 28 183 44">
+                    <APPLICATION PLACE="182 31 182 41" INFIX="YES">
+                      <NAMEEXPR PLACE="182 38 182 39">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="182 31 182 41">
+                        <NAMEEXPR PLACE="182 31 182 37">c_step</NAMEEXPR>
+                        <NUMERAL PLACE="182 40 182 41">2</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NEXTOPERATOR PLACE="182 47 182 51">
+                      <NAMEEXPR PLACE="182 47 182 50">sRF</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <NAMEEXPR PLACE="183 33 183 38">S_rf0</NAMEEXPR>
+                  </CONDITIONAL>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+              <SIMPLEDEFINITION PLACE="184 13 185 44">
+                <NEXTOPERATOR PLACE="184 13 184 19">
+                  <NAMEEXPR PLACE="184 13 184 18">S_rf1</NAMEEXPR>
+                </NEXTOPERATOR>
+                <RHSEXPRESSION PLACE="184 26 185 44">
+                  <CONDITIONAL PLACE="184 28 185 44">
+                    <APPLICATION PLACE="184 31 184 41" INFIX="YES">
+                      <NAMEEXPR PLACE="184 38 184 39">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="184 31 184 41">
+                        <NAMEEXPR PLACE="184 31 184 37">c_step</NAMEEXPR>
+                        <NUMERAL PLACE="184 40 184 41">3</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NEXTOPERATOR PLACE="184 47 184 51">
+                      <NAMEEXPR PLACE="184 47 184 50">sRF</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <NAMEEXPR PLACE="185 33 185 38">S_rf1</NAMEEXPR>
+                  </CONDITIONAL>
+                </RHSEXPRESSION>
+              </SIMPLEDEFINITION>
+            </TRANSDECL>
+          </BASEMODULE>
+        </SYNCHRONOUSCOMPOSITION>
+      </HIDING>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="188 3 188 43">
+      <IDENTIFIER PLACE="188 3 188 9">system</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <SYNCHRONOUSCOMPOSITION PLACE="188 21 188 43">
+        <SYNCHRONOUSCOMPOSITION PLACE="188 21 188 34">
+          <MODULEINSTANCE PLACE="188 21 188 25">
+            <MODULENAME PLACE="188 21 188 25">step</MODULENAME>
+            <MODULEACTUALS></MODULEACTUALS>
+          </MODULEINSTANCE>
+          <MODULEINSTANCE PLACE="188 29 188 34">
+            <MODULENAME PLACE="188 29 188 34">part1</MODULENAME>
+            <MODULEACTUALS></MODULEACTUALS>
+          </MODULEINSTANCE>
+        </SYNCHRONOUSCOMPOSITION>
+        <MODULEINSTANCE PLACE="188 38 188 43">
+          <MODULENAME PLACE="188 38 188 43">part2</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+      </SYNCHRONOUSCOMPOSITION>
+    </MODULEDECLARATION>
+    <ASSERTIONDECLARATION PLACE="191 3 191 120">
+      <IDENTIFIER PLACE="191 3 191 13">equivalent</IDENTIFIER>
+      <ASSERTIONFORM PLACE="191 16 191 23">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="191 24 191 120">
+        <MODULEINSTANCE PLACE="191 24 191 30">
+          <MODULENAME PLACE="191 24 191 30">system</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="191 34 191 120">
+          <NAMEEXPR PLACE="191 34 191 35">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="191 35 191 120">
+            <APPLICATION PLACE="191 37 191 119" INFIX="YES">
+              <NAMEEXPR PLACE="191 48 191 50">=&gt;</NAMEEXPR>
+              <TUPLELITERAL PLACE="191 37 191 119">
+                <APPLICATION PLACE="191 37 191 47" INFIX="YES">
+                  <NAMEEXPR PLACE="191 44 191 45">&gt;</NAMEEXPR>
+                  <TUPLELITERAL PLACE="191 37 191 47">
+                    <NAMEEXPR PLACE="191 37 191 43">c_step</NAMEEXPR>
+                    <NUMERAL PLACE="191 46 191 47">3</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <APPLICATION PLACE="191 51 191 119" INFIX="YES" PARENS="1">
+                  <NAMEEXPR PLACE="191 84 191 86">OR</NAMEEXPR>
+                  <TUPLELITERAL PLACE="191 52 191 118">
+                    <APPLICATION PLACE="191 52 191 83" INFIX="YES" PARENS="1">
+                      <NAMEEXPR PLACE="191 66 191 69">AND</NAMEEXPR>
+                      <TUPLELITERAL PLACE="191 53 191 82">
+                        <APPLICATION PLACE="191 53 191 65" INFIX="YES">
+                          <NAMEEXPR PLACE="191 59 191 60">=</NAMEEXPR>
+                          <TUPLELITERAL PLACE="191 53 191 65">
+                            <NAMEEXPR PLACE="191 53 191 58">S_pc1</NAMEEXPR>
+                            <NAMEEXPR PLACE="191 61 191 65">I_pc</NAMEEXPR>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                        <APPLICATION PLACE="191 70 191 82" INFIX="YES">
+                          <NAMEEXPR PLACE="191 76 191 77">=</NAMEEXPR>
+                          <TUPLELITERAL PLACE="191 70 191 82">
+                            <NAMEEXPR PLACE="191 70 191 75">S_rf1</NAMEEXPR>
+                            <NAMEEXPR PLACE="191 78 191 82">I_rf</NAMEEXPR>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="191 87 191 118" INFIX="YES" PARENS="1">
+                      <NAMEEXPR PLACE="191 101 191 104">AND</NAMEEXPR>
+                      <TUPLELITERAL PLACE="191 88 191 117">
+                        <APPLICATION PLACE="191 88 191 100" INFIX="YES">
+                          <NAMEEXPR PLACE="191 94 191 95">=</NAMEEXPR>
+                          <TUPLELITERAL PLACE="191 88 191 100">
+                            <NAMEEXPR PLACE="191 88 191 93">S_pc0</NAMEEXPR>
+                            <NAMEEXPR PLACE="191 96 191 100">I_pc</NAMEEXPR>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                        <APPLICATION PLACE="191 105 191 117" INFIX="YES">
+                          <NAMEEXPR PLACE="191 111 191 112">=</NAMEEXPR>
+                          <TUPLELITERAL PLACE="191 105 191 117">
+                            <NAMEEXPR PLACE="191 105 191 110">S_rf0</NAMEEXPR>
+                            <NAMEEXPR PLACE="191 113 191 117">I_rf</NAMEEXPR>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

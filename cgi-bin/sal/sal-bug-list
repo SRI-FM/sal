@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+# CGI script for generating the SAL bug list
+
+#$basedir = "/homes/web/sal.csl.sri.com/";
+$basedir = "/web/sal.csl.sri.com/data/";
+
+$prelude_shtml = "sal-bug-list-prelude.shtml";
+$postlude_shtml = "navbar.shtml";
+$gnatsdb = "/csl/mail/gnats/sal";
+$list_cgi = "sal-bug-list";
+$report_cgi = "sal-bug";
+
+# In normal order, these events are inserted after the corresponding report
+# In reverse, they are inserted before the corresponding report
+# %events = (0 => "PVS 2.1 Released April 24, 1997",
+# 	   66 => "Patches Released September 9, 1997",
+# 	   113 => "Patches Released October 17, 1997",
+# 	   166 => "Patches Released February 7, 1998",
+# 	   260 => "PVS 2.2 Released September 17, 1998",
+# 	   351 => "PVS 2.3 Released September 5, 1999",
+# 	   408 => "Patches Released December 28, 1999",
+# 	   617 => "PVS 2.4 Released November 25, 2001",
+# 	   636 => "PVS 2.4 patchlevel 1 Released December 18, 2001",
+# 	   681 => "PVS 3.0 Beta Released July 20, 2002",
+# 	   719 => "PVS 3.0 Released December 19, 2002",
+# 	   743 => "PVS 3.1 Released February 14, 2003",
+# 	   );
+
+require "gnats-listing.pl";

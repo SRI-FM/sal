@@ -1,0 +1,268 @@
+(context startup () ()
+
+  (define n::nat 3)
+
+  (define-type index (subrange 0 (- n 1)))
+
+  (define maxcount::nat (- (* 3 n) 1))
+
+  (define-type counts (subrange 0 maxcount))
+
+  (define-type states (scalar init listen start active))
+
+  (define-type msgs (scalar quiet noise normal))
+
+  (define (incslot::index r::index)
+    (if (= r (- n 1)) 0 (+ r 1)))
+
+  (define-module (node i::index)
+    (begin
+      (input busmsg::msgs)
+      (input bustime::index)
+      (output flag::bool)
+      (output faulty::bool)
+      (output msg::msgs)
+      (output time::index)
+      (output state::states)
+      (output counter::counts)
+      (local badtime::bool)
+      (local simpledeafness::bool)
+      (local deafness::bool)
+      (local ctimeout::counts)
+      (local ltimeout::counts)
+      (definition
+        (= badtime true)
+        (= simpledeafness false)
+        (= deafness false)
+        (= ctimeout (+ n i))
+        (= ltimeout (+ n 1)))
+      (initialization
+        (= flag false)
+        (= faulty false)
+        (= msg quiet)
+        (= time 0)
+        (= state init)
+        (= counter 0))
+      (transition
+        ([] ((= state init) 
+             --> 
+             (= state' listen) (= counter' 0))
+
+            ((and (= state init) (< counter n))
+             -->
+             (= counter' (+ counter 1)))
+
+            ((and (= state listen) (= busmsg noise))
+             -->
+             (= counter' 0)
+             (= msg' quiet))
+
+            ((and (= state listen) (= busmsg normal))
+             -->
+             (= state' active)
+             (= counter' 0)
+             (= time' (incslot bustime))
+             (= msg' (if (= time' i) normal quiet)))
+
+            ((and (= state listen) 
+                  (= busmsg quiet)
+                  (< counter ltimeout))
+             -->
+             (= counter' (+ counter 1))
+             (= msg' quiet))
+
+            ((and (= state listen)
+                  (= busmsg quiet)
+                  (= counter ltimeout))
+             -->
+             (= state' start)
+             (= counter' 0)
+             (= time' i)
+             (= msg' normal))
+            
+            ((and simpledeafness 
+                  (= i 0)
+                  (= state listen)
+                  (= counter ltimeout))
+             -->
+             (= faulty' true)
+             (= state' start)
+             (= counter' 0)
+             (= time' i)
+             (= msg' normal))
+
+            ([] (j::index)
+              ((and badtime 
+                    (= i 0)
+                    (= state listen)
+                    (= busmsg quiet)
+                    (= counter ltimeout)
+                    (/= j i))
+               -->
+               (= faulty' true)
+               (= state' start)
+               (= counter' 0)
+               (= msg' normal)
+               (= time' j)))
+
+            ((and (= state start) 
+                  (= counter ctimeout))
+             -->
+             (= flag' true)
+             (= counter' 0)
+             (= time' i)
+             (= msg' normal))
+            
+            ((and (= state start)
+                  (< counter ctimeout)
+                  (or (= busmsg quiet) (= counter 0)))
+             -->
+             (= counter' (+ counter 1))
+             (= time' (incslot time))
+             (= msg' quiet))
+
+            ((and (= state start)
+                  (< counter ctimeout) 
+                  deafness)
+             -->
+             (= faulty' true)
+             (= counter' (+ counter 1))
+             (= time' (incslot time))
+             (= msg' quiet))
+
+            ((and (= state start)
+                  (< counter ctimeout)
+                  (> counter 0)
+                  (= busmsg normal)
+                  (= bustime time))
+             -->
+             (= counter' 0)
+             (= state' active)
+             (= time' (incslot time))
+             (= msg' (if (= time' i) normal quiet)))
+            
+            ((and (= state start)
+                  (< counter ctimeout)
+                  (> counter 0)
+                  (or (= busmsg noise)
+                      (and (= busmsg normal) (/= bustime time))))
+             -->
+             (= counter' 0)
+             (= time' 0)
+             (= msg' quiet)
+             (= state' listen))
+
+            ((= state active)
+             -->
+             (= time' (incslot time))
+             (= msg' (if (= time' i) normal quiet)))))))
+
+  (define-module hub
+    (begin
+      (input inmsgs::(array index msgs))
+      (input intimes::(array index index))
+      (local noiseok::bool)
+      (output collisions::(subrange 0 4))
+      (output outmsg::msgs)
+      (output outtime::index)
+      (output allow::(array index bool))
+      (initialization
+        (= noiseok true)
+        (= collisions 0)
+        (= outmsg quiet)
+        (= outtime 0)
+        (for-all (i::index) (= allow[i] true)))
+      (transition
+        ([] 
+         ((and noiseok
+               (exists (i::index j::index)
+                 (and (/= i j)
+                      allow[i]
+                      allow[j]
+                      (= inmsgs'[i] normal)
+                      (= inmsgs'[j] normal))))
+          -->
+          (= outmsg' noise)
+          (= outtime' 0)
+          (= collisions' (if (= collisions 4) 4 (+ collisions 1))))
+         
+         ([] (i::index)
+          ((and (= inmsgs'[i] normal) 
+                allow[i]
+                (= intimes'[i] i))
+           -->
+           (= outmsg' normal)
+           (= outtime' intimes'[i])))
+         
+         ([] (i::index)
+          ((and (= inmsgs'[i] normal)
+                allow[i]
+                (/= intimes'[i] i))
+           -->
+           (= outmsg' noise)
+           (= outtime' 0)))
+
+         ((for-all (i::index)
+            (implies allow[i] (= inmsgs'[i] quiet)))
+          -->
+          (= outmsg' quiet)
+          (= outtime' 0))))))
+
+  (define-module system
+    (|| hub
+        (with ((output flags::(array index bool))
+               (output faults::(array index bool))
+               (output inmsgs::(array index msgs))
+               (output lstates::(array index states))
+               (output intimes::(array index index))
+               (output lcounts::(array index counts)))
+          (|| (i::index)
+            (with ((input outtime::index) (input outmsg::msgs))
+              (rename ((flag flags[i])
+                       (faulty faults[i])
+                       (msg inmsgs[i])
+                       (time intimes[i])
+                       (state lstates[i])
+                       (counter lcounts[i])
+                       (bustime outtime)
+                       (busmsg outmsg))
+                (node i)))))))
+  (lemma sync
+    (|- system
+        (G (for-all (i::index j::index)
+             (implies (and (= lstates[i] active) 
+                           (= lstates[j] active))
+                      (= intimes[i] intimes[j]))))))
+  (lemma noflag
+    (|- system (G (for-all (i::index) (not flags[i])))))
+
+  (lemma fast (|- system (G (<= collisions 1))))
+
+  (lemma fairlyfast (|- system (G (<= collisions 2))))
+
+  (lemma ok
+    (|- system
+        (F (G (for-all (i::index) (= lstates[i] active))))))
+
+  (lemma fsync
+    (|- system
+        (G (for-all (i::index j::index)
+             (implies (and (= lstates[i] active)
+                           (= lstates[j] active)
+                           (not faults[i])
+                           (not faults[j]))
+                      (= intimes[i] intimes[j]))))))
+  (lemma fok
+    (|- system
+        (F (G (for-all (i::index)
+                (implies (not faults[i]) (= lstates[i] active)))))))
+
+  (lemma optimism (|- system (G (= collisions 0))))
+
+  (lemma collision (|- system (F (/= outmsg quiet))))
+
+  (lemma live (|- system (F (= lstates[0] active))))
+
+  (lemma eh (|- system (G (= lstates[2] init))))
+
+  )

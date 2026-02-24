@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./pcp_task.sal  -->
+<CONTEXT PLACE="1 1 41 4">
+  <IDENTIFIER PLACE="1 1 1 9">pcp_task</IDENTIFIER>
+  <PARAMETERS PLACE="1 11 1 52">
+    <TYPEDECLS PLACE="1 11 1 27">
+      <TYPEDECL>
+        <IDENTIFIER PLACE="1 11 1 20">Semaphore</IDENTIFIER>
+      </TYPEDECL>
+    </TYPEDECLS>
+    <VARDECLS PLACE="1 29 1 52">
+      <VARDECL PLACE="1 29 1 52">
+        <IDENTIFIER PLACE="1 29 1 42">NumberOfTasks</IDENTIFIER>
+        <TYPENAME PLACE="1 45 1 52">NATURAL</TYPENAME>
+      </VARDECL>
+    </VARDECLS>
+  </PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 41 4">
+    <CONTEXTDECLARATION PLACE="4 3 4 40">
+      <IDENTIFIER PLACE="4 3 4 12">semSetCtx</IDENTIFIER>
+      <CONTEXTNAME PLACE="4 25 4 40">
+        <IDENTIFIER PLACE="4 25 4 28">set</IDENTIFIER>
+        <ACTUALPARAMETERS PLACE="4 29 0 0">
+          <ACTUALTYPES PLACE="4 29 4 38">
+            <TYPENAME PLACE="4 29 4 38">Semaphore</TYPENAME>
+          </ACTUALTYPES>
+          <ACTUALEXPRS></ACTUALEXPRS>
+        </ACTUALPARAMETERS>
+      </CONTEXTNAME>
+    </CONTEXTDECLARATION>
+    <TYPEDECLARATION PLACE="6 3 10 30">
+      <IDENTIFIER PLACE="6 3 6 17">TaskDescriptor</IDENTIFIER>
+      <RECORDTYPE PLACE="6 27 10 30">
+        <FIELDDECLARATION PLACE="6 30 6 48">
+          <IDENTIFIER PLACE="6 30 6 38">priority</IDENTIFIER>
+          <TYPENAME PLACE="6 41 6 48">NATURAL</TYPENAME>
+        </FIELDDECLARATION>
+        <FIELDDECLARATION PLACE="7 30 7 46">
+          <IDENTIFIER PLACE="7 30 7 36">period</IDENTIFIER>
+          <TYPENAME PLACE="7 39 7 46">NATURAL</TYPENAME>
+        </FIELDDECLARATION>
+        <FIELDDECLARATION PLACE="8 30 8 46">
+          <IDENTIFIER PLACE="8 30 8 36">budget</IDENTIFIER>
+          <TYPENAME PLACE="8 39 8 46">NATURAL</TYPENAME>
+        </FIELDDECLARATION>
+        <FIELDDECLARATION PLACE="9 30 9 56">
+          <IDENTIFIER PLACE="9 30 9 40">semaphores</IDENTIFIER>
+          <QUALIFIEDTYPENAME PLACE="9 43 9 56">
+            <IDENTIFIER PLACE="9 53 9 56">Set</IDENTIFIER>
+            <CONTEXTNAME PLACE="9 43 9 52">
+              <IDENTIFIER PLACE="9 43 9 52">semSetCtx</IDENTIFIER>
+            </CONTEXTNAME>
+          </QUALIFIEDTYPENAME>
+        </FIELDDECLARATION>
+      </RECORDTYPE>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="12 3 12 37">
+      <IDENTIFIER PLACE="12 3 12 9">JobIdx</IDENTIFIER>
+      <SUBRANGE PLACE="12 19 12 37">
+        <NUMERAL PLACE="12 20 12 21">1</NUMERAL>
+        <NAMEEXPR PLACE="12 23 12 36">NumberOfTasks</NAMEEXPR>
+      </SUBRANGE>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="14 3 14 58">
+      <IDENTIFIER PLACE="14 3 14 18">TaskDescriptors</IDENTIFIER>
+      <ARRAYTYPE PLACE="14 28 14 58">
+        <TYPENAME PLACE="14 34 14 40">JobIdx</TYPENAME>
+        <TYPENAME PLACE="14 44 14 58">TaskDescriptor</TYPENAME>
+      </ARRAYTYPE>
+    </TYPEDECLARATION>
+    <CONSTANTDECLARATION PLACE="16 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="16 3 16 11">priority</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>TaskDescriptors</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="16 47 16 54">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="16 12 16 22">
+            <IDENTIFIER PLACE="16 12 16 13">j</IDENTIFIER>
+            <TYPENAME PLACE="16 16 16 22">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="16 24 16 43">
+            <IDENTIFIER PLACE="16 24 16 25">t</IDENTIFIER>
+            <TYPENAME PLACE="16 28 16 43">TaskDescriptors</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <RECORDSELECTION PLACE="17 5 17 18">
+          <ARRAYSELECTION PLACE="17 5 17 9">
+            <NAMEEXPR PLACE="17 5 17 6">t</NAMEEXPR>
+            <NAMEEXPR PLACE="17 7 17 8">j</NAMEEXPR>
+          </ARRAYSELECTION>
+          <IDENTIFIER PLACE="17 10 17 18">priority</IDENTIFIER>
+        </RECORDSELECTION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="19 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="19 3 19 9">period</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>TaskDescriptors</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="19 45 19 52">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="19 10 19 20">
+            <IDENTIFIER PLACE="19 10 19 11">j</IDENTIFIER>
+            <TYPENAME PLACE="19 14 19 20">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="19 22 19 41">
+            <IDENTIFIER PLACE="19 22 19 23">t</IDENTIFIER>
+            <TYPENAME PLACE="19 26 19 41">TaskDescriptors</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <RECORDSELECTION PLACE="20 5 20 16">
+          <ARRAYSELECTION PLACE="20 5 20 9">
+            <NAMEEXPR PLACE="20 5 20 6">t</NAMEEXPR>
+            <NAMEEXPR PLACE="20 7 20 8">j</NAMEEXPR>
+          </ARRAYSELECTION>
+          <IDENTIFIER PLACE="20 10 20 16">period</IDENTIFIER>
+        </RECORDSELECTION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="22 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="22 3 22 9">budget</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>TaskDescriptors</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="22 45 22 52">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="22 10 22 20">
+            <IDENTIFIER PLACE="22 10 22 11">j</IDENTIFIER>
+            <TYPENAME PLACE="22 14 22 20">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="22 22 22 41">
+            <IDENTIFIER PLACE="22 22 22 23">t</IDENTIFIER>
+            <TYPENAME PLACE="22 26 22 41">TaskDescriptors</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <RECORDSELECTION PLACE="23 5 23 16">
+          <ARRAYSELECTION PLACE="23 5 23 9">
+            <NAMEEXPR PLACE="23 5 23 6">t</NAMEEXPR>
+            <NAMEEXPR PLACE="23 7 23 8">j</NAMEEXPR>
+          </ARRAYSELECTION>
+          <IDENTIFIER PLACE="23 10 23 16">budget</IDENTIFIER>
+        </RECORDSELECTION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="25 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="25 3 25 12">uses_sem?</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>Semaphore</TYPENAME>
+          <TYPENAME>TaskDescriptors</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="25 63 25 70">BOOLEAN</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="25 13 25 23">
+            <IDENTIFIER PLACE="25 13 25 14">j</IDENTIFIER>
+            <TYPENAME PLACE="25 17 25 23">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="25 25 25 38">
+            <IDENTIFIER PLACE="25 25 25 26">s</IDENTIFIER>
+            <TYPENAME PLACE="25 29 25 38">Semaphore</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="25 40 25 59">
+            <IDENTIFIER PLACE="25 40 25 41">t</IDENTIFIER>
+            <TYPENAME PLACE="25 44 25 59">TaskDescriptors</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <APPLICATION PLACE="26 4 26 43">
+          <QUALIFIEDNAMEEXPR PLACE="26 4 26 23">
+            <IDENTIFIER PLACE="26 14 26 23">contains?</IDENTIFIER>
+            <CONTEXTNAME PLACE="26 4 26 13">
+              <IDENTIFIER PLACE="26 4 26 13">semSetCtx</IDENTIFIER>
+            </CONTEXTNAME>
+          </QUALIFIEDNAMEEXPR>
+          <TUPLELITERAL PLACE="26 23 26 43">
+            <RECORDSELECTION PLACE="26 24 26 39">
+              <ARRAYSELECTION PLACE="26 24 26 28">
+                <NAMEEXPR PLACE="26 24 26 25">t</NAMEEXPR>
+                <NAMEEXPR PLACE="26 26 26 27">j</NAMEEXPR>
+              </ARRAYSELECTION>
+              <IDENTIFIER PLACE="26 29 26 39">semaphores</IDENTIFIER>
+            </RECORDSELECTION>
+            <NAMEEXPR PLACE="26 41 26 42">s</NAMEEXPR>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="31 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="31 3 31 14">ceiling_aux</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>Semaphore</TYPENAME>
+          <TYPENAME>TaskDescriptors</TYPENAME>
+          <TYPENAME>JobIdx</TYPENAME>
+          <TYPENAME>NATURAL</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="31 80 31 87">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="31 15 31 28">
+            <IDENTIFIER PLACE="31 15 31 16">s</IDENTIFIER>
+            <TYPENAME PLACE="31 19 31 28">Semaphore</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="31 30 31 49">
+            <IDENTIFIER PLACE="31 30 31 31">t</IDENTIFIER>
+            <TYPENAME PLACE="31 34 31 49">TaskDescriptors</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="31 51 31 61">
+            <IDENTIFIER PLACE="31 51 31 52">j</IDENTIFIER>
+            <TYPENAME PLACE="31 55 31 61">JobIdx</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="31 63 31 76">
+            <IDENTIFIER PLACE="31 63 31 66">max</IDENTIFIER>
+            <TYPENAME PLACE="31 69 31 76">NATURAL</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <CONDITIONAL PLACE="32 3 38 8">
+          <APPLICATION PLACE="32 6 32 24" INFIX="YES">
+            <NAMEEXPR PLACE="32 8 32 10">&lt;=</NAMEEXPR>
+            <TUPLELITERAL PLACE="32 6 32 24">
+              <NAMEEXPR PLACE="32 6 32 7">j</NAMEEXPR>
+              <NAMEEXPR PLACE="32 11 32 24">NumberOfTasks</NAMEEXPR>
+            </TUPLELITERAL>
+          </APPLICATION>
+          <LETEXPRESSION PLACE="33 5 36 25">
+            <LETDECLARATIONS PLACE="33 9 33 57">
+              <LETDECLARATION PLACE="33 9 33 57">
+                <IDENTIFIER PLACE="33 9 33 15">result</IDENTIFIER>
+                <TYPENAME PLACE="33 18 33 25">NATURAL</TYPENAME>
+                <APPLICATION PLACE="33 28 33 57">
+                  <NAMEEXPR PLACE="33 28 33 39">ceiling_aux</NAMEEXPR>
+                  <TUPLELITERAL PLACE="33 39 33 57">
+                    <NAMEEXPR PLACE="33 40 33 41">s</NAMEEXPR>
+                    <NAMEEXPR PLACE="33 43 33 44">t</NAMEEXPR>
+                    <APPLICATION PLACE="33 46 33 51" INFIX="YES">
+                      <NAMEEXPR PLACE="33 48 33 49">+</NAMEEXPR>
+                      <TUPLELITERAL PLACE="33 46 33 51">
+                        <NAMEEXPR PLACE="33 46 33 47">j</NAMEEXPR>
+                        <NUMERAL PLACE="33 50 33 51">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NAMEEXPR PLACE="33 53 33 56">max</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </LETDECLARATION>
+            </LETDECLARATIONS>
+            <CONDITIONAL PLACE="34 8 36 25">
+              <APPLICATION PLACE="34 11 34 77" INFIX="YES">
+                <NAMEEXPR PLACE="34 51 34 54">AND</NAMEEXPR>
+                <TUPLELITERAL PLACE="34 11 34 77">
+                  <APPLICATION PLACE="34 11 34 50">
+                    <QUALIFIEDNAMEEXPR PLACE="34 11 34 30">
+                      <IDENTIFIER PLACE="34 21 34 30">contains?</IDENTIFIER>
+                      <CONTEXTNAME PLACE="34 11 34 20">
+                        <IDENTIFIER PLACE="34 11 34 20">semSetCtx</IDENTIFIER>
+                      </CONTEXTNAME>
+                    </QUALIFIEDNAMEEXPR>
+                    <TUPLELITERAL PLACE="34 30 34 50">
+                      <RECORDSELECTION PLACE="34 31 34 46">
+                        <ARRAYSELECTION PLACE="34 31 34 35">
+                          <NAMEEXPR PLACE="34 31 34 32">t</NAMEEXPR>
+                          <NAMEEXPR PLACE="34 33 34 34">j</NAMEEXPR>
+                        </ARRAYSELECTION>
+                        <IDENTIFIER PLACE="34 36 34 46">semaphores</IDENTIFIER>
+                      </RECORDSELECTION>
+                      <NAMEEXPR PLACE="34 48 34 49">s</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <APPLICATION PLACE="34 55 34 77" INFIX="YES">
+                    <NAMEEXPR PLACE="34 69 34 70">&gt;</NAMEEXPR>
+                    <TUPLELITERAL PLACE="34 55 34 77">
+                      <RECORDSELECTION PLACE="34 55 34 68">
+                        <ARRAYSELECTION PLACE="34 55 34 59">
+                          <NAMEEXPR PLACE="34 55 34 56">t</NAMEEXPR>
+                          <NAMEEXPR PLACE="34 57 34 58">j</NAMEEXPR>
+                        </ARRAYSELECTION>
+                        <IDENTIFIER PLACE="34 60 34 68">priority</IDENTIFIER>
+                      </RECORDSELECTION>
+                      <NAMEEXPR PLACE="34 71 34 77">result</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+              <RECORDSELECTION PLACE="35 13 35 26">
+                <ARRAYSELECTION PLACE="35 13 35 17">
+                  <NAMEEXPR PLACE="35 13 35 14">t</NAMEEXPR>
+                  <NAMEEXPR PLACE="35 15 35 16">j</NAMEEXPR>
+                </ARRAYSELECTION>
+                <IDENTIFIER PLACE="35 18 35 26">priority</IDENTIFIER>
+              </RECORDSELECTION>
+              <NAMEEXPR PLACE="36 13 36 19">result</NAMEEXPR>
+            </CONDITIONAL>
+          </LETEXPRESSION>
+          <NAMEEXPR PLACE="37 10 37 13">max</NAMEEXPR>
+        </CONDITIONAL>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="39 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="39 3 39 10">ceiling</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>Semaphore</TYPENAME>
+          <TYPENAME>TaskDescriptors</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="39 49 39 56">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="39 11 39 24">
+            <IDENTIFIER PLACE="39 11 39 12">s</IDENTIFIER>
+            <TYPENAME PLACE="39 15 39 24">Semaphore</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="39 26 39 45">
+            <IDENTIFIER PLACE="39 26 39 27">t</IDENTIFIER>
+            <TYPENAME PLACE="39 30 39 45">TaskDescriptors</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <APPLICATION PLACE="39 59 39 82">
+          <NAMEEXPR PLACE="39 59 39 70">ceiling_aux</NAMEEXPR>
+          <TUPLELITERAL PLACE="39 70 39 82">
+            <NAMEEXPR PLACE="39 71 39 72">s</NAMEEXPR>
+            <NAMEEXPR PLACE="39 74 39 75">t</NAMEEXPR>
+            <NUMERAL PLACE="39 77 39 78">1</NUMERAL>
+            <NUMERAL PLACE="39 80 39 81">0</NUMERAL>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

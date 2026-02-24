@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./arbiter.sal  -->
+<CONTEXT PLACE="1 1 86 4">
+  <IDENTIFIER PLACE="1 1 1 8">arbiter</IDENTIFIER>
+  <PARAMETERS PLACE="1 11 1 36">
+    <VARDECLS PLACE="1 11 1 36">
+      <VARDECL PLACE="1 11 1 36">
+        <IDENTIFIER PLACE="1 11 1 12">n</IDENTIFIER>
+        <SUBTYPE PLACE="1 15 1 36">
+          <SETPREDEXPRESSION PLACE="1 15 1 36">
+            <IDENTIFIER PLACE="1 16 1 17">x</IDENTIFIER>
+            <TYPENAME PLACE="1 20 1 27">NATURAL</TYPENAME>
+            <APPLICATION PLACE="1 30 1 35" INFIX="YES">
+              <NAMEEXPR PLACE="1 32 1 33">&gt;</NAMEEXPR>
+              <TUPLELITERAL PLACE="1 30 1 35">
+                <NAMEEXPR PLACE="1 30 1 31">x</NAMEEXPR>
+                <NUMERAL PLACE="1 34 1 35">1</NUMERAL>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </SETPREDEXPRESSION>
+        </SUBTYPE>
+      </VARDECL>
+    </VARDECLS>
+  </PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 86 4">
+    <MODULEDECLARATION PLACE="4 3 29 8">
+      <IDENTIFIER PLACE="4 3 4 7">cell</IDENTIFIER>
+      <VARDECLS>
+        <VARDECL PLACE="4 9 4 28">
+          <IDENTIFIER PLACE="4 9 4 18">initial_t</IDENTIFIER>
+          <TYPENAME PLACE="4 21 4 28">BOOLEAN</TYPENAME>
+        </VARDECL>
+      </VARDECLS>
+      <BASEMODULE PLACE="5 5 29 8">
+        <INPUTDECL PLACE="6 7 6 26">
+          <VARDECL PLACE="6 13 6 26">
+            <IDENTIFIER PLACE="6 13 6 16">req</IDENTIFIER>
+            <TYPENAME PLACE="6 19 6 26">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <INPUTDECL PLACE="7 7 7 31">
+          <VARDECL PLACE="7 13 7 31">
+            <IDENTIFIER PLACE="7 13 7 21">token_in</IDENTIFIER>
+            <TYPENAME PLACE="7 24 7 31">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <INPUTDECL PLACE="8 7 8 34">
+          <VARDECL PLACE="8 13 8 34">
+            <IDENTIFIER PLACE="8 13 8 24">override_in</IDENTIFIER>
+            <TYPENAME PLACE="8 27 8 34">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <INPUTDECL PLACE="9 7 9 31">
+          <VARDECL PLACE="9 13 9 31">
+            <IDENTIFIER PLACE="9 13 9 21">grant_in</IDENTIFIER>
+            <TYPENAME PLACE="9 24 9 31">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="10 7 10 27">
+          <VARDECL PLACE="10 14 10 27">
+            <IDENTIFIER PLACE="10 14 10 17">ack</IDENTIFIER>
+            <TYPENAME PLACE="10 20 10 27">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <OUTPUTDECL PLACE="11 7 11 33">
+          <VARDECL PLACE="11 14 11 33">
+            <IDENTIFIER PLACE="11 14 11 23">token_out</IDENTIFIER>
+            <TYPENAME PLACE="11 26 11 33">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <OUTPUTDECL PLACE="12 7 12 36">
+          <VARDECL PLACE="12 14 12 36">
+            <IDENTIFIER PLACE="12 14 12 26">override_out</IDENTIFIER>
+            <TYPENAME PLACE="12 29 12 36">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <OUTPUTDECL PLACE="13 7 13 33">
+          <VARDECL PLACE="13 14 13 33">
+            <IDENTIFIER PLACE="13 14 13 23">grant_out</IDENTIFIER>
+            <TYPENAME PLACE="13 26 13 33">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <LOCALDECL PLACE="14 7 14 24">
+          <VARDECL PLACE="14 13 14 24">
+            <IDENTIFIER PLACE="14 13 14 14">t</IDENTIFIER>
+            <TYPENAME PLACE="14 17 14 24">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="15 7 15 24">
+          <VARDECL PLACE="15 13 15 24">
+            <IDENTIFIER PLACE="15 13 15 14">w</IDENTIFIER>
+            <TYPENAME PLACE="15 17 15 24">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <LOCALDECL PLACE="16 7 16 26">
+          <VARDECL PLACE="16 13 16 26">
+            <IDENTIFIER PLACE="16 13 16 16">aux</IDENTIFIER>
+            <TYPENAME PLACE="16 19 16 26">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <DEFDECL PLACE="17 7 18 22">
+          <SIMPLEDEFINITION PLACE="18 9 18 22">
+            <NAMEEXPR PLACE="18 9 18 18">token_out</NAMEEXPR>
+            <RHSEXPRESSION PLACE="18 19 18 22">
+              <NAMEEXPR PLACE="18 21 18 22">t</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="19 9 19 22">
+            <NAMEEXPR PLACE="19 9 19 12">aux</NAMEEXPR>
+            <RHSEXPRESSION PLACE="19 13 19 22">
+              <APPLICATION PLACE="19 15 19 22" INFIX="YES">
+                <NAMEEXPR PLACE="19 17 19 20">AND</NAMEEXPR>
+                <TUPLELITERAL PLACE="19 15 19 22">
+                  <NAMEEXPR PLACE="19 15 19 16">w</NAMEEXPR>
+                  <NAMEEXPR PLACE="19 21 19 22">t</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="20 9 20 42">
+            <NAMEEXPR PLACE="20 9 20 21">override_out</NAMEEXPR>
+            <RHSEXPRESSION PLACE="20 22 20 42">
+              <APPLICATION PLACE="20 24 20 42" INFIX="YES">
+                <NAMEEXPR PLACE="20 36 20 38">OR</NAMEEXPR>
+                <TUPLELITERAL PLACE="20 24 20 42">
+                  <NAMEEXPR PLACE="20 24 20 35">override_in</NAMEEXPR>
+                  <NAMEEXPR PLACE="20 39 20 42">aux</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="21 9 21 42">
+            <NAMEEXPR PLACE="21 9 21 18">grant_out</NAMEEXPR>
+            <RHSEXPRESSION PLACE="21 19 21 42">
+              <APPLICATION PLACE="21 21 21 42" INFIX="YES">
+                <NAMEEXPR PLACE="21 30 21 33">AND</NAMEEXPR>
+                <TUPLELITERAL PLACE="21 21 21 42">
+                  <NAMEEXPR PLACE="21 21 21 29">grant_in</NAMEEXPR>
+                  <APPLICATION PLACE="21 34 21 42">
+                    <NAMEEXPR PLACE="21 34 21 37">NOT</NAMEEXPR>
+                    <TUPLELITERAL PLACE="21 37 21 42">
+                      <NAMEEXPR PLACE="21 37 21 42" PARENS="1">req</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="22 9 22 40">
+            <NAMEEXPR PLACE="22 9 22 12">ack</NAMEEXPR>
+            <RHSEXPRESSION PLACE="22 13 22 40">
+              <APPLICATION PLACE="22 15 22 40" INFIX="YES">
+                <NAMEEXPR PLACE="22 19 22 22">AND</NAMEEXPR>
+                <TUPLELITERAL PLACE="22 15 22 40">
+                  <NAMEEXPR PLACE="22 15 22 18">req</NAMEEXPR>
+                  <APPLICATION PLACE="22 23 22 40" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="22 28 22 30">OR</NAMEEXPR>
+                    <TUPLELITERAL PLACE="22 24 22 39">
+                      <NAMEEXPR PLACE="22 24 22 27">aux</NAMEEXPR>
+                      <NAMEEXPR PLACE="22 31 22 39">grant_in</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </DEFDECL>
+        <INITDECL PLACE="23 7 24 18">
+          <SIMPLEDEFINITION PLACE="24 9 24 18">
+            <NAMEEXPR PLACE="24 9 24 10">w</NAMEEXPR>
+            <RHSEXPRESSION PLACE="24 11 24 18">
+              <NAMEEXPR PLACE="24 13 24 18">FALSE</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="25 9 25 22">
+            <NAMEEXPR PLACE="25 9 25 10">t</NAMEEXPR>
+            <RHSEXPRESSION PLACE="25 11 25 22">
+              <NAMEEXPR PLACE="25 13 25 22">initial_t</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="26 7 27 22">
+          <SIMPLEDEFINITION PLACE="27 9 27 22">
+            <NEXTOPERATOR PLACE="27 9 27 11">
+              <NAMEEXPR PLACE="27 9 27 10">t</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="27 12 27 22">
+              <NAMEEXPR PLACE="27 14 27 22">token_in</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="28 9 28 30">
+            <NEXTOPERATOR PLACE="28 9 28 11">
+              <NAMEEXPR PLACE="28 9 28 10">w</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSEXPRESSION PLACE="28 12 28 30">
+              <APPLICATION PLACE="28 14 28 30" INFIX="YES">
+                <NAMEEXPR PLACE="28 18 28 21">AND</NAMEEXPR>
+                <TUPLELITERAL PLACE="28 14 28 30">
+                  <NAMEEXPR PLACE="28 14 28 17">req</NAMEEXPR>
+                  <APPLICATION PLACE="28 22 28 30" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="28 25 28 27">OR</NAMEEXPR>
+                    <TUPLELITERAL PLACE="28 23 28 29">
+                      <NAMEEXPR PLACE="28 23 28 24">w</NAMEEXPR>
+                      <NAMEEXPR PLACE="28 28 28 29">t</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <TYPEDECLARATION PLACE="31 3 31 23">
+      <IDENTIFIER PLACE="31 3 31 8">Range</IDENTIFIER>
+      <SUBRANGE PLACE="31 17 31 23">
+        <NUMERAL PLACE="31 18 31 19">1</NUMERAL>
+        <NAMEEXPR PLACE="31 21 31 22">n</NAMEEXPR>
+      </SUBRANGE>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="32 3 32 39">
+      <IDENTIFIER PLACE="32 3 32 8">Array</IDENTIFIER>
+      <ARRAYTYPE PLACE="32 17 32 39">
+        <TYPENAME PLACE="32 23 32 28">Range</TYPENAME>
+        <TYPENAME PLACE="32 32 32 39">BOOLEAN</TYPENAME>
+      </ARRAYTYPE>
+    </TYPEDECLARATION>
+    <MODULEDECLARATION PLACE="34 3 69 31">
+      <IDENTIFIER PLACE="34 3 34 10">arbiter</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <WITHMODULE PLACE="35 5 69 31">
+        <NEWVARDECLS PLACE="35 10 39 34">
+          <OUTPUTDECL PLACE="35 10 35 28">
+            <VARDECL PLACE="35 17 35 28">
+              <IDENTIFIER PLACE="35 17 35 20">Ack</IDENTIFIER>
+              <TYPENAME PLACE="35 23 35 28">Array</TYPENAME>
+            </VARDECL>
+          </OUTPUTDECL>
+          <INPUTDECL PLACE="36 11 36 28">
+            <VARDECL PLACE="36 17 36 28">
+              <IDENTIFIER PLACE="36 17 36 20">Req</IDENTIFIER>
+              <TYPENAME PLACE="36 23 36 28">Array</TYPENAME>
+            </VARDECL>
+          </INPUTDECL>
+          <OUTPUTDECL PLACE="37 11 37 31">
+            <VARDECL PLACE="37 18 37 31">
+              <IDENTIFIER PLACE="37 18 37 23">Token</IDENTIFIER>
+              <TYPENAME PLACE="37 26 37 31">Array</TYPENAME>
+            </VARDECL>
+          </OUTPUTDECL>
+          <OUTPUTDECL PLACE="38 11 38 31">
+            <VARDECL PLACE="38 18 38 31">
+              <IDENTIFIER PLACE="38 18 38 23">Grant</IDENTIFIER>
+              <TYPENAME PLACE="38 26 38 31">Array</TYPENAME>
+            </VARDECL>
+          </OUTPUTDECL>
+          <OUTPUTDECL PLACE="39 11 39 34">
+            <VARDECL PLACE="39 18 39 34">
+              <IDENTIFIER PLACE="39 18 39 26">Override</IDENTIFIER>
+              <TYPENAME PLACE="39 29 39 34">Array</TYPENAME>
+            </VARDECL>
+          </OUTPUTDECL>
+        </NEWVARDECLS>
+        <SYNCHRONOUSCOMPOSITION PLACE="40 8 69 31">
+          <SYNCHRONOUSCOMPOSITION PLACE="40 8 59 31">
+            <RENAMING PLACE="40 8 48 14" PARENS="1">
+              <RENAMES PLACE="40 15 40 54">
+                <RENAME PLACE="40 15 40 33">
+                  <NAMEEXPR PLACE="40 15 40 18">aux</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="40 22 40 33">
+                    <NAMEEXPR PLACE="40 22 40 30">Override</NAMEEXPR>
+                    <NAMEEXPR PLACE="40 31 40 32">n</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="40 35 40 54">
+                  <NAMEEXPR PLACE="40 35 40 42">inv_aux</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="40 46 40 54">
+                    <NAMEEXPR PLACE="40 46 40 51">Grant</NAMEEXPR>
+                    <NAMEEXPR PLACE="40 52 40 53">n</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </RENAME>
+              </RENAMES>
+              <BASEMODULE PLACE="41 11 48 14">
+                <OUTPUTDECL PLACE="42 12 42 39">
+                  <VARDECL PLACE="42 19 42 39">
+                    <IDENTIFIER PLACE="42 19 42 29">zero_const</IDENTIFIER>
+                    <TYPENAME PLACE="42 32 42 39">BOOLEAN</TYPENAME>
+                  </VARDECL>
+                </OUTPUTDECL>
+                <INPUTDECL PLACE="43 12 43 31">
+                  <VARDECL PLACE="43 18 43 31">
+                    <IDENTIFIER PLACE="43 18 43 21">aux</IDENTIFIER>
+                    <TYPENAME PLACE="43 24 43 31">BOOLEAN</TYPENAME>
+                  </VARDECL>
+                </INPUTDECL>
+                <OUTPUTDECL PLACE="44 12 44 36">
+                  <VARDECL PLACE="44 19 44 36">
+                    <IDENTIFIER PLACE="44 19 44 26">inv_aux</IDENTIFIER>
+                    <TYPENAME PLACE="44 29 44 36">BOOLEAN</TYPENAME>
+                  </VARDECL>
+                </OUTPUTDECL>
+                <DEFDECL PLACE="45 12 46 32">
+                  <SIMPLEDEFINITION PLACE="46 14 46 32">
+                    <NAMEEXPR PLACE="46 14 46 24">zero_const</NAMEEXPR>
+                    <RHSEXPRESSION PLACE="46 25 46 32">
+                      <NAMEEXPR PLACE="46 27 46 32">FALSE</NAMEEXPR>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                  <SIMPLEDEFINITION PLACE="47 14 47 32">
+                    <NAMEEXPR PLACE="47 14 47 21">inv_aux</NAMEEXPR>
+                    <RHSEXPRESSION PLACE="47 22 47 32">
+                      <APPLICATION PLACE="47 24 47 32">
+                        <NAMEEXPR PLACE="47 24 47 27">NOT</NAMEEXPR>
+                        <TUPLELITERAL PLACE="47 27 47 32">
+                          <NAMEEXPR PLACE="47 27 47 32" PARENS="1">aux</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </DEFDECL>
+              </BASEMODULE>
+            </RENAMING>
+            <WITHMODULE PLACE="50 8 59 31" PARENS="1">
+              <NEWVARDECLS PLACE="50 13 50 39">
+                <INPUTDECL PLACE="50 13 50 39">
+                  <VARDECL PLACE="50 19 50 39">
+                    <IDENTIFIER PLACE="50 19 50 29">zero_const</IDENTIFIER>
+                    <TYPENAME PLACE="50 32 50 39">BOOLEAN</TYPENAME>
+                  </VARDECL>
+                </INPUTDECL>
+              </NEWVARDECLS>
+              <RENAMING PLACE="51 14 59 31" PARENS="1">
+                <RENAMES PLACE="51 21 57 41">
+                  <RENAME PLACE="51 21 51 34">
+                    <NAMEEXPR PLACE="51 21 51 24">ack</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="51 28 51 34">
+                      <NAMEEXPR PLACE="51 28 51 31">Ack</NAMEEXPR>
+                      <NUMERAL PLACE="51 32 51 33">1</NUMERAL>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="52 21 52 34">
+                    <NAMEEXPR PLACE="52 21 52 24">req</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="52 28 52 34">
+                      <NAMEEXPR PLACE="52 28 52 31">Req</NAMEEXPR>
+                      <NUMERAL PLACE="52 32 52 33">1</NUMERAL>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="53 21 53 41">
+                    <NAMEEXPR PLACE="53 21 53 29">token_in</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="53 33 53 41">
+                      <NAMEEXPR PLACE="53 33 53 38">Token</NAMEEXPR>
+                      <NUMERAL PLACE="53 39 53 40">1</NUMERAL>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="54 21 54 42">
+                    <NAMEEXPR PLACE="54 21 54 30">token_out</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="54 34 54 42">
+                      <NAMEEXPR PLACE="54 34 54 39">Token</NAMEEXPR>
+                      <NAMEEXPR PLACE="54 40 54 41">n</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="55 21 55 46">
+                    <NAMEEXPR PLACE="55 21 55 32">override_in</NAMEEXPR>
+                    <NAMEEXPR PLACE="55 36 55 46">zero_const</NAMEEXPR>
+                  </RENAME>
+                  <RENAME PLACE="56 21 56 48">
+                    <NAMEEXPR PLACE="56 21 56 33">override_out</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="56 37 56 48">
+                      <NAMEEXPR PLACE="56 37 56 45">Override</NAMEEXPR>
+                      <NUMERAL PLACE="56 46 56 47">1</NUMERAL>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="57 21 57 41">
+                    <NAMEEXPR PLACE="57 21 57 29">grant_in</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="57 33 57 41">
+                      <NAMEEXPR PLACE="57 33 57 38">Grant</NAMEEXPR>
+                      <NUMERAL PLACE="57 39 57 40">1</NUMERAL>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                </RENAMES>
+                <HIDING PLACE="58 18 59 31" PARENS="1">
+                  <IDENTIFIERS PLACE="58 24 58 33">
+                    <IDENTIFIER PLACE="58 24 58 33">grant_out</IDENTIFIER>
+                  </IDENTIFIERS>
+                  <MODULEINSTANCE PLACE="59 21 59 31">
+                    <MODULENAME PLACE="59 21 59 25">cell</MODULENAME>
+                    <MODULEACTUALS PLACE="59 25 59 31">
+                      <NAMEEXPR PLACE="59 26 59 30">TRUE</NAMEEXPR>
+                    </MODULEACTUALS>
+                  </MODULEINSTANCE>
+                </HIDING>
+              </RENAMING>
+            </WITHMODULE>
+          </SYNCHRONOUSCOMPOSITION>
+          <MULTISYNCHRONOUS PLACE="60 10 69 31">
+            <INDEXVARDECL PLACE="60 15 60 27">
+              <IDENTIFIER PLACE="60 15 60 18">idx</IDENTIFIER>
+              <SUBRANGE PLACE="60 21 60 27">
+                <NUMERAL PLACE="60 22 60 23">2</NUMERAL>
+                <NAMEEXPR PLACE="60 25 60 26">n</NAMEEXPR>
+              </SUBRANGE>
+            </INDEXVARDECL>
+            <RENAMING PLACE="61 15 69 29" PARENS="1">
+              <RENAMES PLACE="61 22 68 49">
+                <RENAME PLACE="61 22 61 37">
+                  <NAMEEXPR PLACE="61 22 61 25">ack</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="61 29 61 37">
+                    <NAMEEXPR PLACE="61 29 61 32">Ack</NAMEEXPR>
+                    <NAMEEXPR PLACE="61 33 61 36">idx</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="62 22 62 37">
+                  <NAMEEXPR PLACE="62 22 62 25">req</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="62 29 62 37">
+                    <NAMEEXPR PLACE="62 29 62 32">Req</NAMEEXPR>
+                    <NAMEEXPR PLACE="62 33 62 36">idx</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="63 22 63 44">
+                  <NAMEEXPR PLACE="63 22 63 30">token_in</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="63 34 63 44">
+                    <NAMEEXPR PLACE="63 34 63 39">Token</NAMEEXPR>
+                    <NAMEEXPR PLACE="63 40 63 43">idx</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="64 22 64 49">
+                  <NAMEEXPR PLACE="64 22 64 31">token_out</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="64 35 64 49">
+                    <NAMEEXPR PLACE="64 35 64 40">Token</NAMEEXPR>
+                    <APPLICATION PLACE="64 41 64 48" INFIX="YES">
+                      <NAMEEXPR PLACE="64 45 64 46">-</NAMEEXPR>
+                      <TUPLELITERAL PLACE="64 41 64 48">
+                        <NAMEEXPR PLACE="64 41 64 44">idx</NAMEEXPR>
+                        <NUMERAL PLACE="64 47 64 48">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="65 22 65 54">
+                  <NAMEEXPR PLACE="65 22 65 33">override_in</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="65 37 65 54">
+                    <NAMEEXPR PLACE="65 37 65 45">Override</NAMEEXPR>
+                    <APPLICATION PLACE="65 46 65 53" INFIX="YES">
+                      <NAMEEXPR PLACE="65 50 65 51">-</NAMEEXPR>
+                      <TUPLELITERAL PLACE="65 46 65 53">
+                        <NAMEEXPR PLACE="65 46 65 49">idx</NAMEEXPR>
+                        <NUMERAL PLACE="65 52 65 53">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="66 22 66 51">
+                  <NAMEEXPR PLACE="66 22 66 34">override_out</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="66 38 66 51">
+                    <NAMEEXPR PLACE="66 38 66 46">Override</NAMEEXPR>
+                    <NAMEEXPR PLACE="66 47 66 50">idx</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="67 22 67 44">
+                  <NAMEEXPR PLACE="67 22 67 30">grant_in</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="67 34 67 44">
+                    <NAMEEXPR PLACE="67 34 67 39">Grant</NAMEEXPR>
+                    <NAMEEXPR PLACE="67 40 67 43">idx</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </RENAME>
+                <RENAME PLACE="68 22 68 49">
+                  <NAMEEXPR PLACE="68 22 68 31">grant_out</NAMEEXPR>
+                  <ARRAYSELECTION PLACE="68 35 68 49">
+                    <NAMEEXPR PLACE="68 35 68 40">Grant</NAMEEXPR>
+                    <APPLICATION PLACE="68 41 68 48" INFIX="YES">
+                      <NAMEEXPR PLACE="68 45 68 46">-</NAMEEXPR>
+                      <TUPLELITERAL PLACE="68 41 68 48">
+                        <NAMEEXPR PLACE="68 41 68 44">idx</NAMEEXPR>
+                        <NUMERAL PLACE="68 47 68 48">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </ARRAYSELECTION>
+                </RENAME>
+              </RENAMES>
+              <MODULEINSTANCE PLACE="69 18 69 29">
+                <MODULENAME PLACE="69 18 69 22">cell</MODULENAME>
+                <MODULEACTUALS PLACE="69 22 69 29">
+                  <NAMEEXPR PLACE="69 23 69 28">FALSE</NAMEEXPR>
+                </MODULEACTUALS>
+              </MODULEINSTANCE>
+            </RENAMING>
+          </MULTISYNCHRONOUS>
+        </SYNCHRONOUSCOMPOSITION>
+      </WITHMODULE>
+    </MODULEDECLARATION>
+    <ASSERTIONDECLARATION PLACE="71 3 73 81">
+      <IDENTIFIER PLACE="71 3 71 18">at_most_one_ack</IDENTIFIER>
+      <ASSERTIONFORM PLACE="72 5 72 12">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="72 13 73 81">
+        <MODULEINSTANCE PLACE="72 13 72 20">
+          <MODULENAME PLACE="72 13 72 20">arbiter</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="72 24 73 81">
+          <NAMEEXPR PLACE="72 24 72 25">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="72 25 73 81">
+            <QUANTIFIEDEXPRESSION PLACE="72 26 73 80" PARENS="1">
+              <QUANTIFIER PLACE="72 27 72 33">FORALL</QUANTIFIER>
+              <VARDECLS PLACE="72 35 72 49">
+                <VARDECL PLACE="72 35 72 49">
+                  <IDENTIFIER PLACE="72 35 72 36">i</IDENTIFIER>
+                  <SUBRANGE PLACE="72 39 72 49">
+                    <NUMERAL PLACE="72 40 72 41">1</NUMERAL>
+                    <APPLICATION PLACE="72 43 72 48" INFIX="YES">
+                      <NAMEEXPR PLACE="72 45 72 46">-</NAMEEXPR>
+                      <TUPLELITERAL PLACE="72 43 72 48">
+                        <NAMEEXPR PLACE="72 43 72 44">n</NAMEEXPR>
+                        <NUMERAL PLACE="72 47 72 48">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </SUBRANGE>
+                </VARDECL>
+              </VARDECLS>
+              <QUANTIFIEDEXPRESSION PLACE="73 30 73 79" PARENS="1">
+                <QUANTIFIER PLACE="73 31 73 37">FORALL</QUANTIFIER>
+                <VARDECLS PLACE="73 39 73 53">
+                  <VARDECL PLACE="73 39 73 53">
+                    <IDENTIFIER PLACE="73 39 73 40">j</IDENTIFIER>
+                    <SUBRANGE PLACE="73 43 73 53">
+                      <APPLICATION PLACE="73 44 73 49" INFIX="YES">
+                        <NAMEEXPR PLACE="73 46 73 47">+</NAMEEXPR>
+                        <TUPLELITERAL PLACE="73 44 73 49">
+                          <NAMEEXPR PLACE="73 44 73 45">i</NAMEEXPR>
+                          <NUMERAL PLACE="73 48 73 49">1</NUMERAL>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <NAMEEXPR PLACE="73 51 73 52">n</NAMEEXPR>
+                    </SUBRANGE>
+                  </VARDECL>
+                </VARDECLS>
+                <APPLICATION PLACE="73 56 73 78">
+                  <NAMEEXPR PLACE="73 56 73 59">NOT</NAMEEXPR>
+                  <TUPLELITERAL PLACE="73 59 73 78">
+                    <APPLICATION PLACE="73 59 73 78" INFIX="YES" PARENS="1">
+                      <NAMEEXPR PLACE="73 67 73 70">AND</NAMEEXPR>
+                      <TUPLELITERAL PLACE="73 60 73 77">
+                        <ARRAYSELECTION PLACE="73 60 73 66">
+                          <NAMEEXPR PLACE="73 60 73 63">Ack</NAMEEXPR>
+                          <NAMEEXPR PLACE="73 64 73 65">i</NAMEEXPR>
+                        </ARRAYSELECTION>
+                        <ARRAYSELECTION PLACE="73 71 73 77">
+                          <NAMEEXPR PLACE="73 71 73 74">Ack</NAMEEXPR>
+                          <NAMEEXPR PLACE="73 75 73 76">j</NAMEEXPR>
+                        </ARRAYSELECTION>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </QUANTIFIEDEXPRESSION>
+            </QUANTIFIEDEXPRESSION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="75 3 76 66">
+      <IDENTIFIER PLACE="75 3 75 25">no_ack_without_request</IDENTIFIER>
+      <ASSERTIONFORM PLACE="76 5 76 12">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="76 13 76 66">
+        <MODULEINSTANCE PLACE="76 13 76 20">
+          <MODULENAME PLACE="76 13 76 20">arbiter</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="76 24 76 66">
+          <NAMEEXPR PLACE="76 24 76 25">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="76 25 76 66">
+            <QUANTIFIEDEXPRESSION PLACE="76 26 76 65" PARENS="1">
+              <QUANTIFIER PLACE="76 27 76 33">FORALL</QUANTIFIER>
+              <VARDECLS PLACE="76 35 76 45">
+                <VARDECL PLACE="76 35 76 45">
+                  <IDENTIFIER PLACE="76 35 76 36">i</IDENTIFIER>
+                  <SUBRANGE PLACE="76 39 76 45">
+                    <NUMERAL PLACE="76 40 76 41">1</NUMERAL>
+                    <NAMEEXPR PLACE="76 43 76 44">n</NAMEEXPR>
+                  </SUBRANGE>
+                </VARDECL>
+              </VARDECLS>
+              <APPLICATION PLACE="76 48 76 64" INFIX="YES">
+                <NAMEEXPR PLACE="76 55 76 57">=&gt;</NAMEEXPR>
+                <TUPLELITERAL PLACE="76 48 76 64">
+                  <ARRAYSELECTION PLACE="76 48 76 54">
+                    <NAMEEXPR PLACE="76 48 76 51">Ack</NAMEEXPR>
+                    <NAMEEXPR PLACE="76 52 76 53">i</NAMEEXPR>
+                  </ARRAYSELECTION>
+                  <ARRAYSELECTION PLACE="76 58 76 64">
+                    <NAMEEXPR PLACE="76 58 76 61">Req</NAMEEXPR>
+                    <NAMEEXPR PLACE="76 62 76 63">i</NAMEEXPR>
+                  </ARRAYSELECTION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </QUANTIFIEDEXPRESSION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="78 3 79 69">
+      <IDENTIFIER PLACE="78 3 78 43">every_request_is_eventually_acknowledged</IDENTIFIER>
+      <ASSERTIONFORM PLACE="79 5 79 12">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="79 13 79 69">
+        <MODULEINSTANCE PLACE="79 13 79 20">
+          <MODULENAME PLACE="79 13 79 20">arbiter</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <QUANTIFIEDEXPRESSION PLACE="79 24 79 69" PARENS="1">
+          <QUANTIFIER PLACE="79 25 79 31">FORALL</QUANTIFIER>
+          <VARDECLS PLACE="79 33 79 43">
+            <VARDECL PLACE="79 33 79 43">
+              <IDENTIFIER PLACE="79 33 79 34">i</IDENTIFIER>
+              <SUBRANGE PLACE="79 37 79 43">
+                <NUMERAL PLACE="79 38 79 39">1</NUMERAL>
+                <NAMEEXPR PLACE="79 41 79 42">n</NAMEEXPR>
+              </SUBRANGE>
+            </VARDECL>
+          </VARDECLS>
+          <APPLICATION PLACE="79 46 79 68">
+            <NAMEEXPR PLACE="79 46 79 47">G</NAMEEXPR>
+            <TUPLELITERAL PLACE="79 47 79 68">
+              <APPLICATION PLACE="79 48 79 67">
+                <NAMEEXPR PLACE="79 48 79 49">F</NAMEEXPR>
+                <TUPLELITERAL PLACE="79 49 79 67">
+                  <APPLICATION PLACE="79 50 79 66" INFIX="YES">
+                    <NAMEEXPR PLACE="79 57 79 59">=&gt;</NAMEEXPR>
+                    <TUPLELITERAL PLACE="79 50 79 66">
+                      <ARRAYSELECTION PLACE="79 50 79 56">
+                        <NAMEEXPR PLACE="79 50 79 53">Req</NAMEEXPR>
+                        <NAMEEXPR PLACE="79 54 79 55">i</NAMEEXPR>
+                      </ARRAYSELECTION>
+                      <ARRAYSELECTION PLACE="79 60 79 66">
+                        <NAMEEXPR PLACE="79 60 79 63">Ack</NAMEEXPR>
+                        <NAMEEXPR PLACE="79 64 79 65">i</NAMEEXPR>
+                      </ARRAYSELECTION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </TUPLELITERAL>
+          </APPLICATION>
+        </QUANTIFIEDEXPRESSION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="81 3 83 85">
+      <IDENTIFIER PLACE="81 3 81 20">at_most_one_token</IDENTIFIER>
+      <ASSERTIONFORM PLACE="82 5 82 12">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="82 13 83 85">
+        <MODULEINSTANCE PLACE="82 13 82 20">
+          <MODULENAME PLACE="82 13 82 20">arbiter</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="82 24 83 85">
+          <NAMEEXPR PLACE="82 24 82 25">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="82 25 83 85">
+            <QUANTIFIEDEXPRESSION PLACE="82 26 83 84" PARENS="1">
+              <QUANTIFIER PLACE="82 27 82 33">FORALL</QUANTIFIER>
+              <VARDECLS PLACE="82 35 82 49">
+                <VARDECL PLACE="82 35 82 49">
+                  <IDENTIFIER PLACE="82 35 82 36">i</IDENTIFIER>
+                  <SUBRANGE PLACE="82 39 82 49">
+                    <NUMERAL PLACE="82 40 82 41">1</NUMERAL>
+                    <APPLICATION PLACE="82 43 82 48" INFIX="YES">
+                      <NAMEEXPR PLACE="82 45 82 46">-</NAMEEXPR>
+                      <TUPLELITERAL PLACE="82 43 82 48">
+                        <NAMEEXPR PLACE="82 43 82 44">n</NAMEEXPR>
+                        <NUMERAL PLACE="82 47 82 48">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </SUBRANGE>
+                </VARDECL>
+              </VARDECLS>
+              <QUANTIFIEDEXPRESSION PLACE="83 30 83 83" PARENS="1">
+                <QUANTIFIER PLACE="83 31 83 37">FORALL</QUANTIFIER>
+                <VARDECLS PLACE="83 39 83 53">
+                  <VARDECL PLACE="83 39 83 53">
+                    <IDENTIFIER PLACE="83 39 83 40">j</IDENTIFIER>
+                    <SUBRANGE PLACE="83 43 83 53">
+                      <APPLICATION PLACE="83 44 83 49" INFIX="YES">
+                        <NAMEEXPR PLACE="83 46 83 47">+</NAMEEXPR>
+                        <TUPLELITERAL PLACE="83 44 83 49">
+                          <NAMEEXPR PLACE="83 44 83 45">i</NAMEEXPR>
+                          <NUMERAL PLACE="83 48 83 49">1</NUMERAL>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <NAMEEXPR PLACE="83 51 83 52">n</NAMEEXPR>
+                    </SUBRANGE>
+                  </VARDECL>
+                </VARDECLS>
+                <APPLICATION PLACE="83 56 83 82">
+                  <NAMEEXPR PLACE="83 56 83 59">NOT</NAMEEXPR>
+                  <TUPLELITERAL PLACE="83 59 83 82">
+                    <APPLICATION PLACE="83 59 83 82" INFIX="YES" PARENS="1">
+                      <NAMEEXPR PLACE="83 69 83 72">AND</NAMEEXPR>
+                      <TUPLELITERAL PLACE="83 60 83 81">
+                        <ARRAYSELECTION PLACE="83 60 83 68">
+                          <NAMEEXPR PLACE="83 60 83 65">Token</NAMEEXPR>
+                          <NAMEEXPR PLACE="83 66 83 67">i</NAMEEXPR>
+                        </ARRAYSELECTION>
+                        <ARRAYSELECTION PLACE="83 73 83 81">
+                          <NAMEEXPR PLACE="83 73 83 78">Token</NAMEEXPR>
+                          <NAMEEXPR PLACE="83 79 83 80">j</NAMEEXPR>
+                        </ARRAYSELECTION>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </QUANTIFIEDEXPRESSION>
+            </QUANTIFIEDEXPRESSION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

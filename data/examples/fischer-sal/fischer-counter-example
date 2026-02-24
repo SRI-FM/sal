@@ -1,0 +1,207 @@
+Counterexample:
+========================
+Path
+========================
+Step 0:
+--- System Variables (assignments) ---
+lock = 0;
+ptr[1] = sleeping;
+ptr[2] = sleeping;
+time = 0;
+--- Constraints ---
+time_out[2] >= time_out[1];
+time_out[2] > 0;
+time_out[1] > 0;
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(21)]
+    (label time_elapses
+      transition at [Context: fischer, line(66), column(23)])))
+------------------------
+Step 1:
+--- System Variables (assignments) ---
+lock = 0;
+ptr[1] = sleeping;
+ptr[2] = sleeping;
+--- Constraints ---
+time > 0;
+time_out[2] = PRE(time_out)[2];
+time = PRE(time_out)[1];
+time_out[1] = PRE(time_out)[1];
+time_out[2] >= time_out[1];
+time_out[1] = time;
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(30)]
+    (with i = 1 at [Context: fischer, line(129), column(9)]
+      (module instance at [Context: fischer, line(129), column(76)]
+        (label waking_up
+          transition at [Context: fischer, line(88), column(9)])))))
+------------------------
+Step 2:
+--- System Variables (assignments) ---
+lock = 0;
+ptr[1] = waiting;
+ptr[2] = sleeping;
+--- Constraints ---
+time_out[2] = PRE(time_out)[2];
+time_out[1] > PRE(time);
+time = PRE(time);
+time_out[1] > time_out[2];
+time_out[1] <= PRE(time) + 2;
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(21)]
+    (label time_elapses
+      transition at [Context: fischer, line(66), column(23)])))
+------------------------
+Step 3:
+--- System Variables (assignments) ---
+lock = 0;
+ptr[1] = waiting;
+ptr[2] = sleeping;
+--- Constraints ---
+time = PRE(time_out)[2];
+time_out[1] > time_out[2];
+time > PRE(time);
+time_out[2] = time;
+time_out[1] = PRE(time_out)[1];
+time_out[2] = PRE(time_out)[2];
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(30)]
+    (with i = 2 at [Context: fischer, line(129), column(9)]
+      (module instance at [Context: fischer, line(129), column(76)]
+        (label waking_up
+          transition at [Context: fischer, line(88), column(9)])))))
+------------------------
+Step 4:
+--- System Variables (assignments) ---
+lock = 0;
+ptr[1] = waiting;
+ptr[2] = waiting;
+--- Constraints ---
+time_out[1] = PRE(time_out)[1];
+time = PRE(time);
+time_out[2] <= PRE(time) + 2;
+time_out[1] = time;
+time_out[2] > PRE(time);
+time_out[2] >= time_out[1];
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(30)]
+    (with i = 1 at [Context: fischer, line(129), column(9)]
+      (module instance at [Context: fischer, line(129), column(76)]
+        (label setting_lock
+          transition at [Context: fischer, line(97), column(9)])))))
+------------------------
+Step 5:
+--- System Variables (assignments) ---
+lock = 1;
+ptr[1] = trying;
+ptr[2] = waiting;
+--- Constraints ---
+time_out[2] >= time_out[1];
+time_out[1] >= PRE(time) + 3;
+time_out[2] = PRE(time_out)[2];
+time = PRE(time);
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(21)]
+    (label time_elapses
+      transition at [Context: fischer, line(66), column(23)])))
+------------------------
+Step 6:
+--- System Variables (assignments) ---
+lock = 1;
+ptr[1] = trying;
+ptr[2] = waiting;
+--- Constraints ---
+time_out[1] = time;
+time = PRE(time_out)[1];
+time_out[2] = PRE(time_out)[2];
+time_out[1] = PRE(time_out)[1];
+time > PRE(time);
+time_out[2] >= time_out[1];
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(30)]
+    (with i = 1 at [Context: fischer, line(129), column(9)]
+      (module instance at [Context: fischer, line(129), column(76)]
+        (label entering_cs
+          transition at [Context: fischer, line(103), column(9)])))))
+------------------------
+Step 7:
+--- System Variables (assignments) ---
+lock = 1;
+ptr[1] = critical;
+ptr[2] = waiting;
+--- Constraints ---
+time_out[1] > time_out[2];
+time_out[2] = time;
+time = PRE(time);
+time_out[1] > PRE(time);
+time_out[2] = PRE(time_out)[2];
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(30)]
+    (with i = 2 at [Context: fischer, line(129), column(9)]
+      (module instance at [Context: fischer, line(129), column(76)]
+        (label setting_lock
+          transition at [Context: fischer, line(97), column(9)])))))
+------------------------
+Step 8:
+--- System Variables (assignments) ---
+lock = 2;
+ptr[1] = critical;
+ptr[2] = trying;
+--- Constraints ---
+time_out[1] = PRE(time_out)[1];
+time = PRE(time);
+time_out[2] >= PRE(time) + 3;
+time_out[2] >= time_out[1];
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(21)]
+    (label time_elapses
+      transition at [Context: fischer, line(66), column(23)])))
+------------------------
+Step 9:
+--- System Variables (assignments) ---
+lock = 2;
+ptr[1] = critical;
+ptr[2] = trying;
+--- Constraints ---
+time > PRE(time);
+time = PRE(time_out)[1];
+time_out[2] >= time_out[1];
+time_out[2] = PRE(time_out)[2];
+time_out[2] = time;
+time_out[1] = PRE(time_out)[1];
+------------------------
+Transition Information: 
+(module instance at [Context: fischer, line(134), column(7)]
+  (module instance at [Context: fischer, line(131), column(30)]
+    (with i = 2 at [Context: fischer, line(129), column(9)]
+      (module instance at [Context: fischer, line(129), column(76)]
+        (label entering_cs
+          transition at [Context: fischer, line(103), column(9)])))))
+------------------------
+Step 10:
+--- System Variables (assignments) ---
+lock = 2;
+ptr[1] = critical;
+ptr[2] = critical;
+--- Constraints ---
+time_out[1] = PRE(time_out)[1];
+time = PRE(time);
+time_out[2] > PRE(time);

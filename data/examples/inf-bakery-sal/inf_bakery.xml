@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./inf_bakery.sal  -->
+<CONTEXT PLACE="1 1 39 4">
+  <IDENTIFIER PLACE="1 1 1 11">inf_bakery</IDENTIFIER>
+  <PARAMETERS></PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 39 4">
+    <TYPEDECLARATION PLACE="3 3 3 42">
+      <IDENTIFIER PLACE="3 3 3 5">PC</IDENTIFIER>
+      <SCALARTYPE PLACE="3 14 3 42">
+        <SCALARELEMENT PLACE="3 15 3 23">sleeping</SCALARELEMENT>
+        <SCALARELEMENT PLACE="3 25 3 31">trying</SCALARELEMENT>
+        <SCALARELEMENT PLACE="3 33 3 41">critical</SCALARELEMENT>
+      </SCALARTYPE>
+    </TYPEDECLARATION>
+    <MODULEDECLARATION PLACE="5 3 22 8">
+      <IDENTIFIER PLACE="5 3 5 6">job</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="6 5 22 8">
+        <INPUTDECL PLACE="7 7 7 25">
+          <VARDECL PLACE="7 13 7 25">
+            <IDENTIFIER PLACE="7 13 7 15">y2</IDENTIFIER>
+            <TYPENAME PLACE="7 18 7 25">NATURAL</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="8 7 8 26">
+          <VARDECL PLACE="8 14 8 26">
+            <IDENTIFIER PLACE="8 14 8 16">y1</IDENTIFIER>
+            <TYPENAME PLACE="8 19 8 26">NATURAL</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <LOCALDECL PLACE="9 7 9 20">
+          <VARDECL PLACE="9 13 9 20">
+            <IDENTIFIER PLACE="9 13 9 15">pc</IDENTIFIER>
+            <TYPENAME PLACE="9 18 9 20">PC</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <INITDECL PLACE="10 7 11 19">
+          <SIMPLEDEFINITION PLACE="11 6 11 19">
+            <NAMEEXPR PLACE="11 6 11 8">pc</NAMEEXPR>
+            <RHSEXPRESSION PLACE="11 9 11 19">
+              <NAMEEXPR PLACE="11 11 11 19">sleeping</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="12 6 12 12">
+            <NAMEEXPR PLACE="12 6 12 8">y1</NAMEEXPR>
+            <RHSEXPRESSION PLACE="12 9 12 12">
+              <NUMERAL PLACE="12 11 12 12">0</NUMERAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="13 7 20 43">
+          <SOMECOMMANDS PLACE="14 11 20 43">
+            <GUARDEDCOMMAND PLACE="14 11 15 41">
+              <GUARD PLACE="14 11 14 24">
+                <APPLICATION PLACE="14 11 14 24" INFIX="YES">
+                  <NAMEEXPR PLACE="14 14 14 15">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="14 11 14 24">
+                    <NAMEEXPR PLACE="14 11 14 13">pc</NAMEEXPR>
+                    <NAMEEXPR PLACE="14 16 14 24">sleeping</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="14 29 15 41">
+                <SIMPLEDEFINITION PLACE="14 29 14 41">
+                  <NEXTOPERATOR PLACE="14 29 14 32">
+                    <NAMEEXPR PLACE="14 29 14 31">y1</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="14 33 14 41">
+                    <APPLICATION PLACE="14 35 14 41" INFIX="YES">
+                      <NAMEEXPR PLACE="14 38 14 39">+</NAMEEXPR>
+                      <TUPLELITERAL PLACE="14 35 14 41">
+                        <NAMEEXPR PLACE="14 35 14 37">y2</NAMEEXPR>
+                        <NUMERAL PLACE="14 40 14 41">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="15 29 15 41">
+                  <NEXTOPERATOR PLACE="15 29 15 32">
+                    <NAMEEXPR PLACE="15 29 15 31">pc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="15 33 15 41">
+                    <NAMEEXPR PLACE="15 35 15 41">trying</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="17 11 17 65">
+              <GUARD PLACE="17 11 17 46">
+                <APPLICATION PLACE="17 11 17 46" INFIX="YES">
+                  <NAMEEXPR PLACE="17 23 17 26">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="17 11 17 46">
+                    <APPLICATION PLACE="17 11 17 22" INFIX="YES">
+                      <NAMEEXPR PLACE="17 14 17 15">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="17 11 17 22">
+                        <NAMEEXPR PLACE="17 11 17 13">pc</NAMEEXPR>
+                        <NAMEEXPR PLACE="17 16 17 22">trying</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="17 27 17 46" INFIX="YES" PARENS="1">
+                      <NAMEEXPR PLACE="17 35 17 37">OR</NAMEEXPR>
+                      <TUPLELITERAL PLACE="17 28 17 45">
+                        <APPLICATION PLACE="17 28 17 34" INFIX="YES">
+                          <NAMEEXPR PLACE="17 31 17 32">=</NAMEEXPR>
+                          <TUPLELITERAL PLACE="17 28 17 34">
+                            <NAMEEXPR PLACE="17 28 17 30">y2</NAMEEXPR>
+                            <NUMERAL PLACE="17 33 17 34">0</NUMERAL>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                        <APPLICATION PLACE="17 38 17 45" INFIX="YES">
+                          <NAMEEXPR PLACE="17 41 17 42">&lt;</NAMEEXPR>
+                          <TUPLELITERAL PLACE="17 38 17 45">
+                            <NAMEEXPR PLACE="17 38 17 40">y1</NAMEEXPR>
+                            <NAMEEXPR PLACE="17 43 17 45">y2</NAMEEXPR>
+                          </TUPLELITERAL>
+                        </APPLICATION>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="17 51 17 65">
+                <SIMPLEDEFINITION PLACE="17 51 17 65">
+                  <NEXTOPERATOR PLACE="17 51 17 54">
+                    <NAMEEXPR PLACE="17 51 17 53">pc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="17 55 17 65">
+                    <NAMEEXPR PLACE="17 57 17 65">critical</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+            <GUARDEDCOMMAND PLACE="19 11 20 43">
+              <GUARD PLACE="19 11 19 24">
+                <APPLICATION PLACE="19 11 19 24" INFIX="YES">
+                  <NAMEEXPR PLACE="19 14 19 15">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="19 11 19 24">
+                    <NAMEEXPR PLACE="19 11 19 13">pc</NAMEEXPR>
+                    <NAMEEXPR PLACE="19 16 19 24">critical</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </GUARD>
+              <ASSIGNMENTS PLACE="19 29 20 43">
+                <SIMPLEDEFINITION PLACE="19 29 19 36">
+                  <NEXTOPERATOR PLACE="19 29 19 32">
+                    <NAMEEXPR PLACE="19 29 19 31">y1</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="19 33 19 36">
+                    <NUMERAL PLACE="19 35 19 36">0</NUMERAL>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+                <SIMPLEDEFINITION PLACE="20 29 20 43">
+                  <NEXTOPERATOR PLACE="20 29 20 32">
+                    <NAMEEXPR PLACE="20 29 20 31">pc</NAMEEXPR>
+                  </NEXTOPERATOR>
+                  <RHSEXPRESSION PLACE="20 33 20 43">
+                    <NAMEEXPR PLACE="20 35 20 43">sleeping</NAMEEXPR>
+                  </RHSEXPRESSION>
+                </SIMPLEDEFINITION>
+              </ASSIGNMENTS>
+            </GUARDEDCOMMAND>
+          </SOMECOMMANDS>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="24 3 28 11">
+      <IDENTIFIER PLACE="24 3 24 9">system</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <ASYNCHRONOUSCOMPOSITION PLACE="25 5 28 11">
+        <MODULEINSTANCE PLACE="25 5 25 8">
+          <MODULENAME PLACE="25 5 25 8">job</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <RENAMING PLACE="27 5 28 11">
+          <RENAMES PLACE="27 12 27 30">
+            <RENAME PLACE="27 12 27 20">
+              <NAMEEXPR PLACE="27 12 27 14">y2</NAMEEXPR>
+              <NAMEEXPR PLACE="27 18 27 20">y1</NAMEEXPR>
+            </RENAME>
+            <RENAME PLACE="27 22 27 30">
+              <NAMEEXPR PLACE="27 22 27 24">y1</NAMEEXPR>
+              <NAMEEXPR PLACE="27 28 27 30">y2</NAMEEXPR>
+            </RENAME>
+          </RENAMES>
+          <MODULEINSTANCE PLACE="28 8 28 11">
+            <MODULENAME PLACE="28 8 28 11">job</MODULENAME>
+            <MODULEACTUALS></MODULEACTUALS>
+          </MODULEINSTANCE>
+        </RENAMING>
+      </ASYNCHRONOUSCOMPOSITION>
+    </MODULEDECLARATION>
+    <ASSERTIONDECLARATION PLACE="30 3 31 64">
+      <IDENTIFIER PLACE="30 3 30 8">mutex</IDENTIFIER>
+      <ASSERTIONFORM PLACE="30 10 30 17">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="30 18 31 64">
+        <MODULEINSTANCE PLACE="30 18 30 24">
+          <MODULENAME PLACE="30 18 30 24">system</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="31 21 31 64">
+          <NAMEEXPR PLACE="31 21 31 22">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="31 22 31 64">
+            <APPLICATION PLACE="31 23 31 63">
+              <NAMEEXPR PLACE="31 23 31 26">NOT</NAMEEXPR>
+              <TUPLELITERAL PLACE="31 26 31 63">
+                <APPLICATION PLACE="31 26 31 63" INFIX="YES" PARENS="1">
+                  <NAMEEXPR PLACE="31 43 31 46">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="31 27 31 62">
+                    <APPLICATION PLACE="31 27 31 42" INFIX="YES">
+                      <NAMEEXPR PLACE="31 32 31 33">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="31 27 31 42">
+                        <TUPLESELECTION PLACE="31 27 31 31">
+                          <NAMEEXPR PLACE="31 27 31 29">pc</NAMEEXPR>
+                          <NUMERAL PLACE="31 30 31 31">1</NUMERAL>
+                        </TUPLESELECTION>
+                        <NAMEEXPR PLACE="31 34 31 42">critical</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="31 47 31 62" INFIX="YES">
+                      <NAMEEXPR PLACE="31 52 31 53">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="31 47 31 62">
+                        <TUPLESELECTION PLACE="31 47 31 51">
+                          <NAMEEXPR PLACE="31 47 31 49">pc</NAMEEXPR>
+                          <NUMERAL PLACE="31 50 31 51">2</NUMERAL>
+                        </TUPLESELECTION>
+                        <NAMEEXPR PLACE="31 54 31 62">critical</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="33 3 34 64">
+      <IDENTIFIER PLACE="33 3 33 10">invalid</IDENTIFIER>
+      <ASSERTIONFORM PLACE="33 12 33 19">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="33 20 34 64">
+        <MODULEINSTANCE PLACE="33 20 33 26">
+          <MODULENAME PLACE="33 20 33 26">system</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="34 23 34 64">
+          <NAMEEXPR PLACE="34 23 34 24">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="34 24 34 64">
+            <APPLICATION PLACE="34 25 34 63">
+              <NAMEEXPR PLACE="34 25 34 28">NOT</NAMEEXPR>
+              <TUPLELITERAL PLACE="34 28 34 63">
+                <APPLICATION PLACE="34 28 34 63" INFIX="YES" PARENS="1">
+                  <NAMEEXPR PLACE="34 43 34 46">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="34 29 34 62">
+                    <APPLICATION PLACE="34 29 34 42" INFIX="YES">
+                      <NAMEEXPR PLACE="34 34 34 35">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="34 29 34 42">
+                        <TUPLESELECTION PLACE="34 29 34 33">
+                          <NAMEEXPR PLACE="34 29 34 31">pc</NAMEEXPR>
+                          <NUMERAL PLACE="34 32 34 33">1</NUMERAL>
+                        </TUPLESELECTION>
+                        <NAMEEXPR PLACE="34 36 34 42">trying</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <APPLICATION PLACE="34 47 34 62" INFIX="YES">
+                      <NAMEEXPR PLACE="34 52 34 53">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="34 47 34 62">
+                        <TUPLESELECTION PLACE="34 47 34 51">
+                          <NAMEEXPR PLACE="34 47 34 49">pc</NAMEEXPR>
+                          <NUMERAL PLACE="34 50 34 51">2</NUMERAL>
+                        </TUPLESELECTION>
+                        <NAMEEXPR PLACE="34 54 34 62">critical</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="36 3 36 53">
+      <IDENTIFIER PLACE="36 3 36 7">aux1</IDENTIFIER>
+      <ASSERTIONFORM PLACE="36 9 36 16">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="36 17 36 53">
+        <MODULEINSTANCE PLACE="36 17 36 23">
+          <MODULENAME PLACE="36 17 36 23">system</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="36 27 36 53">
+          <NAMEEXPR PLACE="36 27 36 28">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="36 28 36 53">
+            <APPLICATION PLACE="36 29 36 52" INFIX="YES">
+              <NAMEEXPR PLACE="36 43 36 45">=&gt;</NAMEEXPR>
+              <TUPLELITERAL PLACE="36 29 36 52">
+                <APPLICATION PLACE="36 29 36 42" INFIX="YES">
+                  <NAMEEXPR PLACE="36 34 36 35">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="36 29 36 42">
+                    <TUPLESELECTION PLACE="36 29 36 33">
+                      <NAMEEXPR PLACE="36 29 36 31">pc</NAMEEXPR>
+                      <NUMERAL PLACE="36 32 36 33">1</NUMERAL>
+                    </TUPLESELECTION>
+                    <NAMEEXPR PLACE="36 36 36 42">trying</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <APPLICATION PLACE="36 46 36 52" INFIX="YES">
+                  <NAMEEXPR PLACE="36 49 36 50">&gt;</NAMEEXPR>
+                  <TUPLELITERAL PLACE="36 46 36 52">
+                    <NAMEEXPR PLACE="36 46 36 48">y1</NAMEEXPR>
+                    <NUMERAL PLACE="36 51 36 52">0</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="38 3 38 53">
+      <IDENTIFIER PLACE="38 3 38 7">aux2</IDENTIFIER>
+      <ASSERTIONFORM PLACE="38 9 38 16">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="38 17 38 53">
+        <MODULEINSTANCE PLACE="38 17 38 23">
+          <MODULENAME PLACE="38 17 38 23">system</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="38 27 38 53">
+          <NAMEEXPR PLACE="38 27 38 28">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="38 28 38 53">
+            <APPLICATION PLACE="38 29 38 52" INFIX="YES">
+              <NAMEEXPR PLACE="38 43 38 45">=&gt;</NAMEEXPR>
+              <TUPLELITERAL PLACE="38 29 38 52">
+                <APPLICATION PLACE="38 29 38 42" INFIX="YES">
+                  <NAMEEXPR PLACE="38 34 38 35">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="38 29 38 42">
+                    <TUPLESELECTION PLACE="38 29 38 33">
+                      <NAMEEXPR PLACE="38 29 38 31">pc</NAMEEXPR>
+                      <NUMERAL PLACE="38 32 38 33">2</NUMERAL>
+                    </TUPLESELECTION>
+                    <NAMEEXPR PLACE="38 36 38 42">trying</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <APPLICATION PLACE="38 46 38 52" INFIX="YES">
+                  <NAMEEXPR PLACE="38 49 38 50">&gt;</NAMEEXPR>
+                  <TUPLELITERAL PLACE="38 46 38 52">
+                    <NAMEEXPR PLACE="38 46 38 48">y2</NAMEEXPR>
+                    <NUMERAL PLACE="38 51 38 52">0</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

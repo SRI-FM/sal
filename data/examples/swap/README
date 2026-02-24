@@ -1,0 +1,34 @@
+SWAP
+----
+
+This example is described in: 
+"Automatic Abstraction without Counterexamples"
+by K. L. McMillan and Nina Amla. 
+Cadence Technical Report
+
+They claim this is a difficult example for BMC-like
+techniques.
+
+- prove property diff for 4 registers
+
+  % sal-smc -v 10 --assertion="(@ diff (swap () (4)))"
+
+- prove property all-diff using 1-induction for 4 registers
+
+  % sal-bmc -v 10 -i -d 1 --assertion="(@ all-diff (swap () (4)))"
+
+- prove property diff using 1-induction and all-diff as a lemma
+
+  % sal-bmc -v 10 -i -d 1 -l all-diff --assertion="(@ diff (swap () (4)))"
+
+- prove property all-diff using sal-smc and backward reachability
+
+  % sal-smc -v 10 --backward --assertion="(@ all-diff (swap () (4)))"
+
+- Same example for 8 registers
+
+  % sal-smc -v 10 --assertion="(@ diff (swap () (8)))"
+  % sal-bmc -v 10 -i -d 1 --assertion="(@ all-diff (swap () (8)))"
+  % sal-bmc -v 10 -i -d 1 -l all-diff --assertion="(@ diff (swap () (8)))"
+  % sal-smc -v 10 --backward --assertion="(@ all-diff (swap () (8)))"
+

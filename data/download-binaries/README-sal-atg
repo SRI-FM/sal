@@ -1,0 +1,11 @@
+First install the SAL 2.4 from http://sal.csl.sri.com/pre-release
+
+Then untar sal-atg.tgz in the same place and do
+ ./install-sal-atg.sh
+
+then 
+ sal-atg --help 
+should work
+
+The examples are in the examples directory (see the file script) and
+the sed and awk scripts are in the scripts directory.

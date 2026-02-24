@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-16"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+
+<HEAD>
+<LINK REL="SHORTCUT ICON" HREF="images/sal-small.jpg">
+<TITLE>SAL --- Introduction</TITLE>
+</HEAD>
+<link rel="stylesheet" href="http://fm.csl.sri.com/style.css" type="text/css" />
+<BODY>
+<IMG SRC="images/sal2.jpg" ALT="SAL">
+<h1>Introduction</h1>
+
+<hr noshade>
+
+SAL stands for Symbolic Analysis Laboratory.  It is a framework for
+combining different tools for abstraction, program analysis, theorem
+proving, and model checking toward the calculation of properties (symbolic
+analysis) of transition systems.  A key part of the SAL framework is an
+intermediate language for describing transition systems.  This language
+serves as the <i>target</i> for translators that extract the transition
+system description for popular programming languages such as Esterel,
+Java, and Statecharts.  The intermediate language also serves as a common
+<i>source</i> for driving different analysis tools through translators
+from the intermediate language to the input format for the tools, and from
+the output of these tools back to the SAL intermediate language.
+<p>
+
+The SAL intermediate language is not that different from the input languages 
+used by various other verification tools such as
+<a href="http://www-2.cs.cmu.edu/~modelcheck/smv.html">SMV</a>,
+<a href="http://verify.stanford.edu/dill/murphi.html">Murphi</a>,
+<a href="http://www-cad.eecs.berkeley.edu/~mocha/"> Mocha</a>,
+and
+<a href="http://spinroot.com/spin/whatispin.html">SPIN</a>.
+Like these languages, SAL describes transition systems in terms of
+initialization and transition commands.  These can be given by
+variable-wise definitions in the style of <a href="http://www-2.cs.cmu.edu/~modelcheck/smv.html">SMV</a>
+or as guarded commands in
+the style of <a href="http://verify.stanford.edu/dill/murphi.html">Murphi</a>.  
+<p>
+
+The SAL 2.1 distribution includes: symbolic and witness model checkers, bounded
+model checkers (finite and infinite systems), interactive simulator, and a well-formedness checker.
+<p>
+
+<a href="index.html">Back to the main SAL homepage</a>
+
+<!-- END HEADER BLURB -->
+<br clear=all>
+<hr noshade>
+<i>
+<font size=-1>
+<!-- hhmts start --> Last modified: Wed Nov 12 13:26:21 PST 2003 <!-- hhmts end -->
+by <a href="mailto: demoura@csl.sri.com">Leonardo de Moura</a>
+</font>
+</i>
+
+</BODY>
+</HTML>

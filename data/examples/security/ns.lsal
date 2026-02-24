@@ -1,0 +1,72 @@
+(context ns () ()
+
+;; Only the following three steps of the protocol are modeled:
+;;   3. A->B: {Na,A}Kb
+;;   6. B->A: {Na,Nb,B}Ka       -- A assumes it is talking to B
+;;   7. A->B: {Nb}Kb            -- B assumes it is talking to A
+;;
+;;   A: initiator, B: reponder
+
+
+	(define FIXED::bool true)
+	(define NumInitiators::nat 1) ;; numer of initiators
+	(define NumResponders::nat 1) ;; number of responders
+	(define NumIntruders::nat 1) ;; number of intruders
+	(define NetworkSize::nat 1) ;; maximum number of outstanding messages in network
+	(define MaxKnowledge::nat 10) ;; maximum number of messages intruder can remember
+
+	(define-type InitiatorId (subrange 1 NumInitiators))
+	(define-type ResponderId (subrange 1 NumResponders))
+	(define-type IntruderId (subrange 1 NumIntruders))
+
+	(define-type AgentId (datatype (initiator initiator-id::InitiatorId)
+																 (responder responder-id::ResponderId)
+																 (intruder intruder-id::IntruderId)))
+
+	;; different types of message
+	(define-type MessageType (scalar M_NonceAddress       ;; {Na, A}Kb:   nonce and address
+																	 M_NonceNonceAddress  ;; {Na,Nb,B}Ka: two nonces and address
+																	 M_Nonce))            ;; {Nb}Kb:      one nonce
+
+	(define-type Message (record source::AgentId    ;; source of message
+															 dest::AgentId      ;; intended destination of message
+															 key::AgentId       ;; key used for encryption
+															 mType::MessageType ;; type of message
+															 nonce1::AgentId    ;; nonce1
+															 nonce2::AgentId    ;; nonce2 OR sender identifier OR empty
+															 address:AgentId))  ;; sender identifier
+
+	;; remark: keys, nonces and addresses are encoded in the message by their
+  ;;         agent's identifier only. They can be distinguished by their po-
+  ;;         sition and the type of the message
+
+	(define-type InitiatorStates (scalar I_SLEEP    ;; state after initialization
+																			 I_WAIT     ;; waiting for response from responder
+																			 I_COMMIT)) ;; initiator commits to session
+		
+	(define-type Initiator (record state::InitiatorStates
+																 responder::AgentId)) ;; agent with whom the initiator starts the protocol
+
+	(define-type ResponderStates (scalar R_SLEEP
+																			 R_WAIT
+																			 R_COMMIT))
+
+	(define-type Responder (record state::ResponderStates
+																 initiator::AgentId)) 
+
+	(define-type Intruder (record nonces::(-> AgentId bool)             ;; known nonces
+																messages::(-> (subrange 1 MaxKnowledge) Message))) ;; known messages 
+
+	(define-module system
+		(begin
+			(local net::(-> (subrange 1 NetworkSize) Message)) ;; network
+			(local ini::(-> InitiatorId Initiator))            ;; initiators
+			(local res::(-> ResponderId Responder))            ;; responders
+			(local intr::(-> IntruderId Intruder))             ;; intruders
+
+
+			(initialization
+			 (= ini (lambda (i::InitiatorId) 
+								(mk-record state::I_SLEEP responder::(responder i))))
+			 (= res (lambda (r::ResponderId)
+								(mk-record state::R_SLEEP initiator::(initiator r))))

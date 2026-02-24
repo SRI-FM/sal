@@ -1,0 +1,14 @@
+
+
+- Configuration 1:
+
+counterexample lenght: 16
+
+- Configuration 2:
+
+sal-bmc up to depth 112: 24.83 secs
+
+- Configuration 3:
+
+counterexample length: 8
+

@@ -1,0 +1,98 @@
+Content-type: text/html
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"name="Author" content="Sam Owre">
+<title>?SYSTEM? Registration Verification</title>
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<! ======================= Form Starts Here ================================>
+
+<form method=post action="fm-license.cgi">
+
+<table border=0 cols=2 width="90%" >
+<tr>
+<td width="130">
+</td>
+
+<td>
+
+<font size=+2 color="red">
+<b>You still need to review and submit your request.</b>
+<BR>
+<BR>
+<BR>
+</font>
+<font size=+1>
+To <font color="red"> change </font> information:
+ use your browser's Back button to return to the application page.
+<BR>
+To <font color="red"> send your request </font> click the SUBMIT button below.
+<BR>
+<BR>
+<BR>
+<b>You are about to submit the following information:
+</b><BR>
+<BR>&nbsp;&nbsp;&nbsp;I <b><i>?AGREETORESTRICTIONS?</i></b> agree to
+    abide by the ?SYSTEM? license restrictions.<BR>
+</td>
+</tr>
+<tr>
+<td>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</td>
+
+<td>
+
+<!-- The following hidden fields are necessary to carry data forward from
+     the first form to the final one -->
+
+<input TYPE="hidden" NAME="FORM" VALUE="verification" >
+<input TYPE="hidden" NAME="SYSTEM" VALUE="?SYSTEM?" >
+<input TYPE="hidden" NAME="AGREETORESTRICTIONS" VALUE="?AGREETORESTRICTIONS?"> 
+
+<input TYPE="hidden" NAME="REQUESTER" VALUE="?REQUESTER?" >
+<input TYPE="hidden" NAME="INSTITUTION" VALUE="?INSTITUTION?" >
+<input TYPE="hidden" NAME="EMAIL" VALUE="?EMAIL?" >
+<input TYPE="hidden" NAME="STREET" VALUE="?STREET?" >
+<input TYPE="hidden" NAME="CITY" VALUE="?CITY?" >
+<input TYPE="hidden" NAME="STATE" VALUE="?STATE?" >
+<input TYPE="hidden" NAME="ZIP" VALUE="?ZIP?" >
+<input TYPE="hidden" NAME="COUNTRY" VALUE="?COUNTRY?" >
+<input TYPE="hidden" NAME="PHONE" VALUE="?PHONE?" >
+
+<font size=+1>
+<BR>&nbsp;&nbsp;&nbsp;Name: <b><i>?REQUESTER?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;Organization: <b><i>?INSTITUTION?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;Street/Mailbox: <b><i>?STREET?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;City: <b><i>?CITY?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;State/Province: <b><i>?STATE?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;Zip Code: <b><i>?ZIP?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;Country: <b><i>?COUNTRY?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;Phone: <b><i>?PHONE?</i></b>
+<BR>&nbsp;&nbsp;&nbsp;Email: <b><i>?EMAIL?</i></b>
+</font>
+<BR>
+<CENTER>
+<INPUT TYPE="submit" NAME="SUBMIT" VALUE="SUBMIT" >
+<CENTER>
+</form>
+
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

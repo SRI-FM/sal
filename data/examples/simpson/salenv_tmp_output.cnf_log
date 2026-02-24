@@ -1,0 +1,15 @@
+Z-Chaff Version: Z2001.2.17
+Solving salenv_tmp_output.cnf ......
+Instance unsatisfiable
+Max Decision Level			424
+Num. of Decisions			8866
+Original Num Clauses			165469
+Original Num Literals			386093
+Added Conflict Clauses			5365
+Added Conflict Literals			363459
+Deleted Unrelevant clause		0
+Deleted Unrelevant literals		0
+Number of Implication			17044517
+Total Run Time				12.736
+
+RESULT:	salenv_tmp_output.cnf UNSAT RunTime: 12.736

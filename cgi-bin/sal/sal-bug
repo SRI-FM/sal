@@ -1,0 +1,11 @@
+#!/csl/bin/perl
+# CGI script for generating a PVS bug report
+
+$system = "SAL";
+$basedir = "/homes/web/sal.csl.sri.com/";
+$prelude_shtml = "sal-bug-prelude.shtml";
+$postlude_shtml = "navbar.shtml";
+$gnatsdb = "/csl/mail/gnats/sal";
+$list_cgi = "sal-bug-list";
+
+require "gnats-report.pl";

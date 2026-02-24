@@ -1,0 +1,221 @@
+<HTML>
+
+<HEAD>
+<TITLE>SAL Installation Guide</TITLE>
+</HEAD>
+<BODY
+      bgcolor ="FFFFFF"
+      text    ="000000"
+      vlink   ="AA00FF"
+      alink   ="FFFF00"
+      link    ="0000FF"
+>
+
+<TABLE BORDER=0 WIDTH="100%">
+<TR>
+<td align=center><IMG SRC="images/sal.jpg" ALT="SAL">
+<tr>
+</TABLE>
+<!-- END HEADER BLURB -->
+<br clear=all>
+
+<p>
+<h1>A Step by Step Installation Guide</h1>
+
+<hr noshade> <br>
+
+
+<h2>1. Installing the SAL Parser</h2>
+
+<h3>Downloading the SAL Parser</h3>
+
+<a href="download/index.html">Download</a> - free of charge for non-commercial use under the <a href="fm-license.pdf">FM license</a>
+Please fill in this form and mail or fax to the address on the front cover. You will receive a login to download any SAL component 
+when your license has been processed.
+
+<h3> Configuring and Installing the SAL Parser</h3>
+
+The file INSTALL inside the installation package contains instructions to install the SAL Parser. 
+
+<ul><li> Unpack the sources: </li></ul>
+<pre>
+     tar xvfz sal2xml-1.0.tar.gz
+</pre>
+<ul><li> Change to the toplevel directory:</li></ul>
+<pre>
+     cd sal2xml-1.0
+</pre>
+<ul><li> Configure the SAL parser: </li></ul>
+<pre>
+     ./configure
+</pre>
+<ul>
+It is necessary to have a JAVA virtual machine to execute the SAL parser. If you do not have one,
+you can download one from <a href="http://www.javasoft.com">http://www.javasoft.com</a>. 
+The root of the default installation directory is /usr/local, if you do not have super user privileges,
+you can install the SAL parser in your home directory. For instance, to install it at <code>~/code</code>, you
+should use: </ul>
+<pre>
+     ./configure --prefix=~/code
+</pre>
+<ul>
+If you want to force a specific JAVA virtural machine, you can
+use the following command line: </ul>
+<pre>
+     ./configure JAVA=[your virtual machine]
+</pre>
+<ul>Example: </ul>
+<pre>
+     ./configure JAVA=java
+</pre>
+<ul><li> Installing the SAL parser: </li></ul>
+<pre>
+     make install
+</pre>
+
+<h2>2. Installing Bigloo (Scheme compiler)</h2>
+
+Bigloo is a Scheme implementation developed by <a href="http://www.inria.fr/mimosa/Manuel.Serrano">Manuel Serrano</a>.
+The Bigloo homepage is <a href="http://www-sop.inria.fr/mimosa/fp/Bigloo/">http://www-sop.inria.fr/mimosa/fp/Bigloo/</a>
+
+<h3>Downloading Bigloo</h3>
+
+You can download Bigloo from our website or the Bigloo official website. 
+
+<ul><li><a href="bigloo2.5a.tar.gz">Local copy</a></li></ul>
+<ul><li><a href="ftp://ftp-sop.inria.fr/mimosa/fp/Bigloo/bigloo2.5a.tar.gz">Bigloo at INRIA</a></li></ul>
+
+<h3>Building Bigloo</h3>
+
+The file INSTALL inside the installation package contains instructions to install Bigloo. 
+
+<ul><li> Unpack the sources: </li></ul>
+<pre>
+     tar -xvzf bigloo2.5a.tar.gz
+</pre>
+<ul><li> Change to the toplevel directory: </li></ul>
+<pre>
+     cd bigloo2.5a
+</pre>
+<ul><li> Configure Bigloo: </li></ul>
+<pre>
+     ./configure --jvm=no
+</pre>
+<ul>The <code>--jvm=no</code> disables the JAVA support in Bigloo. <br>
+The root of the default installation directory is /usr/local, if you do not have super user privileges,
+you can install Bigloo in your home directory. For instance, to install it at <code>~/code</code>, you
+should use: </ul>
+<pre>
+     ./configure  --jvm=no --prefix=~/code
+</pre>
+<ul><li> Compiling Bigloo: </li></ul>
+<pre>
+     make
+</pre>
+<ul><li> Installing Bigloo: </li></ul>
+<pre>
+     make install
+</pre>
+<ul><li> Final configurations: </li></ul>
+
+<p>
+<ul>On some architecture you will be needing to tell the 
+loader where to find the <em>SALenv</em> and <em>Bigloo</em> shared libraries. 
+This can be done two ways: </li></ul>
+
+<ul><ul>
+<li>setting the shell <code>LD_LIBRARY_PATH</code> variable.
+<li>updating the <tt>`/etc/ld.so.conf'</tt> file (read by ldconfig man page).
+</ul></ul>
+
+<ul>
+Otherwise, you will probably receive the following error message:
+</ul>
+
+<pre>
+     salenv: error in loading shared libraries: libsalcore.so: cannot open shared object file: No such file or directory
+</pre>
+
+<ul>
+SALenv libraries are installed in the <em>Bigloo</em> shared libraries directory.
+If you installed Bigloo in <tt>`usr/local'</tt>, then the libraries are located at:
+</ul>
+
+<pre>
+     /usr/local/lib/bigloo/2.5a
+</pre>
+
+<ul>
+In this case, you can fix the problem by adding the following command to your
+<tt>`.bashrc'</tt> file:
+</ul>
+
+<pre>
+     export LD_LIBRARY_PATH=/usr/local/lib/bigloo/2.5a:$LD_LIBRARY_PATH
+</pre>
+
+<h2>3. Installing GMP</h2>
+GMP is the GNU multi precision library. This library is used by SALenv. 
+The recent versions of Red Hat are coming with GMP, so you can try to jump this step.
+If you do not have the library, the SALenv installation script will generate
+an error message.
+
+<h3>Downloading GMP</h3>
+
+You can download GMP from our website or the GMP official website. 
+
+<ul><li><a href="gmp-3.1.1.tar.gz">Local copy</a></li></ul>
+<ul><li><a href="http://www.swox.com/gmp/">Official web site</a></li></ul>
+
+<h3>Building GMP</h3>
+
+The file INSTALL inside the installation package contains instructions to install GMP. 
+The installation is similar to the previous ones.
+
+<h2>4. Installing SALenv</h2>
+
+<h3>Downloading SALenv</h3>
+
+<a href="download/index.html">Download</a> - free of charge for non-commercial use under the <a href="fm-license.pdf">FM license</a>
+Please fill in this form and mail or fax to the address on the front cover. You will receive a login to download any SAL component 
+when your license has been processed.
+
+<h3> Configuring and Installing the SALenv</h3>
+
+<ul><li> Unpack the sources: </li></ul>
+<pre>
+     tar -xvzf salenv-1.0.tar.gz
+</pre>
+<ul><li> Change to the toplevel directory: </li></ul>
+<pre>
+     cd salenv-1.0
+</pre>
+<ul><li> Configure SALenv: </li></ul>
+<pre>
+     ./configure 
+</pre>
+<ul>The root of the default installation directory is /usr/local, if you do not have super user privileges,
+you can install SALenv in your home directory. For instance, to install it at <code>~/code</code>, you
+should use: </ul>
+<pre>
+     ./configure --prefix=~/code
+</pre>
+<ul><li> Compiling SALenv: </li></ul>
+<pre>
+     make
+</pre>
+<ul><li> Installing SALenv:</li></ul>
+<pre>
+     make install
+</pre>
+
+<hr noshade>
+<i>
+<font size=-1>
+Last updated Jul 22 2002 by
+  <a href="mailto: demoura@csl.sri.com">Leonardo de Moura</a>
+</font>
+</i>
+
+</BODY>
+</HTML>

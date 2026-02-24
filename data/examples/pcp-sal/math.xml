@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./math.sal  -->
+<CONTEXT PLACE="1 1 17 4">
+  <IDENTIFIER PLACE="1 1 1 5">math</IDENTIFIER>
+  <PARAMETERS></PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 17 4">
+    <CONSTANTDECLARATION PLACE="4 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="4 3 4 6">gcd</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>NATURAL</TYPENAME>
+          <TYPENAME>NATURAL</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="4 35 4 42">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="4 7 4 18">
+            <IDENTIFIER PLACE="4 7 4 8">m</IDENTIFIER>
+            <TYPENAME PLACE="4 11 4 18">NATURAL</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="4 20 4 31">
+            <IDENTIFIER PLACE="4 20 4 21">n</IDENTIFIER>
+            <TYPENAME PLACE="4 24 4 31">NATURAL</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <CONDITIONAL PLACE="5 5 9 10">
+          <APPLICATION PLACE="5 8 5 13" INFIX="YES">
+            <NAMEEXPR PLACE="5 10 5 11">=</NAMEEXPR>
+            <TUPLELITERAL PLACE="5 8 5 13">
+              <NAMEEXPR PLACE="5 8 5 9">n</NAMEEXPR>
+              <NUMERAL PLACE="5 12 5 13">0</NUMERAL>
+            </TUPLELITERAL>
+          </APPLICATION>
+          <NAMEEXPR PLACE="5 19 5 20">m</NAMEEXPR>
+          <LETEXPRESSION PLACE="6 10 8 32">
+            <LETDECLARATIONS PLACE="6 14 6 35">
+              <LETDECLARATION PLACE="6 14 6 35">
+                <IDENTIFIER PLACE="6 14 6 15">r</IDENTIFIER>
+                <TYPENAME PLACE="6 18 6 25">NATURAL</TYPENAME>
+                <APPLICATION PLACE="6 28 6 35" INFIX="YES">
+                  <NAMEEXPR PLACE="6 30 6 33">MOD</NAMEEXPR>
+                  <TUPLELITERAL PLACE="6 28 6 35">
+                    <NAMEEXPR PLACE="6 28 6 29">m</NAMEEXPR>
+                    <NAMEEXPR PLACE="6 34 6 35">n</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </LETDECLARATION>
+            </LETDECLARATIONS>
+            <CONDITIONAL PLACE="7 13 8 32">
+              <APPLICATION PLACE="7 16 7 21" INFIX="YES">
+                <NAMEEXPR PLACE="7 18 7 19">=</NAMEEXPR>
+                <TUPLELITERAL PLACE="7 16 7 21">
+                  <NAMEEXPR PLACE="7 16 7 17">r</NAMEEXPR>
+                  <NUMERAL PLACE="7 20 7 21">0</NUMERAL>
+                </TUPLELITERAL>
+              </APPLICATION>
+              <NAMEEXPR PLACE="7 27 7 28">n</NAMEEXPR>
+              <APPLICATION PLACE="8 18 8 26">
+                <NAMEEXPR PLACE="8 18 8 21">gcd</NAMEEXPR>
+                <TUPLELITERAL PLACE="8 21 8 26">
+                  <NAMEEXPR PLACE="8 22 8 23">n</NAMEEXPR>
+                  <NAMEEXPR PLACE="8 24 8 25">r</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </CONDITIONAL>
+          </LETEXPRESSION>
+        </CONDITIONAL>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="11 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="11 3 11 6">lcm</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>NATURAL</TYPENAME>
+          <TYPENAME>NATURAL</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="11 35 11 42">NATURAL</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="11 7 11 18">
+            <IDENTIFIER PLACE="11 7 11 8">m</IDENTIFIER>
+            <TYPENAME PLACE="11 11 11 18">NATURAL</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="11 20 11 31">
+            <IDENTIFIER PLACE="11 20 11 21">n</IDENTIFIER>
+            <TYPENAME PLACE="11 24 11 31">NATURAL</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <CONDITIONAL PLACE="12 5 15 36">
+          <APPLICATION PLACE="12 8 12 13" INFIX="YES">
+            <NAMEEXPR PLACE="12 10 12 11">=</NAMEEXPR>
+            <TUPLELITERAL PLACE="12 8 12 13">
+              <NAMEEXPR PLACE="12 8 12 9">m</NAMEEXPR>
+              <NAMEEXPR PLACE="12 12 12 13">n</NAMEEXPR>
+            </TUPLELITERAL>
+          </APPLICATION>
+          <NAMEEXPR PLACE="12 19 12 20">m</NAMEEXPR>
+          <CONDITIONAL ELSIF="YES">
+            <APPLICATION PLACE="13 11 13 22" INFIX="YES">
+              <NAMEEXPR PLACE="13 19 13 20">=</NAMEEXPR>
+              <TUPLELITERAL PLACE="13 11 13 22">
+                <APPLICATION PLACE="13 11 13 18" INFIX="YES">
+                  <NAMEEXPR PLACE="13 13 13 16">MOD</NAMEEXPR>
+                  <TUPLELITERAL PLACE="13 11 13 18">
+                    <NAMEEXPR PLACE="13 11 13 12">m</NAMEEXPR>
+                    <NAMEEXPR PLACE="13 17 13 18">n</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <NUMERAL PLACE="13 21 13 22">0</NUMERAL>
+              </TUPLELITERAL>
+            </APPLICATION>
+            <NAMEEXPR PLACE="13 28 13 29">m</NAMEEXPR>
+            <CONDITIONAL ELSIF="YES">
+              <APPLICATION PLACE="14 11 14 22" INFIX="YES">
+                <NAMEEXPR PLACE="14 19 14 20">=</NAMEEXPR>
+                <TUPLELITERAL PLACE="14 11 14 22">
+                  <APPLICATION PLACE="14 11 14 18" INFIX="YES">
+                    <NAMEEXPR PLACE="14 13 14 16">MOD</NAMEEXPR>
+                    <TUPLELITERAL PLACE="14 11 14 18">
+                      <NAMEEXPR PLACE="14 11 14 12">n</NAMEEXPR>
+                      <NAMEEXPR PLACE="14 17 14 18">m</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <NUMERAL PLACE="14 21 14 22">0</NUMERAL>
+                </TUPLELITERAL>
+              </APPLICATION>
+              <NAMEEXPR PLACE="14 28 14 29">n</NAMEEXPR>
+              <APPLICATION PLACE="15 10 15 30" INFIX="YES">
+                <NAMEEXPR PLACE="15 27 15 28">*</NAMEEXPR>
+                <TUPLELITERAL PLACE="15 10 15 30">
+                  <APPLICATION PLACE="15 10 15 26" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="15 13 15 16">DIV</NAMEEXPR>
+                    <TUPLELITERAL PLACE="15 11 15 25">
+                      <NAMEEXPR PLACE="15 11 15 12">m</NAMEEXPR>
+                      <APPLICATION PLACE="15 17 15 25">
+                        <NAMEEXPR PLACE="15 17 15 20">gcd</NAMEEXPR>
+                        <TUPLELITERAL PLACE="15 20 15 25">
+                          <NAMEEXPR PLACE="15 21 15 22">m</NAMEEXPR>
+                          <NAMEEXPR PLACE="15 23 15 24">n</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <NAMEEXPR PLACE="15 29 15 30">n</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </CONDITIONAL>
+          </CONDITIONAL>
+        </CONDITIONAL>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="author" content="Leonardo de Moura"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="SAL: Symbolic Analysis Laboratory"/>
+<meta name="keywords" content="model checker, symbolic model checker, bounded model checker, formal methods, software verification, hardware verification, test-case generation, decision procedures"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<link rel="shortcut icon" href="images/sal-small.gif"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+    <link rel="stylesheet" type="text/css" href="fm-style.css" />
+    <title>Documentation</title>
+  </head>
+  <body>
+    <div class="nav">
+<img class="rfloat" src="images/sal3.jpg" alt="SAL"/>
+<table class="navbar">
+<tr>
+<th><a href="index.html">Home</a></th>
+<th>&bull;</th>
+<th><a href="introduction.html">Intro</a></th>
+<th>&bull;</th>
+<th><a href="documentation.html">Docs</a></th>
+<th>&bull;</th>
+<th><a href="download.html">Download</a></th>
+<th>&bull;</th>
+<th><a href="mailing_lists.html">Mail</a></th>
+<th>&bull;</th>
+<th><a href="http://fm.csl.sri.com">FM&nbsp;Tools</a></th>
+</tr>
+</table>
+</div>
+
+    <h1>Documentation</h1>
+    <div class="body">
+
+Documentation for SAL and its tools is a little sketchy at present.
+
+<ul>
+
+  <li> <b>The SAL Language Manual</b>:
+	     <a href="doc/language-report.ps"><img src="/icons/ps.gif" border="no" alt="ps" />postscript</a>, 
+       <a href="doc/language-report.pdf"><img src="/icons/pdf.gif" border="no" alt="pdf" />pdf</a>
+<p>
+This is a fairly complete description of the SAL language for
+specifying transition systems.  Note that the <tt>IMPLEMENTS</tt>
+operator is not implemented (!) and that the assertion language is not
+defined as part of SAL but by the tools that interpret the assertions.
+The model checkers use LTL (Linear Temporal Logic) as their assertion
+language (they also accept CTL syntax on the common fragment); please
+see the basic tutorial below for more details.
+<p>
+  SAL and XML - SAL is intended to be language and platform independent; toward this end
+we defined the abstract syntax for the SAL language in XML.  The <a href="doc/sal.dtd.txt">SAL DTD</a>
+describes valid abstract syntax.
+</li>
+
+
+
+  <li> <b>Basic SAL Tutorial</b>:
+	      <a href="doc/salenv_tutorial.ps"><img src="/icons/ps.gif" border="no" alt="ps" />postscript</a>, 
+        <a href="doc/salenv_tutorial.pdf"><img src="/icons/pdf.gif" border="no" alt="pdf" />pdf</a>
+
+<p>
+This is a very elementary tutorial; it introduces the LTL assertion
+language, and use of the symbolic and bounded model checkers and some auxiliary
+tools
+  </li>
+
+  <li> <b>Larger SAL tutorial example</b>: <a href="http://www.csl.sri.com/users/rushby/abstracts/om1">Analyzing the Fault-Tolerant Algorithm OM(1)</a>
+
+<p>
+This is a more substantial example from the field of fault-tolerant
+algorithms; it uses both the symbolic and bounded model checkers
+  </li>
+
+  <li> <b>Another SAL tutorial Example</b>: <a href="http://www.csl.sri.com/users/rushby/abstracts/needham03">The Needham-Schroeder Protocol in SAL</a>
+<p>
+
+This is another fairly substantial example, this time from the field of
+cryptographic protocols; it uses both the symbolic and bounded model
+checkers
+  </li>
+
+  <li> <b>SAL infinite bounded model checker</b>:
+    <p>
+      The best advice is to study the papers on
+      <a href="http://www.csl.sri.com/users/bruno/publis/sri-sdl-04-03.pdf">timed
+	systems in SAL</a>. There are examples on
+      the <a href="http://www.csl.sri.com/users/bruno/vvfcs.html">VVFCS</a>
+      project page too.
+    </p>
+  </li>
+
+  <li> <b>Manual for the SAL automated test generator</b>: <a
+							      href="http://www.csl.sri.com/users/rushby/abstracts/sal-atg">sal-atg manual</a>
+    </li>
+
+
+  <li> <b>Collection</b> of <a href="examples.html">examples</a>
+  </li>
+
+</ul>
+
+</div>
+  <div class="footer">
+    <footer class="page-footer"><hr />Last modified: <script>let lmod = new Date(document.lastModified);document.write(lmod.toDateString());</script>&nbsp; | &nbsp;Webmaster: <a href="mailto:owre@csl.sri.com">Sam Owre</a> &#149; <a href="mailto:shankar@csl.sri.com">N. Shankar</a> </footer>
+  </div>
+</body>
+</html>

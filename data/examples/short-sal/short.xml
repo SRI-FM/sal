@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./short.sal  -->
+<CONTEXT PLACE="1 1 25 4">
+  <IDENTIFIER PLACE="1 1 1 6">short</IDENTIFIER>
+  <PARAMETERS></PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 25 4">
+    <TYPEDECLARATION PLACE="3 3 3 30">
+      <IDENTIFIER PLACE="3 3 3 8">State</IDENTIFIER>
+      <SCALARTYPE PLACE="3 17 3 30">
+        <SCALARELEMENT PLACE="3 18 3 23">ready</SCALARELEMENT>
+        <SCALARELEMENT PLACE="3 25 3 29">busy</SCALARELEMENT>
+      </SCALARTYPE>
+    </TYPEDECLARATION>
+    <MODULEDECLARATION PLACE="5 3 17 8">
+      <IDENTIFIER PLACE="5 3 5 7">main</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="6 5 17 8">
+        <INPUTDECL PLACE="7 7 7 30">
+          <VARDECL PLACE="7 13 7 30">
+            <IDENTIFIER PLACE="7 13 7 20">request</IDENTIFIER>
+            <TYPENAME PLACE="7 23 7 30">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="8 7 8 27">
+          <VARDECL PLACE="8 14 8 27">
+            <IDENTIFIER PLACE="8 14 8 19">state</IDENTIFIER>
+            <TYPENAME PLACE="8 22 8 27">State</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <INITDECL PLACE="9 7 10 22">
+          <SIMPLEDEFINITION PLACE="10 9 10 22">
+            <NAMEEXPR PLACE="10 9 10 14">state</NAMEEXPR>
+            <RHSEXPRESSION PLACE="10 15 10 22">
+              <NAMEEXPR PLACE="10 17 10 22">ready</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="11 7 16 24">
+          <SIMPLEDEFINITION PLACE="12 9 16 24">
+            <NEXTOPERATOR PLACE="12 9 12 15">
+              <NAMEEXPR PLACE="12 9 12 14">state</NAMEEXPR>
+            </NEXTOPERATOR>
+            <RHSSELECTION PLACE="12 16 16 24">
+              <CONDITIONAL PLACE="12 19 16 24">
+                <APPLICATION PLACE="12 22 12 49" INFIX="YES">
+                  <NAMEEXPR PLACE="12 38 12 41">AND</NAMEEXPR>
+                  <TUPLELITERAL PLACE="12 22 12 49">
+                    <APPLICATION PLACE="12 22 12 37" INFIX="YES" PARENS="1">
+                      <NAMEEXPR PLACE="12 29 12 30">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="12 23 12 36">
+                        <NAMEEXPR PLACE="12 23 12 28">state</NAMEEXPR>
+                        <NAMEEXPR PLACE="12 31 12 36">ready</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                    <NAMEEXPR PLACE="12 42 12 49">request</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <SETLISTEXPRESSION PLACE="13 21 13 27">
+                  <NAMEEXPR PLACE="13 22 13 26">busy</NAMEEXPR>
+                </SETLISTEXPRESSION>
+                <SETLISTEXPRESSION PLACE="15 21 15 34">
+                  <NAMEEXPR PLACE="15 22 15 27">ready</NAMEEXPR>
+                  <NAMEEXPR PLACE="15 29 15 33">busy</NAMEEXPR>
+                </SETLISTEXPRESSION>
+              </CONDITIONAL>
+            </RHSSELECTION>
+          </SIMPLEDEFINITION>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <ASSERTIONDECLARATION PLACE="19 3 19 55">
+      <IDENTIFIER PLACE="19 3 19 6">th1</IDENTIFIER>
+      <ASSERTIONFORM PLACE="19 8 19 15">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="19 16 19 55">
+        <MODULEINSTANCE PLACE="19 16 19 20">
+          <MODULENAME PLACE="19 16 19 20">main</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="19 24 19 55">
+          <NAMEEXPR PLACE="19 24 19 26">AG</NAMEEXPR>
+          <TUPLELITERAL PLACE="19 26 19 55">
+            <APPLICATION PLACE="19 27 19 54" INFIX="YES">
+              <NAMEEXPR PLACE="19 35 19 37">=&gt;</NAMEEXPR>
+              <TUPLELITERAL PLACE="19 27 19 54">
+                <NAMEEXPR PLACE="19 27 19 34">request</NAMEEXPR>
+                <APPLICATION PLACE="19 38 19 54">
+                  <NAMEEXPR PLACE="19 38 19 40">AF</NAMEEXPR>
+                  <TUPLELITERAL PLACE="19 40 19 54">
+                    <APPLICATION PLACE="19 41 19 53" INFIX="YES">
+                      <NAMEEXPR PLACE="19 47 19 48">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="19 41 19 53">
+                        <NAMEEXPR PLACE="19 41 19 46">state</NAMEEXPR>
+                        <NAMEEXPR PLACE="19 49 19 53">busy</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="21 3 21 53">
+      <IDENTIFIER PLACE="21 3 21 6">th2</IDENTIFIER>
+      <ASSERTIONFORM PLACE="21 8 21 15">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="21 16 21 53">
+        <MODULEINSTANCE PLACE="21 16 21 20">
+          <MODULENAME PLACE="21 16 21 20">main</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="21 24 21 53">
+          <NAMEEXPR PLACE="21 24 21 25">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="21 25 21 53">
+            <APPLICATION PLACE="21 26 21 52" INFIX="YES">
+              <NAMEEXPR PLACE="21 34 21 36">=&gt;</NAMEEXPR>
+              <TUPLELITERAL PLACE="21 26 21 52">
+                <NAMEEXPR PLACE="21 26 21 33">request</NAMEEXPR>
+                <APPLICATION PLACE="21 37 21 52">
+                  <NAMEEXPR PLACE="21 37 21 38">F</NAMEEXPR>
+                  <TUPLELITERAL PLACE="21 38 21 52">
+                    <APPLICATION PLACE="21 39 21 51" INFIX="YES">
+                      <NAMEEXPR PLACE="21 45 21 46">=</NAMEEXPR>
+                      <TUPLELITERAL PLACE="21 39 21 51">
+                        <NAMEEXPR PLACE="21 39 21 44">state</NAMEEXPR>
+                        <NAMEEXPR PLACE="21 47 21 51">busy</NAMEEXPR>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+    <ASSERTIONDECLARATION PLACE="23 3 23 65">
+      <IDENTIFIER PLACE="23 3 23 6">th3</IDENTIFIER>
+      <ASSERTIONFORM PLACE="23 8 23 15">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="23 16 23 65">
+        <MODULEINSTANCE PLACE="23 16 23 20">
+          <MODULENAME PLACE="23 16 23 20">main</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="23 24 23 65">
+          <QUALIFIEDNAMEEXPR PLACE="23 24 23 42">
+            <IDENTIFIER PLACE="23 31 23 42">responds_to</IDENTIFIER>
+            <CONTEXTNAME PLACE="23 24 23 30">
+              <IDENTIFIER PLACE="23 24 23 30">ltllib</IDENTIFIER>
+            </CONTEXTNAME>
+          </QUALIFIEDNAMEEXPR>
+          <TUPLELITERAL PLACE="23 42 23 65">
+            <APPLICATION PLACE="23 43 23 55" INFIX="YES">
+              <NAMEEXPR PLACE="23 49 23 50">=</NAMEEXPR>
+              <TUPLELITERAL PLACE="23 43 23 55">
+                <NAMEEXPR PLACE="23 43 23 48">state</NAMEEXPR>
+                <NAMEEXPR PLACE="23 51 23 55">busy</NAMEEXPR>
+              </TUPLELITERAL>
+            </APPLICATION>
+            <NAMEEXPR PLACE="23 57 23 64">request</NAMEEXPR>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

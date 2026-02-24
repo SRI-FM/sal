@@ -1,0 +1,114 @@
+pcp_example_caotic : CONTEXT =
+BEGIN
+
+  Semaphore : TYPE = {sem1,sem2};
+
+  semSetCtx : CONTEXT = simple_set{Semaphore;};
+
+  NumberOfTasks : NATURAL = 2;
+
+  taskCtx : CONTEXT = pcp_task{Semaphore; NumberOfTasks};
+
+  JobIdx : TYPE = taskCtx!JobIdx;
+
+  task1 : taskCtx!TaskDescriptor = 
+                  (# priority := 100, 
+                     period := 5, 
+                     semaphores := semSetCtx!insert(sem2, semSetCtx!insert(sem1, semSetCtx!empty_set))
+                   #);
+
+  task2 : taskCtx!TaskDescriptor = 
+                  (# priority := 50, 
+                     period := 10, 
+                     semaphores := semSetCtx!insert(sem2, semSetCtx!insert(sem1, semSetCtx!empty_set))
+                   #);
+
+
+  tasks : taskCtx!TaskDescriptors = 
+          [ [i : JobIdx]
+	          IF i = 1 THEN task1
+            ELSE task2 ENDIF ];
+	
+  rsrcCtx : CONTEXT = pcp_rsrc{Semaphore; NumberOfTasks, tasks};
+
+  schCtx : CONTEXT = pcp_scheduler{Semaphore; NumberOfTasks, tasks};
+
+  RSRC : TYPE = rsrcCtx!RSRC;
+
+  Turn : TYPE = schCtx!Turn;
+
+  alloc_step(r : RSRC, j : JobIdx, s : Semaphore) : RSRC =
+    rsrcCtx!alloc_step(r,j,s);
+
+  release_step(r : RSRC, j : JobIdx, s : Semaphore) : RSRC =
+    rsrcCtx!release_step(r,j,s);
+
+  turn?(t : Turn, j : JobIdx) : BOOLEAN = schCtx!turn?(t, j);
+
+  SIMPLE_PC : TYPE = {l1, l2, l3};
+
+  JobStatus : TYPE = schCtx!JobStatus;
+
+  precedes?(j : JobIdx, k : JobIdx) : BOOLEAN =
+    schCtx!precedes?(j,k);
+
+  priority(j : JobIdx) : NATURAL =
+    schCtx!priority(j);
+
+  lock(r : RSRC, j : JobIdx, s : Semaphore) : RSRC =
+		schCtx!lock(r,j,s);
+
+  unlock(r : RSRC, j : JobIdx, s : Semaphore) : RSRC = 
+    schCtx!unlock(r,j,s);
+
+  step(r : RSRC, j : JobIdx) : RSRC =
+    schCtx!step(r,j);
+
+  simple_job [id : JobIdx] : MODULE =
+	BEGIN
+    INPUT turn : Turn
+    OUTPUT status : JobStatus
+    GLOBAL rsrc : RSRC
+    LOCAL  sem1? : BOOLEAN
+    OUTPUT pc : SIMPLE_PC
+  INITIALIZATION
+    status = schCtx!finished;
+    sem1? = FALSE;
+    pc = l1
+	TRANSITION
+    [
+       pc = l1 AND turn?(turn',id) --> status' = schCtx!started;
+                                        rsrc' = lock(rsrc, id, sem1);
+                                        sem1?' = TRUE;
+                                        pc' = l2
+       []
+       pc = l1 AND turn?(turn',id) --> status' = schCtx!started;
+                                        rsrc' = lock(rsrc, id, sem2);
+                                        sem1?' = FALSE;
+                                        pc' = l2
+
+       []
+       pc = l2 AND turn?(turn',id) --> rsrc' = step(rsrc, id);
+                                       pc' = l3
+       []
+       pc = l3 AND turn?(turn',id) AND sem1? --> pc' = l1;
+                                                  rsrc' = unlock(rsrc, id, sem1);
+                                                  status' = schCtx!finished
+       []
+       pc = l3 AND turn?(turn',id) AND NOT sem1? --> pc' = l1;
+                                                     rsrc' = unlock(rsrc, id, sem2);
+                                                     status' = schCtx!finished
+    ]
+	END;
+
+  system : MODULE = 
+  schCtx!scheduler ||
+  ((WITH OUTPUT job_status : ARRAY JobIdx OF JobStatus;
+         OUTPUT job_pc : ARRAY JobIdx OF SIMPLE_PC
+		([] (j : JobIdx) : RENAME status TO job_status[j],
+                              pc TO job_pc[j]
+                       IN simple_job[j]))
+    []
+    schCtx!idle_process);  
+
+END

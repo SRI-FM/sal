@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./bakery_with_bug2.sal  -->
+<CONTEXT PLACE="1 1 113 4">
+  <IDENTIFIER PLACE="1 1 1 17">bakery_with_bug2</IDENTIFIER>
+  <PARAMETERS PLACE="1 20 1 40">
+    <VARDECLS PLACE="1 20 1 40">
+      <VARDECL PLACE="1 20 1 29">
+        <IDENTIFIER PLACE="1 20 1 21">N</IDENTIFIER>
+        <TYPENAME PLACE="1 24 1 29">nznat</TYPENAME>
+      </VARDECL>
+      <VARDECL PLACE="1 31 1 40">
+        <IDENTIFIER PLACE="1 31 1 32">B</IDENTIFIER>
+        <TYPENAME PLACE="1 35 1 40">nznat</TYPENAME>
+      </VARDECL>
+    </VARDECLS>
+  </PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 113 4">
+    <TYPEDECLARATION PLACE="3 3 3 25">
+      <IDENTIFIER PLACE="3 3 3 10">Job_Idx</IDENTIFIER>
+      <SUBRANGE PLACE="3 19 3 25">
+        <NUMERAL PLACE="3 20 3 21">1</NUMERAL>
+        <NAMEEXPR PLACE="3 23 3 24">N</NAMEEXPR>
+      </SUBRANGE>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="5 3 5 28">
+      <IDENTIFIER PLACE="5 3 5 13">Ticket_Idx</IDENTIFIER>
+      <SUBRANGE PLACE="5 22 5 28">
+        <NUMERAL PLACE="5 23 5 24">0</NUMERAL>
+        <NAMEEXPR PLACE="5 26 5 27">B</NAMEEXPR>
+      </SUBRANGE>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="7 3 7 39">
+      <IDENTIFIER PLACE="7 3 7 18">Next_Ticket_Idx</IDENTIFIER>
+      <SUBRANGE PLACE="7 27 7 39">
+        <NUMERAL PLACE="7 28 7 29">1</NUMERAL>
+        <APPLICATION PLACE="7 31 7 38" INFIX="YES" PARENS="1">
+          <NAMEEXPR PLACE="7 34 7 35">+</NAMEEXPR>
+          <TUPLELITERAL PLACE="7 32 7 37">
+            <NAMEEXPR PLACE="7 32 7 33">B</NAMEEXPR>
+            <NUMERAL PLACE="7 36 7 37">1</NUMERAL>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </SUBRANGE>
+    </TYPEDECLARATION>
+    <TYPEDECLARATION PLACE="10 3 11 51">
+      <IDENTIFIER PLACE="10 3 10 7">RSRC</IDENTIFIER>
+      <RECORDTYPE PLACE="10 17 11 51">
+        <FIELDDECLARATION PLACE="10 20 10 53">
+          <IDENTIFIER PLACE="10 20 10 24">data</IDENTIFIER>
+          <ARRAYTYPE PLACE="10 26 10 53">
+            <TYPENAME PLACE="10 32 10 39">Job_Idx</TYPENAME>
+            <TYPENAME PLACE="10 43 10 53">Ticket_Idx</TYPENAME>
+          </ARRAYTYPE>
+        </FIELDDECLARATION>
+        <FIELDDECLARATION PLACE="11 20 11 48">
+          <IDENTIFIER PLACE="11 20 11 31">next_ticket</IDENTIFIER>
+          <TYPENAME PLACE="11 33 11 48">Next_Ticket_Idx</TYPENAME>
+        </FIELDDECLARATION>
+      </RECORDTYPE>
+    </TYPEDECLARATION>
+    <CONSTANTDECLARATION PLACE="18 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="18 3 18 26">min_non_zero_ticket_aux</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>Job_Idx</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="18 57 18 67">Ticket_Idx</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="18 27 18 38">
+            <IDENTIFIER PLACE="18 27 18 31">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="18 34 18 38">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="18 40 18 53">
+            <IDENTIFIER PLACE="18 40 18 43">idx</IDENTIFIER>
+            <TYPENAME PLACE="18 46 18 53">Job_Idx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <CONDITIONAL PLACE="19 4 26 9">
+          <APPLICATION PLACE="19 7 19 14" INFIX="YES">
+            <NAMEEXPR PLACE="19 11 19 12">=</NAMEEXPR>
+            <TUPLELITERAL PLACE="19 7 19 14">
+              <NAMEEXPR PLACE="19 7 19 10">idx</NAMEEXPR>
+              <NAMEEXPR PLACE="19 13 19 14">N</NAMEEXPR>
+            </TUPLELITERAL>
+          </APPLICATION>
+          <ARRAYSELECTION PLACE="19 20 19 34">
+            <RECORDSELECTION PLACE="19 20 19 29">
+              <NAMEEXPR PLACE="19 20 19 24">rsrc</NAMEEXPR>
+              <IDENTIFIER PLACE="19 25 19 29">data</IDENTIFIER>
+            </RECORDSELECTION>
+            <NAMEEXPR PLACE="19 30 19 33">idx</NAMEEXPR>
+          </ARRAYSELECTION>
+          <LETEXPRESSION PLACE="20 9 25 17">
+            <LETDECLARATIONS PLACE="20 13 21 70">
+              <LETDECLARATION PLACE="20 13 20 46">
+                <IDENTIFIER PLACE="20 13 20 17">curr</IDENTIFIER>
+                <TYPENAME PLACE="20 19 20 29">Ticket_Idx</TYPENAME>
+                <ARRAYSELECTION PLACE="20 32 20 46">
+                  <RECORDSELECTION PLACE="20 32 20 41">
+                    <NAMEEXPR PLACE="20 32 20 36">rsrc</NAMEEXPR>
+                    <IDENTIFIER PLACE="20 37 20 41">data</IDENTIFIER>
+                  </RECORDSELECTION>
+                  <NAMEEXPR PLACE="20 42 20 45">idx</NAMEEXPR>
+                </ARRAYSELECTION>
+              </LETDECLARATION>
+              <LETDECLARATION PLACE="21 13 21 70">
+                <IDENTIFIER PLACE="21 13 21 17">rest</IDENTIFIER>
+                <TYPENAME PLACE="21 19 21 29">Ticket_Idx</TYPENAME>
+                <APPLICATION PLACE="21 32 21 70">
+                  <NAMEEXPR PLACE="21 32 21 55">min_non_zero_ticket_aux</NAMEEXPR>
+                  <TUPLELITERAL PLACE="21 55 21 70">
+                    <NAMEEXPR PLACE="21 56 21 60">rsrc</NAMEEXPR>
+                    <APPLICATION PLACE="21 62 21 69" INFIX="YES">
+                      <NAMEEXPR PLACE="21 66 21 67">+</NAMEEXPR>
+                      <TUPLELITERAL PLACE="21 62 21 69">
+                        <NAMEEXPR PLACE="21 62 21 65">idx</NAMEEXPR>
+                        <NUMERAL PLACE="21 68 21 69">1</NUMERAL>
+                      </TUPLELITERAL>
+                    </APPLICATION>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </LETDECLARATION>
+            </LETDECLARATIONS>
+            <CONDITIONAL PLACE="22 12 25 17">
+              <APPLICATION PLACE="22 15 22 23" INFIX="YES">
+                <NAMEEXPR PLACE="22 20 22 21">=</NAMEEXPR>
+                <TUPLELITERAL PLACE="22 15 22 23">
+                  <NAMEEXPR PLACE="22 15 22 19">curr</NAMEEXPR>
+                  <NUMERAL PLACE="22 22 22 23">0</NUMERAL>
+                </TUPLELITERAL>
+              </APPLICATION>
+              <NAMEEXPR PLACE="22 29 22 33">rest</NAMEEXPR>
+              <CONDITIONAL ELSIF="YES">
+                <APPLICATION PLACE="23 18 23 26" INFIX="YES">
+                  <NAMEEXPR PLACE="23 23 23 24">=</NAMEEXPR>
+                  <TUPLELITERAL PLACE="23 18 23 26">
+                    <NAMEEXPR PLACE="23 18 23 22">rest</NAMEEXPR>
+                    <NUMERAL PLACE="23 25 23 26">0</NUMERAL>
+                  </TUPLELITERAL>
+                </APPLICATION>
+                <NAMEEXPR PLACE="23 32 23 36">curr</NAMEEXPR>
+                <APPLICATION PLACE="24 17 24 32">
+                  <NAMEEXPR PLACE="24 17 24 20">min</NAMEEXPR>
+                  <TUPLELITERAL PLACE="24 20 24 32">
+                    <NAMEEXPR PLACE="24 21 24 25">curr</NAMEEXPR>
+                    <NAMEEXPR PLACE="24 27 24 31">rest</NAMEEXPR>
+                  </TUPLELITERAL>
+                </APPLICATION>
+              </CONDITIONAL>
+            </CONDITIONAL>
+          </LETEXPRESSION>
+        </CONDITIONAL>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="28 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="28 3 28 22">min_non_zero_ticket</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TYPENAME>RSRC</TYPENAME>
+        <TYPENAME PLACE="28 38 28 48">Ticket_Idx</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="28 23 28 34">
+            <IDENTIFIER PLACE="28 23 28 27">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="28 30 28 34">RSRC</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <APPLICATION PLACE="29 5 29 37">
+          <NAMEEXPR PLACE="29 5 29 28">min_non_zero_ticket_aux</NAMEEXPR>
+          <TUPLELITERAL PLACE="29 28 29 37">
+            <NAMEEXPR PLACE="29 29 29 33">rsrc</NAMEEXPR>
+            <NUMERAL PLACE="29 35 29 36">1</NUMERAL>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="32 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="32 3 32 22">can_enter_critical?</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>Job_Idx</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="32 56 32 63">BOOLEAN</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="32 23 32 34">
+            <IDENTIFIER PLACE="32 23 32 27">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="32 30 32 34">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="32 36 32 53">
+            <IDENTIFIER PLACE="32 36 32 43">job_idx</IDENTIFIER>
+            <TYPENAME PLACE="32 46 32 53">Job_Idx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <LETEXPRESSION PLACE="33 5 35 29">
+          <LETDECLARATIONS PLACE="33 9 34 52">
+            <LETDECLARATION PLACE="33 9 33 59">
+              <IDENTIFIER PLACE="33 9 33 19">min_ticket</IDENTIFIER>
+              <TYPENAME PLACE="33 21 33 31">Ticket_Idx</TYPENAME>
+              <APPLICATION PLACE="33 34 33 59">
+                <NAMEEXPR PLACE="33 34 33 53">min_non_zero_ticket</NAMEEXPR>
+                <TUPLELITERAL PLACE="33 53 33 59">
+                  <NAMEEXPR PLACE="33 54 33 58">rsrc</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </LETDECLARATION>
+            <LETDECLARATION PLACE="34 9 34 52">
+              <IDENTIFIER PLACE="34 9 34 19">job_ticket</IDENTIFIER>
+              <TYPENAME PLACE="34 21 34 31">Ticket_Idx</TYPENAME>
+              <ARRAYSELECTION PLACE="34 34 34 52">
+                <RECORDSELECTION PLACE="34 34 34 43">
+                  <NAMEEXPR PLACE="34 34 34 38">rsrc</NAMEEXPR>
+                  <IDENTIFIER PLACE="34 39 34 43">data</IDENTIFIER>
+                </RECORDSELECTION>
+                <NAMEEXPR PLACE="34 44 34 51">job_idx</NAMEEXPR>
+              </ARRAYSELECTION>
+            </LETDECLARATION>
+          </LETDECLARATIONS>
+          <APPLICATION PLACE="35 8 35 29" INFIX="YES">
+            <NAMEEXPR PLACE="35 16 35 18">&lt;=</NAMEEXPR>
+            <TUPLELITERAL PLACE="35 8 35 29">
+              <NAMEEXPR PLACE="35 8 35 15">job_idx</NAMEEXPR>
+              <NAMEEXPR PLACE="35 19 35 29">min_ticket</NAMEEXPR>
+            </TUPLELITERAL>
+          </APPLICATION>
+        </LETEXPRESSION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="38 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="38 3 38 13">saturated?</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TYPENAME>RSRC</TYPENAME>
+        <TYPENAME PLACE="38 28 38 35">BOOLEAN</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="38 14 38 25">
+            <IDENTIFIER PLACE="38 14 38 18">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="38 21 38 25">RSRC</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <APPLICATION PLACE="39 5 39 29" INFIX="YES">
+          <NAMEEXPR PLACE="39 22 39 23">=</NAMEEXPR>
+          <TUPLELITERAL PLACE="39 5 39 29">
+            <RECORDSELECTION PLACE="39 5 39 21">
+              <NAMEEXPR PLACE="39 5 39 9">rsrc</NAMEEXPR>
+              <IDENTIFIER PLACE="39 10 39 21">next_ticket</IDENTIFIER>
+            </RECORDSELECTION>
+            <APPLICATION PLACE="39 24 39 29" INFIX="YES">
+              <NAMEEXPR PLACE="39 26 39 27">+</NAMEEXPR>
+              <TUPLELITERAL PLACE="39 24 39 29">
+                <NAMEEXPR PLACE="39 24 39 25">B</NAMEEXPR>
+                <NUMERAL PLACE="39 28 39 29">1</NUMERAL>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="46 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="46 3 46 14">next_ticket</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>Job_Idx</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="46 48 46 52">RSRC</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="46 15 46 26">
+            <IDENTIFIER PLACE="46 15 46 19">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="46 22 46 26">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="46 28 46 45">
+            <IDENTIFIER PLACE="46 28 46 35">job_idx</IDENTIFIER>
+            <TYPENAME PLACE="46 38 46 45">Job_Idx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <CONDITIONAL PLACE="47 5 50 10">
+          <APPLICATION PLACE="47 8 47 24">
+            <NAMEEXPR PLACE="47 8 47 18">saturated?</NAMEEXPR>
+            <TUPLELITERAL PLACE="47 18 47 24">
+              <NAMEEXPR PLACE="47 19 47 23">rsrc</NAMEEXPR>
+            </TUPLELITERAL>
+          </APPLICATION>
+          <NAMEEXPR PLACE="47 30 47 34">rsrc</NAMEEXPR>
+          <UPDATEEXPRESSION PLACE="48 10 49 57">
+            <DEPTH>0</DEPTH>
+            <RECORDSELECTION PLACE="48 10 49 33">
+              <UPDATEEXPRESSION PLACE="48 10 48 56">
+                <DEPTH>0</DEPTH>
+                <ARRAYSELECTION PLACE="48 11 48 35">
+                  <RECORDSELECTION PLACE="48 11 48 26">
+                    <NAMEEXPR PLACE="48 11 48 15">rsrc</NAMEEXPR>
+                    <IDENTIFIER PLACE="48 22 48 26">data</IDENTIFIER>
+                  </RECORDSELECTION>
+                  <NAMEEXPR PLACE="48 27 48 34">job_idx</NAMEEXPR>
+                </ARRAYSELECTION>
+                <RECORDSELECTION PLACE="48 39 48 55">
+                  <NAMEEXPR PLACE="48 39 48 43">rsrc</NAMEEXPR>
+                  <IDENTIFIER PLACE="48 44 48 55">next_ticket</IDENTIFIER>
+                </RECORDSELECTION>
+              </UPDATEEXPRESSION>
+              <IDENTIFIER PLACE="49 22 49 33">next_ticket</IDENTIFIER>
+            </RECORDSELECTION>
+            <APPLICATION PLACE="49 37 49 57" INFIX="YES">
+              <NAMEEXPR PLACE="49 54 49 55">+</NAMEEXPR>
+              <TUPLELITERAL PLACE="49 37 49 57">
+                <RECORDSELECTION PLACE="49 37 49 53">
+                  <NAMEEXPR PLACE="49 37 49 41">rsrc</NAMEEXPR>
+                  <IDENTIFIER PLACE="49 42 49 53">next_ticket</IDENTIFIER>
+                </RECORDSELECTION>
+                <NUMERAL PLACE="49 56 49 57">1</NUMERAL>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </UPDATEEXPRESSION>
+        </CONDITIONAL>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="53 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="53 3 53 19">reset_job_ticket</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TUPLETYPE>
+          <TYPENAME>RSRC</TYPENAME>
+          <TYPENAME>Job_Idx</TYPENAME>
+        </TUPLETYPE>
+        <TYPENAME PLACE="53 53 53 57">RSRC</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="53 20 53 31">
+            <IDENTIFIER PLACE="53 20 53 24">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="53 27 53 31">RSRC</TYPENAME>
+          </VARDECL>
+          <VARDECL PLACE="53 33 53 50">
+            <IDENTIFIER PLACE="53 33 53 40">job_idx</IDENTIFIER>
+            <TYPENAME PLACE="53 43 53 50">Job_Idx</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <UPDATEEXPRESSION PLACE="54 5 54 34">
+          <DEPTH>0</DEPTH>
+          <ARRAYSELECTION PLACE="54 5 54 29">
+            <RECORDSELECTION PLACE="54 5 54 20">
+              <NAMEEXPR PLACE="54 5 54 9">rsrc</NAMEEXPR>
+              <IDENTIFIER PLACE="54 16 54 20">data</IDENTIFIER>
+            </RECORDSELECTION>
+            <NAMEEXPR PLACE="54 21 54 28">job_idx</NAMEEXPR>
+          </ARRAYSELECTION>
+          <NUMERAL PLACE="54 33 54 34">0</NUMERAL>
+        </UPDATEEXPRESSION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="58 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="58 3 58 28">can_reset_ticket_counter?</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TYPENAME>RSRC</TYPENAME>
+        <TYPENAME PLACE="58 43 58 50">BOOLEAN</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="58 29 58 40">
+            <IDENTIFIER PLACE="58 29 58 33">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="58 36 58 40">RSRC</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <QUANTIFIEDEXPRESSION PLACE="59 5 59 45" PARENS="1">
+          <QUANTIFIER PLACE="59 6 59 12">FORALL</QUANTIFIER>
+          <VARDECLS PLACE="59 14 59 25">
+            <VARDECL PLACE="59 14 59 25">
+              <IDENTIFIER PLACE="59 14 59 15">j</IDENTIFIER>
+              <TYPENAME PLACE="59 18 59 25">Job_Idx</TYPENAME>
+            </VARDECL>
+          </VARDECLS>
+          <APPLICATION PLACE="59 28 59 44" INFIX="YES">
+            <NAMEEXPR PLACE="59 41 59 42">=</NAMEEXPR>
+            <TUPLELITERAL PLACE="59 28 59 44">
+              <ARRAYSELECTION PLACE="59 28 59 40">
+                <RECORDSELECTION PLACE="59 28 59 37">
+                  <NAMEEXPR PLACE="59 28 59 32">rsrc</NAMEEXPR>
+                  <IDENTIFIER PLACE="59 33 59 37">data</IDENTIFIER>
+                </RECORDSELECTION>
+                <NAMEEXPR PLACE="59 38 59 39">j</NAMEEXPR>
+              </ARRAYSELECTION>
+              <NUMERAL PLACE="59 43 59 44">0</NUMERAL>
+            </TUPLELITERAL>
+          </APPLICATION>
+        </QUANTIFIEDEXPRESSION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <CONSTANTDECLARATION PLACE="61 3 0 0" FUNCTIONAL="YES">
+      <IDENTIFIER PLACE="61 3 61 23">reset_ticket_counter</IDENTIFIER>
+      <FUNCTIONTYPE>
+        <TYPENAME>RSRC</TYPENAME>
+        <TYPENAME PLACE="61 38 61 42">RSRC</TYPENAME>
+      </FUNCTIONTYPE>
+      <LAMBDAABSTRACTION>
+        <VARDECLS>
+          <VARDECL PLACE="61 24 61 35">
+            <IDENTIFIER PLACE="61 24 61 28">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="61 31 61 35">RSRC</TYPENAME>
+          </VARDECL>
+        </VARDECLS>
+        <UPDATEEXPRESSION PLACE="62 5 62 32">
+          <DEPTH>0</DEPTH>
+          <RECORDSELECTION PLACE="62 5 62 27">
+            <NAMEEXPR PLACE="62 5 62 9">rsrc</NAMEEXPR>
+            <IDENTIFIER PLACE="62 16 62 27">next_ticket</IDENTIFIER>
+          </RECORDSELECTION>
+          <NUMERAL PLACE="62 31 62 32">1</NUMERAL>
+        </UPDATEEXPRESSION>
+      </LAMBDAABSTRACTION>
+    </CONSTANTDECLARATION>
+    <TYPEDECLARATION PLACE="64 3 64 46">
+      <IDENTIFIER PLACE="64 3 64 9">Job_PC</IDENTIFIER>
+      <SCALARTYPE PLACE="64 18 64 46">
+        <SCALARELEMENT PLACE="64 19 64 27">sleeping</SCALARELEMENT>
+        <SCALARELEMENT PLACE="64 29 64 35">trying</SCALARELEMENT>
+        <SCALARELEMENT PLACE="64 37 64 45">critical</SCALARELEMENT>
+      </SCALARTYPE>
+    </TYPEDECLARATION>
+    <MODULEDECLARATION PLACE="67 3 88 8">
+      <IDENTIFIER PLACE="67 3 67 6">job</IDENTIFIER>
+      <VARDECLS>
+        <VARDECL PLACE="67 8 67 25">
+          <IDENTIFIER PLACE="67 8 67 15">job_idx</IDENTIFIER>
+          <TYPENAME PLACE="67 18 67 25">Job_Idx</TYPENAME>
+        </VARDECL>
+      </VARDECLS>
+      <BASEMODULE PLACE="68 5 88 8">
+        <GLOBALDECL PLACE="69 7 69 25">
+          <VARDECL PLACE="69 14 69 25">
+            <IDENTIFIER PLACE="69 14 69 18">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="69 21 69 25">RSRC</TYPENAME>
+          </VARDECL>
+        </GLOBALDECL>
+        <LOCALDECL PLACE="70 7 70 24">
+          <VARDECL PLACE="70 13 70 24">
+            <IDENTIFIER PLACE="70 13 70 15">pc</IDENTIFIER>
+            <TYPENAME PLACE="70 18 70 24">Job_PC</TYPENAME>
+          </VARDECL>
+        </LOCALDECL>
+        <INITDECL PLACE="71 7 72 22">
+          <SIMPLEDEFINITION PLACE="72 9 72 22">
+            <NAMEEXPR PLACE="72 9 72 11">pc</NAMEEXPR>
+            <RHSEXPRESSION PLACE="72 12 72 22">
+              <NAMEEXPR PLACE="72 14 72 22">sleeping</NAMEEXPR>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="73 7 86 69">
+          <SOMECOMMANDS PLACE="75 10 86 69">
+            <LABELEDCOMMAND PLACE="75 10 78 50">
+              <LABEL PLACE="75 10 75 18">wakening</LABEL>
+              <GUARDEDCOMMAND PLACE="76 12 78 50">
+                <GUARD PLACE="76 12 76 53">
+                  <APPLICATION PLACE="76 12 76 53" INFIX="YES">
+                    <NAMEEXPR PLACE="76 28 76 31">AND</NAMEEXPR>
+                    <TUPLELITERAL PLACE="76 12 76 53">
+                      <APPLICATION PLACE="76 12 76 27" INFIX="YES" PARENS="1">
+                        <NAMEEXPR PLACE="76 16 76 17">=</NAMEEXPR>
+                        <TUPLELITERAL PLACE="76 13 76 26">
+                          <NAMEEXPR PLACE="76 13 76 15">pc</NAMEEXPR>
+                          <NAMEEXPR PLACE="76 18 76 26">sleeping</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <APPLICATION PLACE="76 32 76 53">
+                        <NAMEEXPR PLACE="76 32 76 35">NOT</NAMEEXPR>
+                        <TUPLELITERAL PLACE="76 35 76 53">
+                          <APPLICATION PLACE="76 35 76 53" PARENS="1">
+                            <NAMEEXPR PLACE="76 36 76 46">saturated?</NAMEEXPR>
+                            <TUPLELITERAL PLACE="76 46 76 52">
+                              <NAMEEXPR PLACE="76 47 76 51">rsrc</NAMEEXPR>
+                            </TUPLELITERAL>
+                          </APPLICATION>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </GUARD>
+                <ASSIGNMENTS PLACE="77 16 78 50">
+                  <SIMPLEDEFINITION PLACE="77 16 77 28">
+                    <NEXTOPERATOR PLACE="77 16 77 19">
+                      <NAMEEXPR PLACE="77 16 77 18">pc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="77 20 77 28">
+                      <NAMEEXPR PLACE="77 22 77 28">trying</NAMEEXPR>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                  <SIMPLEDEFINITION PLACE="78 16 78 50">
+                    <NEXTOPERATOR PLACE="78 16 78 21">
+                      <NAMEEXPR PLACE="78 16 78 20">rsrc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="78 22 78 50">
+                      <APPLICATION PLACE="78 24 78 50">
+                        <NAMEEXPR PLACE="78 24 78 35">next_ticket</NAMEEXPR>
+                        <TUPLELITERAL PLACE="78 35 78 50">
+                          <NAMEEXPR PLACE="78 36 78 40">rsrc</NAMEEXPR>
+                          <NAMEEXPR PLACE="78 42 78 49">job_idx</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </ASSIGNMENTS>
+              </GUARDEDCOMMAND>
+            </LABELEDCOMMAND>
+            <LABELEDCOMMAND PLACE="80 10 82 30">
+              <LABEL PLACE="80 10 80 35">entering_critical_section</LABEL>
+              <GUARDEDCOMMAND PLACE="81 12 82 30">
+                <GUARD PLACE="81 12 81 64">
+                  <APPLICATION PLACE="81 12 81 64" INFIX="YES">
+                    <NAMEEXPR PLACE="81 26 81 29">AND</NAMEEXPR>
+                    <TUPLELITERAL PLACE="81 12 81 64">
+                      <APPLICATION PLACE="81 12 81 25" INFIX="YES" PARENS="1">
+                        <NAMEEXPR PLACE="81 16 81 17">=</NAMEEXPR>
+                        <TUPLELITERAL PLACE="81 13 81 24">
+                          <NAMEEXPR PLACE="81 13 81 15">pc</NAMEEXPR>
+                          <NAMEEXPR PLACE="81 18 81 24">trying</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <APPLICATION PLACE="81 30 81 64">
+                        <NAMEEXPR PLACE="81 30 81 49">can_enter_critical?</NAMEEXPR>
+                        <TUPLELITERAL PLACE="81 49 81 64">
+                          <NAMEEXPR PLACE="81 50 81 54">rsrc</NAMEEXPR>
+                          <NAMEEXPR PLACE="81 56 81 63">job_idx</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </GUARD>
+                <ASSIGNMENTS PLACE="82 16 82 30">
+                  <SIMPLEDEFINITION PLACE="82 16 82 30">
+                    <NEXTOPERATOR PLACE="82 16 82 19">
+                      <NAMEEXPR PLACE="82 16 82 18">pc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="82 20 82 30">
+                      <NAMEEXPR PLACE="82 22 82 30">critical</NAMEEXPR>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </ASSIGNMENTS>
+              </GUARDEDCOMMAND>
+            </LABELEDCOMMAND>
+            <LABELEDCOMMAND PLACE="84 10 86 69">
+              <LABEL PLACE="84 10 84 34">leaving_critical_section</LABEL>
+              <GUARDEDCOMMAND PLACE="85 12 86 69">
+                <GUARD PLACE="85 12 85 25">
+                  <APPLICATION PLACE="85 12 85 25" INFIX="YES">
+                    <NAMEEXPR PLACE="85 15 85 16">=</NAMEEXPR>
+                    <TUPLELITERAL PLACE="85 12 85 25">
+                      <NAMEEXPR PLACE="85 12 85 14">pc</NAMEEXPR>
+                      <NAMEEXPR PLACE="85 17 85 25">critical</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </GUARD>
+                <ASSIGNMENTS PLACE="85 30 86 69">
+                  <SIMPLEDEFINITION PLACE="85 30 85 44">
+                    <NEXTOPERATOR PLACE="85 30 85 33">
+                      <NAMEEXPR PLACE="85 30 85 32">pc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="85 34 85 44">
+                      <NAMEEXPR PLACE="85 36 85 44">sleeping</NAMEEXPR>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                  <SIMPLEDEFINITION PLACE="86 30 86 69">
+                    <NEXTOPERATOR PLACE="86 30 86 35">
+                      <NAMEEXPR PLACE="86 30 86 34">rsrc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="86 36 86 69">
+                      <APPLICATION PLACE="86 38 86 69">
+                        <NAMEEXPR PLACE="86 38 86 54">reset_job_ticket</NAMEEXPR>
+                        <TUPLELITERAL PLACE="86 54 86 69">
+                          <NAMEEXPR PLACE="86 55 86 59">rsrc</NAMEEXPR>
+                          <NAMEEXPR PLACE="86 61 86 68">job_idx</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </ASSIGNMENTS>
+              </GUARDEDCOMMAND>
+            </LABELEDCOMMAND>
+          </SOMECOMMANDS>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="91 3 102 8">
+      <IDENTIFIER PLACE="91 3 91 13">controller</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="92 5 102 8">
+        <GLOBALDECL PLACE="93 7 93 25">
+          <VARDECL PLACE="93 14 93 25">
+            <IDENTIFIER PLACE="93 14 93 18">rsrc</IDENTIFIER>
+            <TYPENAME PLACE="93 21 93 25">RSRC</TYPENAME>
+          </VARDECL>
+        </GLOBALDECL>
+        <INITDECL PLACE="94 7 95 64">
+          <SIMPLEDEFINITION PLACE="95 9 95 64">
+            <NAMEEXPR PLACE="95 9 95 13">rsrc</NAMEEXPR>
+            <RHSEXPRESSION PLACE="95 14 95 64">
+              <RECORDLITERAL PLACE="95 16 95 64">
+                <RECORDENTRY PLACE="95 19 95 44">
+                  <IDENTIFIER PLACE="95 19 95 23">data</IDENTIFIER>
+                  <ARRAYLITERAL PLACE="95 27 95 44">
+                    <INDEXVARDECL PLACE="95 29 95 40">
+                      <IDENTIFIER PLACE="95 29 95 30">j</IDENTIFIER>
+                      <TYPENAME PLACE="95 33 95 40">Job_Idx</TYPENAME>
+                    </INDEXVARDECL>
+                    <NUMERAL PLACE="95 42 95 43">0</NUMERAL>
+                  </ARRAYLITERAL>
+                </RECORDENTRY>
+                <RECORDENTRY PLACE="95 46 95 62">
+                  <IDENTIFIER PLACE="95 46 95 57">next_ticket</IDENTIFIER>
+                  <NUMERAL PLACE="95 61 95 62">1</NUMERAL>
+                </RECORDENTRY>
+              </RECORDLITERAL>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </INITDECL>
+        <TRANSDECL PLACE="96 7 100 51">
+          <SOMECOMMANDS PLACE="98 11 100 51">
+            <LABELEDCOMMAND PLACE="98 11 100 51">
+              <LABEL PLACE="98 11 98 34">reseting_ticket_counter</LABEL>
+              <GUARDEDCOMMAND PLACE="99 13 100 51">
+                <GUARD PLACE="99 13 99 44">
+                  <APPLICATION PLACE="99 13 99 44">
+                    <NAMEEXPR PLACE="99 13 99 38">can_reset_ticket_counter?</NAMEEXPR>
+                    <TUPLELITERAL PLACE="99 38 99 44">
+                      <NAMEEXPR PLACE="99 39 99 43">rsrc</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </GUARD>
+                <ASSIGNMENTS PLACE="100 17 100 51">
+                  <SIMPLEDEFINITION PLACE="100 17 100 51">
+                    <NEXTOPERATOR PLACE="100 17 100 22">
+                      <NAMEEXPR PLACE="100 17 100 21">rsrc</NAMEEXPR>
+                    </NEXTOPERATOR>
+                    <RHSEXPRESSION PLACE="100 23 100 51">
+                      <APPLICATION PLACE="100 25 100 51">
+                        <NAMEEXPR PLACE="100 25 100 45">reset_ticket_counter</NAMEEXPR>
+                        <TUPLELITERAL PLACE="100 45 100 51">
+                          <NAMEEXPR PLACE="100 46 100 50">rsrc</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </RHSEXPRESSION>
+                  </SIMPLEDEFINITION>
+                </ASSIGNMENTS>
+              </GUARDEDCOMMAND>
+            </LABELEDCOMMAND>
+          </SOMECOMMANDS>
+        </TRANSDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="104 3 107 44">
+      <IDENTIFIER PLACE="104 3 104 9">system</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <ASYNCHRONOUSCOMPOSITION PLACE="105 6 107 44">
+        <MODULEINSTANCE PLACE="105 6 105 16">
+          <MODULENAME PLACE="105 6 105 16">controller</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <MULTIASYNCHRONOUS PLACE="107 6 107 44">
+          <INDEXVARDECL PLACE="107 11 107 28">
+            <IDENTIFIER PLACE="107 11 107 18">job_idx</IDENTIFIER>
+            <TYPENAME PLACE="107 21 107 28">Job_Idx</TYPENAME>
+          </INDEXVARDECL>
+          <MODULEINSTANCE PLACE="107 31 107 43">
+            <MODULENAME PLACE="107 31 107 34">job</MODULENAME>
+            <MODULEACTUALS PLACE="107 34 107 43">
+              <NAMEEXPR PLACE="107 35 107 42">job_idx</NAMEEXPR>
+            </MODULEACTUALS>
+          </MODULEINSTANCE>
+        </MULTIASYNCHRONOUS>
+      </ASYNCHRONOUSCOMPOSITION>
+    </MODULEDECLARATION>
+    <ASSERTIONDECLARATION PLACE="109 3 111 80">
+      <IDENTIFIER PLACE="109 3 109 8">mutex</IDENTIFIER>
+      <ASSERTIONFORM PLACE="109 10 109 17">THEOREM</ASSERTIONFORM>
+      <MODULEMODELS PLACE="109 18 111 80">
+        <MODULEINSTANCE PLACE="109 18 109 24">
+          <MODULENAME PLACE="109 18 109 24">system</MODULENAME>
+          <MODULEACTUALS></MODULEACTUALS>
+        </MODULEINSTANCE>
+        <APPLICATION PLACE="110 21 111 80">
+          <NAMEEXPR PLACE="110 21 110 22">G</NAMEEXPR>
+          <TUPLELITERAL PLACE="110 22 111 80">
+            <APPLICATION PLACE="110 23 111 79">
+              <NAMEEXPR PLACE="110 23 110 26">NOT</NAMEEXPR>
+              <TUPLELITERAL PLACE="110 27 111 79">
+                <QUANTIFIEDEXPRESSION PLACE="110 27 111 79" PARENS="1">
+                  <QUANTIFIER PLACE="110 28 110 34">EXISTS</QUANTIFIER>
+                  <VARDECLS PLACE="110 36 110 60">
+                    <VARDECL PLACE="110 36 110 47">
+                      <IDENTIFIER PLACE="110 36 110 37">i</IDENTIFIER>
+                      <TYPENAME PLACE="110 40 110 47">Job_Idx</TYPENAME>
+                    </VARDECL>
+                    <VARDECL PLACE="110 49 110 60">
+                      <IDENTIFIER PLACE="110 49 110 50">j</IDENTIFIER>
+                      <TYPENAME PLACE="110 53 110 60">Job_Idx</TYPENAME>
+                    </VARDECL>
+                  </VARDECLS>
+                  <APPLICATION PLACE="111 30 111 78" INFIX="YES">
+                    <NAMEEXPR PLACE="111 58 111 61">AND</NAMEEXPR>
+                    <TUPLELITERAL PLACE="111 30 111 78">
+                      <APPLICATION PLACE="111 30 111 57" INFIX="YES">
+                        <NAMEEXPR PLACE="111 37 111 40">AND</NAMEEXPR>
+                        <TUPLELITERAL PLACE="111 30 111 57">
+                          <APPLICATION PLACE="111 30 111 36" INFIX="YES">
+                            <NAMEEXPR PLACE="111 32 111 34">/=</NAMEEXPR>
+                            <TUPLELITERAL PLACE="111 30 111 36">
+                              <NAMEEXPR PLACE="111 30 111 31">i</NAMEEXPR>
+                              <NAMEEXPR PLACE="111 35 111 36">j</NAMEEXPR>
+                            </TUPLELITERAL>
+                          </APPLICATION>
+                          <APPLICATION PLACE="111 41 111 57" INFIX="YES">
+                            <NAMEEXPR PLACE="111 47 111 48">=</NAMEEXPR>
+                            <TUPLELITERAL PLACE="111 41 111 57">
+                              <ARRAYSELECTION PLACE="111 41 111 46">
+                                <NAMEEXPR PLACE="111 41 111 43">pc</NAMEEXPR>
+                                <NAMEEXPR PLACE="111 44 111 45">i</NAMEEXPR>
+                              </ARRAYSELECTION>
+                              <NAMEEXPR PLACE="111 49 111 57">critical</NAMEEXPR>
+                            </TUPLELITERAL>
+                          </APPLICATION>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <APPLICATION PLACE="111 62 111 78" INFIX="YES">
+                        <NAMEEXPR PLACE="111 68 111 69">=</NAMEEXPR>
+                        <TUPLELITERAL PLACE="111 62 111 78">
+                          <ARRAYSELECTION PLACE="111 62 111 67">
+                            <NAMEEXPR PLACE="111 62 111 64">pc</NAMEEXPR>
+                            <NAMEEXPR PLACE="111 65 111 66">j</NAMEEXPR>
+                          </ARRAYSELECTION>
+                          <NAMEEXPR PLACE="111 70 111 78">critical</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </QUANTIFIEDEXPRESSION>
+              </TUPLELITERAL>
+            </APPLICATION>
+          </TUPLELITERAL>
+        </APPLICATION>
+      </MODULEMODELS>
+    </ASSERTIONDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

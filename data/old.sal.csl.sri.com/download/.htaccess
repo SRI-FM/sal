@@ -1,0 +1,9 @@
+AuthName sal.csl.sri.com
+AuthUserFile /web/htpasswdfiles/sal.csl.sri.com.htpasswd
+AuthName "SAL.CSL.SRI.COM"
+AuthType Basic
+Require valid-user
+Allow from 130.107.97.0/24
+Allow from 130.107.0.0/19
+Deny from all
+satisfy any

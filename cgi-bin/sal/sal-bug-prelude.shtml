@@ -1,0 +1,9 @@
+<!--#set var="base" value="http://sal.csl.sri.com/" -->
+<!--#include virtual="/homes/web/sal.csl.sri.com/sal-prelude.shtml" -->
+<p>
+This list summarizes the bug reports that have been received
+since SAL version 1.0 was released.
+Most of these were originally sent to
+<a href=\"mailto:sal-bugs\@csl.sri.com\">sal-bugs\@csl.sri.com</a>.
+Click on the bug number to get the full report.
+</p>

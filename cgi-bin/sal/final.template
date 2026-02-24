@@ -1,0 +1,72 @@
+Content-type: text/html
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"name="Author" content="Sam Owre">
+
+<title>?SYSTEM? Registration Submitted</title>
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<table BORDER=0 COLS=2 WIDTH="90%" >
+  <tr>
+    <td width="130">
+    </td>
+    <td align=center>
+      <h2><font color="#003300">?SYSTEM? Download Registration Completed</font></h2>
+      Request Received at ?timestamp? Pacific Time.<br>
+      <h4> For questions contact: (<A HREF="mailto:?SYSTEM?-sri@csl.sri.com">
+      ?SYSTEM?-sri@csl.sri.com</a>). <br> </h4>
+
+      <hr size=4 width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td>
+    </td>
+    <td>
+      <! ======================= Information Starts Here ==================>
+      <font size=+1>
+      <B>Successful registration:</B>
+      <table BORDER=0 COLS=2 WIDTH="100%" >
+	<tr>
+	  <td width="5">
+	  </td>
+	  <td>
+	    <font size=+1>
+	    <BR>
+	    Thank you for your submission.
+	    <BR>
+	    <BR>
+	    Within a few minutes you should receive email containing the
+	    certificate, along with instructions for using it.
+	    </font>
+	  </td>
+	</tr>
+      </table>
+      <BR>
+      <B>Information received:</B><BR>
+      <BR>&nbsp;&nbsp;&nbsp;I <b><i>?AGREETORESTRICTIONS?</i></b> 
+      agree to abide by the ?SYSTEM? license restrictions.<BR>
+      <BR>&nbsp;&nbsp;&nbsp;Name: <b><i>?REQUESTER?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;Organization: <b><i>?INSTITUTION?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;Street/Mailbox: <b><i>?STREET?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;City: <b><i>?CITY?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;State/Province: <b><i>?STATE?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;Zip Code: <b><i>?ZIP?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;Country: <b><i>?COUNTRY?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;Phone: <b><i>?PHONE?</i></b>
+      <BR>&nbsp;&nbsp;&nbsp;Email: <b><i>?EMAIL?</i></b>
+      </font>
+    </td></tr><tr><td></td><td>
+      <BR>
+      
+    </td>
+  </tr>
+  
+</table>
+
+</body>
+</html>

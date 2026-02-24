@@ -1,0 +1,62 @@
+<html>
+<head>
+<link rel="shortcut icon" href="/images/yices-small.gif" />
+<link rel="stylesheet" href="/fm-style.css" type="text/css" />
+<title>SAL Download</title>
+</head>
+
+<body>
+<table class="centered-small">
+  <tr>
+    <th> <a href="/index.shtml">Home</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/introduction.shtml">Intro</a> </th>
+    <th> &bull; </th>
+    <th> <a href="http://sal-wiki.csl.sri.com">Wiki</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/documentation.shtml">Docs</a> </th>
+    <th> &bull; </th>
+    <th> <a href="http://sal-wiki.csl.sri.com/index.php/FAQ">FAQ</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/download.shtml">Download</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/mailing_lists.shtml">Mail</a> </th>
+    <th> &bull; </th>
+    <th> <a href="http://fm.csl.sri.com">FM&nbsp;Tools</a> </th>
+  </tr>
+</table>
+
+<img class="rfloat" src="/images/sal3.jpg" alt="SAL" />
+
+<br>
+
+<p>Thank you for considering SAL</p>
+
+<p>Alternative license terms may be available to you by contacting
+<a href="mailto:fm-licensing@csl.sri.com">fm-licensing@csl.sri.com</a>
+</p>
+
+<br>
+
+<table class="centered-small">
+  <tr>
+    <th> <a href="/index.shtml">Home</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/introduction.shtml">Intro</a> </th>
+    <th> &bull; </th>
+    <th> <a href="http://sal-wiki.csl.sri.com">Wiki</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/documentation.shtml">Docs</a> </th>
+    <th> &bull; </th>
+    <th> <a href="http://sal-wiki.csl.sri.com/index.php/FAQ">FAQ</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/download.shtml">Download</a> </th>
+    <th> &bull; </th>
+    <th> <a href="/mailing_lists.shtml">Mail</a> </th>
+    <th> &bull; </th>
+    <th> <a href="http://fm.csl.sri.com">FM&nbsp;Tools</a> </th>
+  </tr>
+</table>
+
+</body>
+</html>

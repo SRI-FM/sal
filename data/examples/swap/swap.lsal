@@ -1,0 +1,25 @@
+(context swap () (n::nznat)
+	
+	(define-type Data (subrange 0 (- n 1)))
+	(define-type Idx Data)
+
+	(define-module main
+		(begin
+			(input i::Idx)
+			(local adj-i::Idx)
+			(local bvs::(array Idx Data))
+			(initialization
+			 (= bvs (mk-array (idx::Idx) idx)))
+			(definition
+			 (= adj-i (if (= i (- n 1)) 0 (+ i 1))))
+			(transition
+			 (= bvs' (update (update bvs [i] bvs[adj-i]) 
+											 [adj-i] bvs[i])))))
+
+	(theorem diff (|- main (G (/= bvs[1] bvs[2]))))
+
+	(theorem all-diff (|- main (G (for-all (i1::(subrange 0 (- n 2)))
+																	(for-all (i2::(subrange (+ i1 1) (- n 1)))
+																		(/= bvs[i1] bvs[i2]))))))
+	)
+	

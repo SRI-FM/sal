@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CONTEXT SYSTEM "sal.dtd">
+<!--  XML version of ./adder.sal  -->
+<CONTEXT PLACE="1 1 27 4">
+  <IDENTIFIER PLACE="1 1 1 6">adder</IDENTIFIER>
+  <PARAMETERS></PARAMETERS>
+  <CONTEXTBODY PLACE="2 1 27 4">
+    <MODULEDECLARATION PLACE="3 3 10 6">
+      <IDENTIFIER PLACE="3 3 3 14">onebitadder</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <BASEMODULE PLACE="4 3 10 6">
+        <INPUTDECL PLACE="5 4 5 29">
+          <VARDECL PLACE="5 10 5 29" CHAIN="YES">
+            <IDENTIFIER PLACE="5 10 5 13">cin</IDENTIFIER>
+            <TYPENAME PLACE="5 22 5 29">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL CHAIN="YES">
+            <IDENTIFIER PLACE="5 15 5 16">a</IDENTIFIER>
+            <TYPENAME PLACE="5 22 5 29">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL>
+            <IDENTIFIER PLACE="5 18 5 19">b</IDENTIFIER>
+            <TYPENAME PLACE="5 22 5 29">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </INPUTDECL>
+        <OUTPUTDECL PLACE="6 4 6 30">
+          <VARDECL PLACE="6 11 6 30" CHAIN="YES">
+            <IDENTIFIER PLACE="6 11 6 15">cout</IDENTIFIER>
+            <TYPENAME PLACE="6 23 6 30">BOOLEAN</TYPENAME>
+          </VARDECL>
+          <VARDECL>
+            <IDENTIFIER PLACE="6 17 6 20">sum</IDENTIFIER>
+            <TYPENAME PLACE="6 23 6 30">BOOLEAN</TYPENAME>
+          </VARDECL>
+        </OUTPUTDECL>
+        <DEFDECL PLACE="7 4 8 29">
+          <SIMPLEDEFINITION PLACE="8 6 8 29">
+            <NAMEEXPR PLACE="8 6 8 9">sum</NAMEEXPR>
+            <RHSEXPRESSION PLACE="8 10 8 29">
+              <APPLICATION PLACE="8 12 8 29" INFIX="YES">
+                <NAMEEXPR PLACE="8 22 8 25">XOR</NAMEEXPR>
+                <TUPLELITERAL PLACE="8 12 8 29">
+                  <APPLICATION PLACE="8 12 8 21" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="8 15 8 18">XOR</NAMEEXPR>
+                    <TUPLELITERAL PLACE="8 13 8 20">
+                      <NAMEEXPR PLACE="8 13 8 14">a</NAMEEXPR>
+                      <NAMEEXPR PLACE="8 19 8 20">b</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <NAMEEXPR PLACE="8 26 8 29">cin</NAMEEXPR>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+          <SIMPLEDEFINITION PLACE="9 6 9 52">
+            <NAMEEXPR PLACE="9 6 9 10">cout</NAMEEXPR>
+            <RHSEXPRESSION PLACE="9 11 9 52">
+              <APPLICATION PLACE="9 13 9 52" INFIX="YES">
+                <NAMEEXPR PLACE="9 38 9 40">OR</NAMEEXPR>
+                <TUPLELITERAL PLACE="9 13 9 52">
+                  <APPLICATION PLACE="9 13 9 37" INFIX="YES">
+                    <NAMEEXPR PLACE="9 23 9 25">OR</NAMEEXPR>
+                    <TUPLELITERAL PLACE="9 13 9 37">
+                      <APPLICATION PLACE="9 13 9 22" INFIX="YES" PARENS="1">
+                        <NAMEEXPR PLACE="9 16 9 19">AND</NAMEEXPR>
+                        <TUPLELITERAL PLACE="9 14 9 21">
+                          <NAMEEXPR PLACE="9 14 9 15">a</NAMEEXPR>
+                          <NAMEEXPR PLACE="9 20 9 21">b</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                      <APPLICATION PLACE="9 26 9 37" INFIX="YES" PARENS="1">
+                        <NAMEEXPR PLACE="9 29 9 32">AND</NAMEEXPR>
+                        <TUPLELITERAL PLACE="9 27 9 36">
+                          <NAMEEXPR PLACE="9 27 9 28">a</NAMEEXPR>
+                          <NAMEEXPR PLACE="9 33 9 36">cin</NAMEEXPR>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                  <APPLICATION PLACE="9 41 9 52" INFIX="YES" PARENS="1">
+                    <NAMEEXPR PLACE="9 44 9 47">AND</NAMEEXPR>
+                    <TUPLELITERAL PLACE="9 42 9 51">
+                      <NAMEEXPR PLACE="9 42 9 43">b</NAMEEXPR>
+                      <NAMEEXPR PLACE="9 48 9 51">cin</NAMEEXPR>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </RHSEXPRESSION>
+          </SIMPLEDEFINITION>
+        </DEFDECL>
+      </BASEMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="12 3 22 24">
+      <IDENTIFIER PLACE="12 3 12 12">Nbitadder</IDENTIFIER>
+      <VARDECLS>
+        <VARDECL PLACE="12 14 12 39">
+          <IDENTIFIER PLACE="12 14 12 15">N</IDENTIFIER>
+          <SUBTYPE PLACE="12 18 12 39">
+            <SETPREDEXPRESSION PLACE="12 18 12 39">
+              <IDENTIFIER PLACE="12 19 12 20">n</IDENTIFIER>
+              <TYPENAME PLACE="12 23 12 30">NATURAL</TYPENAME>
+              <APPLICATION PLACE="12 33 12 38" INFIX="YES">
+                <NAMEEXPR PLACE="12 35 12 36">&gt;</NAMEEXPR>
+                <TUPLELITERAL PLACE="12 33 12 38">
+                  <NAMEEXPR PLACE="12 33 12 34">n</NAMEEXPR>
+                  <NUMERAL PLACE="12 37 12 38">1</NUMERAL>
+                </TUPLELITERAL>
+              </APPLICATION>
+            </SETPREDEXPRESSION>
+          </SUBTYPE>
+        </VARDECL>
+      </VARDECLS>
+      <WITHMODULE PLACE="13 4 22 24">
+        <NEWVARDECLS PLACE="13 9 14 49">
+          <INPUTDECL PLACE="13 9 13 49">
+            <VARDECL PLACE="13 15 13 49" CHAIN="YES">
+              <IDENTIFIER PLACE="13 15 13 16">A</IDENTIFIER>
+              <ARRAYTYPE PLACE="13 22 13 49">
+                <SUBRANGE PLACE="13 28 13 38">
+                  <NUMERAL PLACE="13 29 13 30">0</NUMERAL>
+                  <APPLICATION PLACE="13 34 13 37" INFIX="YES">
+                    <NAMEEXPR PLACE="13 35 13 36">-</NAMEEXPR>
+                    <TUPLELITERAL PLACE="13 34 13 37">
+                      <NAMEEXPR PLACE="13 34 13 35">N</NAMEEXPR>
+                      <NUMERAL PLACE="13 36 13 37">1</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </SUBRANGE>
+                <TYPENAME PLACE="13 42 13 49">BOOLEAN</TYPENAME>
+              </ARRAYTYPE>
+            </VARDECL>
+            <VARDECL>
+              <IDENTIFIER PLACE="13 18 13 19">B</IDENTIFIER>
+              <ARRAYTYPE PLACE="13 22 13 49">
+                <SUBRANGE PLACE="13 28 13 38">
+                  <NUMERAL PLACE="13 29 13 30">0</NUMERAL>
+                  <APPLICATION PLACE="13 34 13 37" INFIX="YES">
+                    <NAMEEXPR PLACE="13 35 13 36">-</NAMEEXPR>
+                    <TUPLELITERAL PLACE="13 34 13 37">
+                      <NAMEEXPR PLACE="13 34 13 35">N</NAMEEXPR>
+                      <NUMERAL PLACE="13 36 13 37">1</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </SUBRANGE>
+                <TYPENAME PLACE="13 42 13 49">BOOLEAN</TYPENAME>
+              </ARRAYTYPE>
+            </VARDECL>
+            <VARDECL PLACE="13 51 13 68">
+              <IDENTIFIER PLACE="13 51 13 59">carrayin</IDENTIFIER>
+              <TYPENAME PLACE="13 61 13 68">BOOLEAN</TYPENAME>
+            </VARDECL>
+          </INPUTDECL>
+          <OUTPUTDECL PLACE="14 9 14 49">
+            <VARDECL PLACE="14 16 14 49" CHAIN="YES">
+              <IDENTIFIER PLACE="14 16 14 17">S</IDENTIFIER>
+              <ARRAYTYPE PLACE="14 22 14 49">
+                <SUBRANGE PLACE="14 28 14 38">
+                  <NUMERAL PLACE="14 29 14 30">0</NUMERAL>
+                  <APPLICATION PLACE="14 34 14 37" INFIX="YES">
+                    <NAMEEXPR PLACE="14 35 14 36">-</NAMEEXPR>
+                    <TUPLELITERAL PLACE="14 34 14 37">
+                      <NAMEEXPR PLACE="14 34 14 35">N</NAMEEXPR>
+                      <NUMERAL PLACE="14 36 14 37">1</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </SUBRANGE>
+                <TYPENAME PLACE="14 42 14 49">BOOLEAN</TYPENAME>
+              </ARRAYTYPE>
+            </VARDECL>
+            <VARDECL>
+              <IDENTIFIER PLACE="14 19 14 20">C</IDENTIFIER>
+              <ARRAYTYPE PLACE="14 22 14 49">
+                <SUBRANGE PLACE="14 28 14 38">
+                  <NUMERAL PLACE="14 29 14 30">0</NUMERAL>
+                  <APPLICATION PLACE="14 34 14 37" INFIX="YES">
+                    <NAMEEXPR PLACE="14 35 14 36">-</NAMEEXPR>
+                    <TUPLELITERAL PLACE="14 34 14 37">
+                      <NAMEEXPR PLACE="14 34 14 35">N</NAMEEXPR>
+                      <NUMERAL PLACE="14 36 14 37">1</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </SUBRANGE>
+                <TYPENAME PLACE="14 42 14 49">BOOLEAN</TYPENAME>
+              </ARRAYTYPE>
+            </VARDECL>
+          </OUTPUTDECL>
+        </NEWVARDECLS>
+        <RENAMING PLACE="15 6 22 24">
+          <RENAMES PLACE="15 13 16 38">
+            <RENAME PLACE="15 13 15 22">
+              <NAMEEXPR PLACE="15 13 15 14">a</NAMEEXPR>
+              <ARRAYSELECTION PLACE="15 18 15 22">
+                <NAMEEXPR PLACE="15 18 15 19">A</NAMEEXPR>
+                <NUMERAL PLACE="15 20 15 21">0</NUMERAL>
+              </ARRAYSELECTION>
+            </RENAME>
+            <RENAME PLACE="15 24 15 33">
+              <NAMEEXPR PLACE="15 24 15 25">b</NAMEEXPR>
+              <ARRAYSELECTION PLACE="15 29 15 33">
+                <NAMEEXPR PLACE="15 29 15 30">B</NAMEEXPR>
+                <NUMERAL PLACE="15 31 15 32">0</NUMERAL>
+              </ARRAYSELECTION>
+            </RENAME>
+            <RENAME PLACE="15 35 15 49">
+              <NAMEEXPR PLACE="15 35 15 38">cin</NAMEEXPR>
+              <NAMEEXPR PLACE="15 42 15 49">carryin</NAMEEXPR>
+            </RENAME>
+            <RENAME PLACE="16 13 16 24">
+              <NAMEEXPR PLACE="16 13 16 16">sum</NAMEEXPR>
+              <ARRAYSELECTION PLACE="16 20 16 24">
+                <NAMEEXPR PLACE="16 20 16 21">S</NAMEEXPR>
+                <NUMERAL PLACE="16 22 16 23">0</NUMERAL>
+              </ARRAYSELECTION>
+            </RENAME>
+            <RENAME PLACE="16 26 16 38">
+              <NAMEEXPR PLACE="16 26 16 30">cout</NAMEEXPR>
+              <ARRAYSELECTION PLACE="16 34 16 38">
+                <NAMEEXPR PLACE="16 34 16 35">C</NAMEEXPR>
+                <NUMERAL PLACE="16 36 16 37">0</NUMERAL>
+              </ARRAYSELECTION>
+            </RENAME>
+          </RENAMES>
+          <SYNCHRONOUSCOMPOSITION PLACE="17 7 22 24">
+            <MODULEINSTANCE PLACE="17 7 17 18">
+              <MODULENAME PLACE="17 7 17 18">onebitadder</MODULENAME>
+              <MODULEACTUALS></MODULEACTUALS>
+            </MODULEINSTANCE>
+            <MULTISYNCHRONOUS PLACE="19 6 22 24">
+              <INDEXVARDECL PLACE="19 11 19 25">
+                <IDENTIFIER PLACE="19 11 19 12">i</IDENTIFIER>
+                <SUBRANGE PLACE="19 15 19 25">
+                  <NUMERAL PLACE="19 16 19 17">1</NUMERAL>
+                  <APPLICATION PLACE="19 21 19 24" INFIX="YES">
+                    <NAMEEXPR PLACE="19 22 19 23">-</NAMEEXPR>
+                    <TUPLELITERAL PLACE="19 21 19 24">
+                      <NAMEEXPR PLACE="19 21 19 22">N</NAMEEXPR>
+                      <NUMERAL PLACE="19 23 19 24">1</NUMERAL>
+                    </TUPLELITERAL>
+                  </APPLICATION>
+                </SUBRANGE>
+              </INDEXVARDECL>
+              <RENAMING PLACE="20 10 22 22" PARENS="1">
+                <RENAMES PLACE="20 17 21 42">
+                  <RENAME PLACE="20 17 20 26">
+                    <NAMEEXPR PLACE="20 17 20 18">a</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="20 22 20 26">
+                      <NAMEEXPR PLACE="20 22 20 23">A</NAMEEXPR>
+                      <NAMEEXPR PLACE="20 24 20 25">i</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="20 28 20 37">
+                    <NAMEEXPR PLACE="20 28 20 29">b</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="20 33 20 37">
+                      <NAMEEXPR PLACE="20 33 20 34">B</NAMEEXPR>
+                      <NAMEEXPR PLACE="20 35 20 36">i</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="20 39 20 52">
+                    <NAMEEXPR PLACE="20 39 20 42">cin</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="20 46 20 52">
+                      <NAMEEXPR PLACE="20 46 20 47">C</NAMEEXPR>
+                      <APPLICATION PLACE="20 48 20 51" INFIX="YES">
+                        <NAMEEXPR PLACE="20 49 20 50">-</NAMEEXPR>
+                        <TUPLELITERAL PLACE="20 48 20 51">
+                          <NAMEEXPR PLACE="20 48 20 49">i</NAMEEXPR>
+                          <NUMERAL PLACE="20 50 20 51">1</NUMERAL>
+                        </TUPLELITERAL>
+                      </APPLICATION>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="21 17 21 28">
+                    <NAMEEXPR PLACE="21 17 21 20">sum</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="21 24 21 28">
+                      <NAMEEXPR PLACE="21 24 21 25">S</NAMEEXPR>
+                      <NAMEEXPR PLACE="21 26 21 27">i</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                  <RENAME PLACE="21 30 21 42">
+                    <NAMEEXPR PLACE="21 30 21 34">cout</NAMEEXPR>
+                    <ARRAYSELECTION PLACE="21 38 21 42">
+                      <NAMEEXPR PLACE="21 38 21 39">C</NAMEEXPR>
+                      <NAMEEXPR PLACE="21 40 21 41">i</NAMEEXPR>
+                    </ARRAYSELECTION>
+                  </RENAME>
+                </RENAMES>
+                <MODULEINSTANCE PLACE="22 11 22 22">
+                  <MODULENAME PLACE="22 11 22 22">onebitadder</MODULENAME>
+                  <MODULEACTUALS></MODULEACTUALS>
+                </MODULEINSTANCE>
+              </RENAMING>
+            </MULTISYNCHRONOUS>
+          </SYNCHRONOUSCOMPOSITION>
+        </RENAMING>
+      </WITHMODULE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="24 3 24 36">
+      <IDENTIFIER PLACE="24 3 24 12">bitadder3</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <MODULEINSTANCE PLACE="24 24 24 36">
+        <MODULENAME PLACE="24 24 24 33">Nbitadder</MODULENAME>
+        <MODULEACTUALS PLACE="24 33 24 36">
+          <NUMERAL PLACE="24 34 24 35">3</NUMERAL>
+        </MODULEACTUALS>
+      </MODULEINSTANCE>
+    </MODULEDECLARATION>
+    <MODULEDECLARATION PLACE="25 3 25 38">
+      <IDENTIFIER PLACE="25 3 25 13">bitadder16</IDENTIFIER>
+      <VARDECLS></VARDECLS>
+      <MODULEINSTANCE PLACE="25 25 25 38">
+        <MODULENAME PLACE="25 25 25 34">Nbitadder</MODULENAME>
+        <MODULEACTUALS PLACE="25 34 25 38">
+          <NUMERAL PLACE="25 35 25 37">16</NUMERAL>
+        </MODULEACTUALS>
+      </MODULEINSTANCE>
+    </MODULEDECLARATION>
+  </CONTEXTBODY>
+</CONTEXT>
+

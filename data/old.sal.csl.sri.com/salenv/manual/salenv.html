@@ -1,0 +1,2089 @@
+<HTML>
+<HEAD>
+<!-- Created by texi2html 1.56k from salenv.texi on 16 July 2002 -->
+
+<TITLE>SALENV </TITLE>
+</HEAD><BODY bgcolor="#efefef" text="#000000" link="#0000ff" vlink="#551a8b" alink="#ff0000" background="">
+<BODY>
+<H1>SALENV</H1>
+<H2>A "State Space Exploration Toolkit"</H2>
+<H2>for SALENV version 1.0</H2>
+<H2>July 2002</H2>
+<ADDRESS>Leonardo de Moura</ADDRESS>
+<P>
+<P><HR><P>
+<H1>Table of Contents</H1>
+<UL>
+<LI><A NAME="TOC1" HREF="salenv.html#SEC1">Acknowledgements</A>
+<LI><A NAME="TOC2" HREF="salenv.html#SEC2">1. Overview of SALENV</A>
+<LI><A NAME="TOC3" HREF="salenv.html#SEC3">2. Model-Checker</A>
+<UL>
+<LI><A NAME="TOC4" HREF="salenv.html#SEC4">2.1 Model-Checker Overview</A>
+<LI><A NAME="TOC5" HREF="salenv.html#SEC5">2.2 A Brief Introduction to LTL</A>
+<LI><A NAME="TOC6" HREF="salenv.html#SEC6">2.3 Useful LTL patterns</A>
+<LI><A NAME="TOC7" HREF="salenv.html#SEC7">2.4 Counter-examples</A>
+<LI><A NAME="TOC8" HREF="salenv.html#SEC8">2.5 SAL Model Checking: An Example</A>
+<UL>
+<LI><A NAME="TOC9" HREF="salenv.html#SEC9">2.5.1 Developing the Specification</A>
+<LI><A NAME="TOC10" HREF="salenv.html#SEC10">2.5.2 Verifying the Specification</A>
+<UL>
+<LI><A NAME="TOC11" HREF="salenv.html#SEC11">2.5.2.1 Mutual Exclusion</A>
+<LI><A NAME="TOC12" HREF="salenv.html#SEC12">2.5.2.2 An Invalid Property</A>
+<LI><A NAME="TOC13" HREF="salenv.html#SEC13">2.5.2.3 Liveness</A>
+</UL>
+<LI><A NAME="TOC14" HREF="salenv.html#SEC14">2.5.3 Complete Description of the Specification</A>
+</UL>
+<LI><A NAME="TOC15" HREF="salenv.html#SEC15">2.6 Available Options</A>
+<UL>
+<LI><A NAME="TOC16" HREF="salenv.html#SEC16">2.6.1 Compilation Time Options</A>
+<LI><A NAME="TOC17" HREF="salenv.html#SEC17">2.6.2 Execution Time Options</A>
+</UL>
+</UL>
+<LI><A NAME="TOC18" HREF="salenv.html#SEC18">3. Emacs Front End</A>
+<UL>
+<LI><A NAME="TOC19" HREF="salenv.html#SEC19">3.1 Menu commands</A>
+<LI><A NAME="TOC20" HREF="salenv.html#SEC20">3.2 Keyboard commands</A>
+</UL>
+<LI><A NAME="TOC21" HREF="salenv.html#SEC21">4. FAQ</A>
+<UL>
+<LI><A NAME="TOC22" HREF="salenv.html#SEC22">4.1 Status of SALENV</A>
+<LI><A NAME="TOC23" HREF="salenv.html#SEC23">4.2 General questions</A>
+<UL>
+<LI><A NAME="TOC24" HREF="salenv.html#SEC24">4.2.1 How do I set up a <TT>`.salrc'</TT> file properly?</A>
+<LI><A NAME="TOC25" HREF="salenv.html#SEC25">4.2.2 How do I set up a <TT>`.emacs'</TT> file properly?</A>
+<LI><A NAME="TOC26" HREF="salenv.html#SEC26">4.2.3 How do I set up the <CODE>SALPATH</CODE>?</A>
+<LI><A NAME="TOC27" HREF="salenv.html#SEC27">4.2.4 How do I start SALENV?</A>
+<LI><A NAME="TOC28" HREF="salenv.html#SEC28">4.2.5 How do I exit from SALENV?</A>
+<LI><A NAME="TOC29" HREF="salenv.html#SEC29">4.2.6 How can I get a more detailed error message?</A>
+<LI><A NAME="TOC30" HREF="salenv.html#SEC30">4.2.7 How can I repeat the last command?</A>
+</UL>
+<LI><A NAME="TOC31" HREF="salenv.html#SEC31">4.3 Compiling and Installing</A>
+<UL>
+<LI><A NAME="TOC32" HREF="salenv.html#SEC32">4.3.1 What are the required third-party packages?</A>
+<LI><A NAME="TOC33" HREF="salenv.html#SEC33">4.3.2 How do I compile and install SALENV and related tools?</A>
+<LI><A NAME="TOC34" HREF="salenv.html#SEC34">4.3.3 How do I change the installation directory?</A>
+</UL>
+<LI><A NAME="TOC35" HREF="salenv.html#SEC35">4.4 Bugs and problems</A>
+<UL>
+<LI><A NAME="TOC36" HREF="salenv.html#SEC36">4.4.1 Error in Loading Shared Libraries</A>
+<LI><A NAME="TOC37" HREF="salenv.html#SEC37">4.4.2 Segmentation Violation and GMP</A>
+<LI><A NAME="TOC38" HREF="salenv.html#SEC38">4.4.3 Segmentation Violtaion and the interpreter</A>
+<LI><A NAME="TOC39" HREF="salenv.html#SEC39">4.4.4 Needed to allocate blacklisted block at 0x??????</A>
+<LI><A NAME="TOC40" HREF="salenv.html#SEC40">4.4.5 Value was not completely initialized</A>
+<LI><A NAME="TOC41" HREF="salenv.html#SEC41">4.4.6 Deadlocks in SAL specifications</A>
+</UL>
+<LI><A NAME="TOC42" HREF="salenv.html#SEC42">4.5 Major packages and programs</A>
+<UL>
+<LI><A NAME="TOC43" HREF="salenv.html#SEC43">4.5.1 salenv</A>
+<LI><A NAME="TOC44" HREF="salenv.html#SEC44">4.5.2 sal-model-checker</A>
+<LI><A NAME="TOC45" HREF="salenv.html#SEC45">4.5.3 extsal2sal</A>
+<LI><A NAME="TOC46" HREF="salenv.html#SEC46">4.5.4 sal-dependencies</A>
+<LI><A NAME="TOC47" HREF="salenv.html#SEC47">4.5.5 sal-pretty-printer</A>
+<LI><A NAME="TOC48" HREF="salenv.html#SEC48">4.5.6 sal-simulator</A>
+<LI><A NAME="TOC49" HREF="salenv.html#SEC49">4.5.7 sal-deadlock-detector</A>
+<LI><A NAME="TOC50" HREF="salenv.html#SEC50">4.5.8 libsalcore</A>
+<LI><A NAME="TOC51" HREF="salenv.html#SEC51">4.5.9 libsaldefaultengine</A>
+</UL>
+</UL>
+<LI><A NAME="TOC52" HREF="salenv.html#SEC52">Index</A>
+</UL>
+<P><HR><P>
+
+
+<H1><A NAME="SEC1" HREF="salenv.html#TOC1">Acknowledgements</A></H1>
+<P>
+<A NAME="IDX1"></A>
+
+
+<P>
+SALENV has been developed at SRI International in 2002. 
+
+
+<P>
+I would like to express my gratitude to all members of the 
+Computer Science Laboratory at SRI Internation. I also especially
+thank Natarajan Shankar and Harald Ruess for all useful remarks,
+help and suggestions. I also thank Manuel Serrano for his Scheme
+Compiler [Bigloo01] and Hans J. Boehm for his Garbage
+Collector [BoehmWeiser88, Boehm91].
+
+
+<P>
+This release of SALENV may still contain bugs. If you notice
+any, please forgive me and send a mail message to the following
+address: <A HREF="mailto:demoura@csl.sri.com">demoura@csl.sri.com</A>.
+
+
+<P>
+New versions may be found at <A HREF="http://www.csl.sri.com/sal">http://www.csl.sri.com/sal</A>.
+
+
+<P>
+This is SALENV documentation version 1.0, July 2002.
+
+
+
+
+<H1><A NAME="SEC2" HREF="salenv.html#TOC2">1. Overview of SALENV</A></H1>
+<P>
+<A NAME="IDX2"></A>
+
+
+<P>
+<EM>SALENV</EM> is a state space exploration toolkit which may be used to build model checkers,
+simulators, static debuggers, symbolic simulators, and other tools for the <EM>SAL</EM> specification language. 
+Abstractly, the toolkit provides an API to traverse the concrete (or abstract)
+state space associated with a SAL specification. SALENV can also be seen as an
+<EM>open model checker</EM>, where a substrate of the implementation is open, allowing the
+user to extend, customize, and modify the implementation to affect <EM>functionality</EM> and/or
+<EM>performance</EM>. The toolkit is similar to an open compiler such as Open-C++ [OpenCpp], or
+an extensible application such as Emacs and AutoCAD. User extensions and modifications
+should be coded in the Scheme programming language. These extensions may be even compiled an
+linked with the kernel.  
+
+
+<P>
+An explicit state model checker for the SAL language was built by using the SALENV toolkit. This
+model checker accepts correctness claims specified in the syntax of <EM>Linear Temporal Logic</EM>
+(LTL). The model checker can only handle models that are bounded, and have only countably
+many distinct behaviors. This mean that all correctness properties automatically become formally
+decidable, within the constraints that are set by the problem size and the computational resources 
+that are available to the model checker to render the proofs. It is important to notice that the
+SALENV toolkit may be used to build different kinds of model checking tools, for instance, we
+are currently implementing a hybrid model checker, where part of the state is represented in a
+symbolic way.
+
+
+
+
+<H1><A NAME="SEC3" HREF="salenv.html#TOC3">2. Model-Checker</A></H1>
+<P>
+<A NAME="IDX3"></A>
+
+
+<P>
+In this chapter we described the explicit state model checker for the SAL language which 
+was built by using the SALENV toolkit.
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC4">Model-Checker Overview</A>
+<LI><A HREF="salenv.html#SEC5">A Brief Introduction to LTL</A>
+<LI><A HREF="salenv.html#SEC6">Useful LTL patterns</A>
+<LI><A HREF="salenv.html#SEC7">Counter-examples</A>
+<LI><A HREF="salenv.html#SEC8">An Example</A>
+<LI><A HREF="salenv.html#SEC15">Available Options</A>
+</UL>
+
+
+
+<H2><A NAME="SEC4" HREF="salenv.html#TOC4">2.1 Model-Checker Overview</A></H2>
+<P>
+<A NAME="IDX4"></A>
+
+
+<P>
+This model checker accepts correctness claims specified in the syntax of <EM>Linear Temporal Logic</EM>
+(LTL). The model checker can only handle models that are bounded, and have only countably
+many distinct behaviors. However, we may use the model checker to detect errors in infinite 
+state spaces. The output of the model checker is whether or not a given assertion holds. If the result 
+is negative, a counter-example is produced.
+
+
+<P>
+We briefly highlight some of the features of this model-checker:
+<DL COMPACT>
+
+<DT><EM>Extensibility</EM>
+<DD>
+The user can modify/extend the behavior of the model checker.
+<DT><EM>Search Strategies</EM>
+<DD>
+The user may select different strategies to traverse the specification state space.
+For instance, iterative depth first search may be used to find smaller counter
+examples.
+<DT><EM>Cache Representation</EM>
+<DD>
+Different cache policies may be used. For instance, the supertrace algorithm used in the
+Spin model checker is basically a cache policy in our implementation.
+<DT><EM>State Representation</EM>
+<DD>
+Different state representations may be used. Even a hybrid (explict + symbolic) state 
+representation may be used.
+<DT><EM>Canonical term representation</EM>
+<DD>
+A canonical representation of terms is available in the default execution engine.
+In this representation, term equality is equivalent to pointer equality. So,
+it is cheap to check when two terms/states are equal.
+<DT><EM>Dynamic scheduler</EM>
+<DD>
+A SAL specification may contain code that can not be statically ordered. For instance,
+
+<PRE>
+X = IF A THEN NOT Y ELSE C ENDIF
+Y = IF A THEN B ELSE X ENDIF
+</PRE>
+
+Here, there is no causal loop since <CODE>X</CODE> depends on <CODE>Y</CODE> only when <CODE>A</CODE> holds,
+and <CODE>Y</CODE> depends on <CODE>X</CODE> only when <CODE>NOT A</CODE> holds. This kind of code is
+mapped to a sequence of <EM>actions</EM> that are dynamically scheduled by the model checker,
+i.e. the execution order is only known at runtime. 
+</DL>
+
+
+
+<H2><A NAME="SEC5" HREF="salenv.html#TOC5">2.2 A Brief Introduction to LTL</A></H2>
+<P>
+<A NAME="IDX5"></A>
+<A NAME="IDX6"></A>
+
+
+<P>
+<EM>Linear temporal logic</EM> (LTL) was introduced to specify properties of the <EM>traces</EM> of a system.
+We define <EM>trace</EM> as an infinite sequence of states 
+(<EM>s_0, s_1, ..., s_i, ...</EM>), where 
+<EM>s_(i+1)</EM> is a successor of <EM>s_i</EM>, i.e. there is a transition from <EM>s_i</EM> to <EM>s_(i+1)</EM>.
+If
+<CODE>s_0</CODE> is a state, and <CODE>u</CODE> = (<EM>s_1, s_2, ..., s_i, ...</EM>) is a trace, then
+<CODE>s_0 . u</CODE> = (<EM>s_0, s_1, s_2, ..., s_i, ...</EM>) is also a trace.
+
+
+<P>
+In our model checker, a LTL formula is composed of a finite set <EM>Prop</EM> which contains SAL expressions
+that describe atomic properties of states. For instance, the expression <CODE>pc1 = critical</CODE> may be
+an element of <EM>Prop</EM>. The standard boolean operators (<CODE>AND</CODE>, <CODE>OR</CODE>, <CODE>NOT</CODE>, <CODE>=&#62;</CODE>,
+<CODE>&#60;=&#62;</CODE>) we can express static properties. For dynamic properties, we use the temporal operators:
+<CODE>X</CODE> (next), <CODE>U</CODE> (until), <CODE>W</CODE> (weak until), <CODE>R</CODE> (release), <CODE>F</CODE> (eventually),
+<CODE>G</CODE> (always), and <CODE>B</CODE> (before). 
+
+
+<P>
+The semantics of LTL usually defines whether a trace <CODE>u</CODE> of a given system satisfies a formula.
+In our model checker, when you write:
+
+
+
+<PRE>
+  mutualexclusion : THEOREM system |- G(NOT (pc1 = critical AND 
+                                             pc2 = critical)); 
+</PRE>
+
+<P>
+The meaning is:
+
+<BLOCKQUOTE>
+<P>
+The theorem <CODE>mutualexclusion</CODE> is valid if and only if all traces <CODE>u</CODE> of <CODE>system</CODE> satisfy
+the LTL formula <CODE>G(NOT (pc1 = critical AND pc2 = critical))</CODE>.
+</BLOCKQUOTE>
+
+<P>
+The relation 
+<CODE>u |= F</CODE> (<CODE>u</CODE> satisfies <CODE>F</CODE>)
+is defined as:
+
+<UL>
+<LI>
+
+<CODE>u |= Expr</CODE>, if and only if <CODE>u = s_0 . w</CODE> and <EM>Expr</EM> true in <CODE>s_0</CODE>.
+<LI>
+
+<CODE>u |= NOT F</CODE>, if and only if it is <EM>not</EM> the case that <CODE>u |= F</CODE>.
+<LI>
+
+<CODE>u |= F OR G</CODE>, if and only if <CODE>u |= F</CODE> or <CODE>u |= G</CODE>.
+<LI>
+
+<CODE>u |= X F</CODE>, if and only if <CODE>u = s_0 . w</CODE> and <CODE>w |= F</CODE>.
+<LI>
+
+<CODE>u |= U(F, G)</CODE>, if and only if:
+
+<UL>
+<LI>
+
+<CODE>u |= F</CODE>, or
+<LI>
+
+exists <CODE>n</CODE> such that <CODE>u = s_0 . s_1 .  ... . s_n . w</CODE>, with
+<CODE>w |= G</CODE> and for all <CODE>i</CODE> in {0, ..., n }, <CODE>s_i . ... . s_n, w |= F</CODE>.
+</UL>
+
+</UL>
+
+<P>
+The other operators may be seen as macros, and are defined in the following way:
+
+
+
+<PRE>
+TRUE = e OR (NOT e)
+FALSE = NOT TRUE
+e1 AND e2 = NOT ((NOT e1) OR (NOT e2))
+R(e1, e2) = NOT U(NOT e1, NOT e2)
+G(e) = R(FALSE, e)
+F(e) = U(TRUE, e)
+B(e1, e2) = R(e1, NOT e2)
+W(e1, e2) = G(e1) OR U(e1, e2)
+</PRE>
+
+<P>
+ 
+
+
+<H2><A NAME="SEC6" HREF="salenv.html#TOC6">2.3 Useful LTL patterns</A></H2>
+<P>
+<A NAME="IDX7"></A>
+<A NAME="IDX8"></A>
+
+
+<DL COMPACT>
+
+<DT><CODE>G(Expr)</CODE>
+<DD>
+<CODE>Expr</CODE> is always true.
+<DT><CODE>G(F(Expr))</CODE>
+<DD>
+<CODE>Expr</CODE> is true infinitely often.
+<DT><CODE>G(Expr1 =&#62; F(Expr2))</CODE>
+<DD>
+Everytime <CODE>Expr1</CODE> is true, eventually <CODE>Expr2</CODE> will also be true. 
+This is a <EM>response</EM> formula.
+<DT><CODE>G(F(Cond-1)) AND G(F(Cond-2) ... AND G(F(Cond-n)) =&#62; Expr</CODE>
+<DD>
+<CODE>Cond-1</CODE>, ..., <CODE>Cond-n</CODE> are <EM>fairness</EM> conditions. We say
+that <CODE>Expr</CODE> is true assuming these fairness conditions.
+</DL>
+<P>
+ 
+
+
+<H2><A NAME="SEC7" HREF="salenv.html#TOC7">2.4 Counter-examples</A></H2>
+<P>
+<A NAME="IDX9"></A>
+
+
+<P>
+A counter-example contains information about the transitions
+that were fired. These transitions can be specified by the 
+following grammar:
+
+
+
+<PRE>
+transition ::= simple-transition
+             | named-transition
+             | multi-command-transition
+             | asynch-transition
+             | synch-transition
+
+simple-transition ::= [ &#60;context-name&#62; : &#60;line-number&#62; ]
+named-transition ::= &#60;name&#62; : &#60;transition&#62;
+multi-command-transition ::= &#60;transition&#62; with [ &#60;idx-values&#62; ]
+asynch-transition ::= &#60; &#60;transition&#62; &#62; . &#60;num&#62;        
+synch-transition ::= &#60; &#60;transitions&#62; &#62;
+
+transitions ::= &#60;transition&#62;
+              | &#60;transition&#62; &#60;transitions&#62;
+
+idx-values ::= &#60;idx-value&#62;
+             | &#60;idx-value&#62; , &#60;idx-values&#62;
+
+idx-value ::= &#60;idx-name&#62; := &#60;value&#62;
+</PRE>
+
+<P>
+In the <CODE>asynch-transition</CODE> rule, <CODE>&#60;num&#62;</CODE> specifies the module that executed 
+the step. For instance, in <CODE>(mod1 || mod2)</CODE> <CODE>&#60;num&#62;=0</CODE> (<CODE>&#60;num&#62;=1</CODE>)
+tells us that <CODE>mod1</CODE>(<CODE>mod2</CODE>) performed a step.
+
+
+<P>
+Consider the module expression <CODE>(mod1 || (mod2 [] mod3)</CODE>, the transition
+<CODE>&#60;starting:[ctx:48], &#60;[ctx:102] with [x := 10]&#62;.0&#62;</CODE> should be interpreted
+in the following way:
+
+
+
+<UL>
+<LI><CODE>mod1</CODE> executed the guarded command called <CODE>starting</CODE>, located in the context <CODE>ctx</CODE> at line 48.
+
+<LI><CODE>mod2</CODE> executed the unnamed multi-command located in the context <CODE>ctx</CODE> at line 48, and the indexed variable <CODE>x</CODE> of the multi-command was assigned to 10.
+
+</UL>
+
+<P>
+The transition <CODE>&#60;[ctx:54], &#60;finishing:[ctx:301]&#62;.1&#62;</CODE> should be interpreted in the following way:
+
+
+
+<UL>
+<LI><CODE>mod1</CODE> executed the unnamed guarded command located in the context <CODE>ctx</CODE> at line 54.
+
+<LI><CODE>mod3</CODE> executed the guarded command called <CODE>finishing</CODE> in the context <CODE>ctx</CODE> at line 301.
+
+</UL>
+
+
+
+<H2><A NAME="SEC8" HREF="salenv.html#TOC8">2.5 SAL Model Checking: An Example</A></H2>
+<P>
+<A NAME="IDX10"></A>
+<A NAME="IDX11"></A>
+
+
+<P>
+In this chapter we illustrate SAL model checking via a simplified version of Peterson's algorithm for 2-process
+mutual exclusion. The 2-process version of the mutual exclusion problem requires that two processes are
+never simultaneously in their respective critical sections. 
+The behavior of each process is modeled by a SAL module. Actually, we use a parametric SAL module to
+specify the behavior of both processes. The prefix <VAR>pc</VAR> denotes <EM>program counter</EM>. When 
+<VAR>pc1</VAR> (<VAR>pc2</VAR>) is set to the value <VAR>critical</VAR>, process 1(2) is in
+its critical section. The noncritical section has two self-explanatory phases: <VAR>sleeping</VAR> and
+<VAR>trying</VAR>. Each process is allowed to observe whether or not the other process is <VAR>sleeping</VAR>.
+A shared boolean variable, <VAR>turn</VAR>, arbitrates access to the critical section.
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC9">Developing the Specification</A>
+<LI><A HREF="salenv.html#SEC10">Verifying the Specification</A>
+<LI><A HREF="salenv.html#SEC14">Complete Description of the Specification</A>
+</UL>
+
+
+
+<H3><A NAME="SEC9" HREF="salenv.html#TOC9">2.5.1 Developing the Specification</A></H3>
+<P>
+<A NAME="IDX12"></A>
+
+
+<P>
+To begin, we will need to create a new SAL context. Therefore, let us create a file called 
+<TT>`tutorial1.sal'</TT> which will contain the new context. 
+Now we should define a new enumerated type called <CODE>PC</CODE>. This type consists of three
+values: <CODE>sleeping</CODE>, <CODE>trying</CODE>, and <CODE>critical</CODE>. After that, we should 
+specify the two processes. Since the behavior of the two processes is quite similar, we
+can use a parametric SAL module (<CODE>mutex</CODE>) to specify them. In this way, <CODE>mutex[FALSE]</CODE> 
+describes the behavior of the first process, and <CODE>mutex[TRUE]</CODE> the behavior of the other one. 
+It is important to note that the variable <CODE>pc1</CODE> in the context <CODE>mutex</CODE> represents the
+program counter of the current process, and <CODE>pc2</CODE> the program counter of the other process.
+It is a good idea to label guarded commands, since it helps us to understand the counter-examples.
+So, we use the labels <CODE>init</CODE>, <CODE>enter_cs</CODE>, and <CODE>leave_cs</CODE>.
+
+
+
+<PRE>
+tutorial1 : CONTEXT =
+BEGIN
+  PC : TYPE = {trying, critical, sleeping};
+
+  mutex [tval : BOOLEAN]: MODULE = 
+  BEGIN
+    INPUT pc2 : PC 
+    OUTPUT pc1 : PC
+    GLOBAL turn : BOOLEAN
+    INITIALIZATION
+      pc1 = sleeping;
+      turn = FALSE
+    TRANSITION
+      [  
+        init: pc1 = sleeping --&#62; pc1' = trying; turn' = tval
+        []
+        enter_cs: pc1 = trying AND (pc2 = sleeping OR turn /= tval) --&#62; 
+          pc1' = critical
+        []
+        leave_cs: pc1 = critical --&#62; pc1' = sleeping; turn' = tval
+      ]
+  END;
+
+END
+</PRE>
+
+<P>
+Initially, the program counter is set to <CODE>sleeping</CODE> and the variable <CODE>turn</CODE> to <CODE>FALSE</CODE>.
+The transition section is composed by three guarded commands which describe the three phases of the 
+algorithm. The entire system is specified by performing the asynchronous composition of two instances
+of the module <CODE>mutex</CODE>.
+
+
+
+<PRE>
+
+system : MODULE = 
+  mutex[FALSE] 
+  []
+  (RENAME pc2 TO pc1, pc1 TO pc2
+   IN mutex[TRUE]);
+
+</PRE>
+
+
+
+<H3><A NAME="SEC10" HREF="salenv.html#TOC10">2.5.2 Verifying the Specification</A></H3>
+<P>
+<A NAME="IDX13"></A>
+
+
+<P>
+In this section, we will prove a mutual exclusion and a liveness property by using
+the sal model checker.
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC11">Mutual Exclusion</A>
+<LI><A HREF="salenv.html#SEC12">An Invalid Property</A>
+<LI><A HREF="salenv.html#SEC13">Liveness</A>
+</UL>
+
+
+
+<H4><A NAME="SEC11" HREF="salenv.html#TOC11">2.5.2.1 Mutual Exclusion</A></H4>
+<P>
+<A NAME="IDX14"></A>
+<A NAME="IDX15"></A>
+
+
+<P>
+First, let us prove that is impossible for both processes to enter their critical section at
+the same time, which is precisely the objective in a mutual exclusion algorithm. This property
+may be stated in SAL in the following way:
+
+
+
+<PRE>
+mutualexclusion : THEOREM system |- G(NOT (pc1 = critical AND pc2 = critical)); 
+</PRE>
+
+<P>
+Now, we can use the program <CODE>sal-model-checker</CODE> to check this property. <CODE>sal-model-checker</CODE>
+produces a program (<EM>verifier</EM>) to check a given property. The flag <CODE>--execute</CODE>
+will instruct the model checker to automatically execute the generated program after the
+generation phase.
+
+
+
+<PRE>
+sal-model-checker --execute tutorial1 mutualexclusion
+-| verified
+</PRE>
+
+<P>
+We may also check this property in two steps. In the first step, the model checker produces
+the <EM>verifier</EM> to check the given property. We use the flag <CODE>--output</CODE> to specify
+the name of the generated program.
+
+
+
+<PRE>
+sal-model-checker --output=checker tutorial1 mutualexclusion
+</PRE>
+
+<P>
+Now, we can use the generated program to check the mutual exclusion property. 
+
+
+
+<PRE>
+./checker 
+-| verified
+</PRE>
+
+<P>
+The generated program contains several options, you can print them by using:
+
+
+
+<PRE>
+./checker --help
+</PRE>
+
+<P>
+For instance, the option <CODE>--verbose</CODE> will print some statistics.
+
+
+
+<PRE>
+./checker --verbose
+-| Checking...
+-| verified
+-| Number of visited states = 14
+-| Maximum depth = 8
+</PRE>
+
+<P>
+A more optimize program may be produce by using the option <CODE>--optimize</CODE>.
+
+
+
+<PRE>
+sal-model-checker --optimize --output=checker tutorial1 mutualexclusion
+</PRE>
+
+
+
+<H4><A NAME="SEC12" HREF="salenv.html#TOC12">2.5.2.2 An Invalid Property</A></H4>
+<P>
+<A NAME="IDX16"></A>
+
+
+<P>
+Now, let us try to prove an invalid property. This example will allow us to understand
+the counter-example generation in the SAL model checker. For instance, assume the
+following <EM>invalid</EM> property:
+
+
+
+<PRE>
+invalid : THEOREM system |- G(NOT (pc1 = trying AND pc2 = critical)); 
+</PRE>
+
+<P>
+Now, we can generate the <EM>verifier</EM> for this property.
+
+
+
+<PRE>
+sal-model-checker --output=checker tutorial1 invalid
+</PRE>
+
+<P>
+The following counter example is produced when we try to check the property.
+We may notice that there is an extra step in the counter-example. This extra
+step is considered because the an invariant may contain next variables such
+as: <CODE>pc1'</CODE>. Next variables contain the value of the given variable in the
+next state.
+
+
+
+<PRE>
+./checker 
+</PRE>
+
+
+<PRE>
+Counter example detected: 
+pc1 = sleeping
+pc2 = sleeping
+turn = FALSE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.0
+pc1 = trying
+pc2 = sleeping
+turn = FALSE
+----------------
+Transition: &#60;enter_cs:[tutorial1:17]&#62;.0
+pc1 = critical
+pc2 = sleeping
+turn = FALSE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.1
+pc1 = critical
+pc2 = trying
+turn = TRUE
+----------------
+Transition: &#60;leave_cs:[tutorial1:20]&#62;.0
+pc1 = sleeping
+pc2 = trying
+turn = FALSE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.0
+pc1 = trying
+pc2 = trying
+turn = FALSE
+----------------
+Transition: &#60;enter_cs:[tutorial1:17]&#62;.1
+pc1 = trying
+pc2 = critical
+turn = FALSE
+----------------
+Transition: &#60;leave_cs:[tutorial1:20]&#62;.1
+pc1 = trying
+pc2 = sleeping
+turn = TRUE
+----------------
+</PRE>
+
+<P>
+A smaller counter example may be produced by using an iterative depth first search. 
+The flag <CODE>--step=&#60;num&#62;</CODE> activates this search strategy, and <CODE>&#60;num&#62;</CODE> specify
+the search depth increment in each iteration. In other words, the model checker
+will search until depth <CODE>&#60;num&#62;</CODE>, <CODE>2*&#60;num&#62;</CODE>, <CODE>3*&#60;num&#62;</CODE>, and so on.
+
+
+
+<PRE>
+./checker --step=1
+</PRE>
+
+
+<PRE>
+Counter example detected: 
+pc1 = sleeping
+pc2 = sleeping
+turn = FALSE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.1
+pc1 = sleeping
+pc2 = trying
+turn = TRUE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.0
+pc1 = trying
+pc2 = trying
+turn = FALSE
+----------------
+Transition: &#60;enter_cs:[tutorial1:17]&#62;.1
+pc1 = trying
+pc2 = critical
+turn = FALSE
+----------------
+Transition: &#60;leave_cs:[tutorial1:20]&#62;.1
+pc1 = trying
+pc2 = sleeping
+turn = TRUE
+----------------
+</PRE>
+
+<P>
+We can use the option <CODE>--compact-trace</CODE> to request a more compact counter-example, where
+only the differences between two successors are printed.
+
+
+
+<PRE>
+./checker --step=1 --compact-trace
+</PRE>
+
+
+<PRE>
+Counter example detected: 
+pc1 = sleeping
+pc2 = sleeping
+turn = FALSE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.1
+pc2 = trying
+turn = TRUE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.0
+pc1 = trying
+turn = FALSE
+----------------
+Transition: &#60;enter_cs:[tutorial1:17]&#62;.1
+pc2 = critical
+----------------
+Transition: &#60;leave_cs:[tutorial1:20]&#62;.1
+pc1 = trying
+pc2 = sleeping
+turn = TRUE
+----------------
+</PRE>
+
+
+
+<H4><A NAME="SEC13" HREF="salenv.html#TOC13">2.5.2.3 Liveness</A></H4>
+<P>
+<A NAME="IDX17"></A>
+<A NAME="IDX18"></A>
+
+
+<P>
+It is important to note that there is several trivial algorithms that
+satisfy the mutual exclusion property. For instance, an algorithm that
+only allows one process to execute. Therefor, it is important to prove
+liveness properties. In our example, we can try to prove that a process
+is in the critical section infinitely often. We can state this property
+in the following way:
+
+
+
+<PRE>
+liveness1 : THEOREM system |- G(F(pc2 = critical));
+</PRE>
+
+<P>
+Now, we generate the <EM>verifier</EM>.
+
+
+
+<PRE>
+sal-model-checker --output=checker tutorial1 liveness1
+</PRE>
+
+<P>
+However, the following counter example is produced. In this counter-example,
+it is clear that only one process is executing. The problem is that SAL
+does not have a builtin fairness condition such as other model checkers.
+This decision allows the user to experiment different fairness conditions.
+
+
+
+<PRE>
+checker --step=1 --compact-trace
+</PRE>
+
+
+<PRE>
+Counter example detected: 
+pc1 = sleeping
+pc2 = sleeping
+turn = FALSE
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.0
+pc1 = trying
+----------------
+Transition: &#60;enter_cs:[tutorial1:17]&#62;.0
+pc1 = critical
+----------------
+Transition: &#60;leave_cs:[tutorial1:20]&#62;.0
+pc1 = sleeping
+----------------
+Transition: &#60;init:[tutorial1:15]&#62;.0
+pc1 = trying
+----------------
+Transition: &#60;enter_cs:[tutorial1:17]&#62;.0
+pc1 = critical
+pc2 = sleeping
+turn = FALSE
+----------------
+</PRE>
+
+<P>
+It is important to note that a nested depth first search algorithm
+is used to check more complicated LTL formulas. This algorithm
+contains two depth first searches, so it is not always possible
+to produce the smaller counter examples by using a
+nested iterative depth first search. However, usually a smaller
+<CODE>&#60;num&#62;</CODE> in <CODE>--step=&#60;num&#62;</CODE> will produce a smaller
+counter example. In a future version we will provide new
+search strategies that will not have this problem.
+
+
+<P>
+To check the intended liveness property, we should specify our
+own fairness condition. For instance, we can prove the following
+property:
+
+
+
+<PRE>
+liveness2 : THEOREM system |- G(pc2 = trying =&#62; F(pc2 = critical));
+</PRE>
+
+
+<PRE>
+sal-model-checker --execute tutorial1 liveness1
+-| verified
+</PRE>
+
+<P>
+It is also possible to prove the following properties:
+
+
+
+<PRE>
+liveness3 : THEOREM system |- G(F(turn)) =&#62; G(F(pc2 = critical));
+liveness4 : THEOREM system |- G(F(NOT turn)) =&#62; G(F(pc1 = critical));
+</PRE>
+
+
+
+<H3><A NAME="SEC14" HREF="salenv.html#TOC14">2.5.3 Complete Description of the Specification</A></H3>
+<P>
+<A NAME="IDX19"></A>
+
+
+
+<PRE>
+
+tutorial1 : CONTEXT =
+BEGIN
+  PC : TYPE = {trying, critical, sleeping};
+
+  mutex [tval : BOOLEAN]: MODULE = 
+  BEGIN
+    INPUT pc2 : PC 
+    OUTPUT pc1 : PC
+    GLOBAL turn : BOOLEAN
+    INITIALIZATION
+      pc1 = sleeping;
+      turn = FALSE
+    TRANSITION
+      [  
+        pc1 = sleeping --&#62; pc1' = trying; turn' = tval
+        []
+        pc1 = trying AND (pc2 = sleeping OR turn /= tval) --&#62; 
+          pc1' = critical
+        []
+        pc1 = critical --&#62; pc1' = sleeping; turn' = tval
+      ]
+  END;
+
+  system : MODULE = 
+    mutex[FALSE] 
+    []
+    (RENAME pc2 TO pc1, pc1 TO pc2
+     IN mutex[TRUE]);
+
+  mutualexclusion : THEOREM system |- G(NOT (pc1 = critical AND pc2 = critical)); 
+
+  invalid : THEOREM system |- G(NOT (pc1 = trying AND pc2 = critical)); 
+
+  liveness1 : THEOREM system |- G(F(pc2 = critical));
+
+  liveness2 : THEOREM system |- G(pc2 = trying =&#62; F(pc2 = critical));
+
+  liveness3 : THEOREM system |- G(F(turn)) =&#62; G(F(pc2 = critical));
+
+  liveness4 : THEOREM system |- G(F(NOT turn)) =&#62; G(F(pc1 = critical));
+
+END
+
+</PRE>
+
+
+
+<H2><A NAME="SEC15" HREF="salenv.html#TOC15">2.6 Available Options</A></H2>
+<P>
+<A NAME="IDX20"></A>
+<A NAME="IDX21"></A>
+
+
+<P>
+The model checker has several option, you can type <CODE>sal-model-checker --help</CODE> to print them.
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC16">Compilation Time Options</A>
+<LI><A HREF="salenv.html#SEC17">Execution Time Options</A>
+</UL>
+
+
+
+<H3><A NAME="SEC16" HREF="salenv.html#TOC16">2.6.1 Compilation Time Options</A></H3>
+<P>
+<A NAME="IDX22"></A>
+
+
+<DL COMPACT>
+
+<DT><CODE>--version</CODE>
+<DD>
+Show the current sal-model-checker release.
+<DT><CODE>--verbose</CODE>
+<DD>
+Be verbose and print some statistics.
+<DT><CODE>--optimize</CODE>
+<DD>
+Apply some code transformations, and use all compiler optimization flags.
+<DT><CODE>--interpret</CODE>
+<DD>
+Interpret the generated code. This option is useful if you are still developing a specification,
+since the compilation of the generated code may be time consuming. 
+<DT><CODE>--use-gmp</CODE>
+<DD>
+Enable the GNU multi-precision library. This option should be used if you are using real numbers or
+huge natural numbers. This feature, of course, implies performances penalty. 
+<DT><CODE>--skip-transitions</CODE>
+<DD>
+Activate the SAL skip transitions, i.e. if it is impossible to perform a transition, then the model
+checker assumes a "silent" skip transition.
+<DT><CODE>--execute</CODE>
+<DD>
+Automatically execute the generated code.
+<DT><CODE>--output=&#60;file&#62;</CODE>
+<DD>
+Specify the name of the generated executable file. The default name is <TT>`a.out'</TT>. This option, of course,
+is only considered if you are compiling the generated code. The generated executable file also contains
+several options. Type <CODE>&#60;file&#62; --help</CODE> to print them.
+<DT><CODE>--disable-runtime-scheduler</CODE>
+<DD>
+Most of the specifications do not contain causal cycles, therefore, we may use this flag to disable
+the runtime scheduler. This option generates more efficient code. If your specification contains a
+causal cycle, and you use this option you will receive the "unable to execute" message. 
+<DT><CODE>--user-check-state-fcn=&#60;name&#62;</CODE>
+<DD>
+User defined funtion name that will be called to check whether a state should be visited or not. The function must be defined in the file associated with the option <CODE>--user-code-file-name</CODE>.
+<DT><CODE>--user-code-file-name=&#60;name&#62;</CODE>
+<DD>
+User defined file name that will be inserted into the generated model checker.
+<DT><CODE>--user-library=&#60;name&#62;</CODE>
+<DD>
+User defined external library that should be linked with the generated model checker.
+</DL>
+
+
+
+<H3><A NAME="SEC17" HREF="salenv.html#TOC17">2.6.2 Execution Time Options</A></H3>
+<P>
+<A NAME="IDX23"></A>
+
+
+<P>
+The following options are only considered if you are using the <CODE>--execute</CODE> flag. 
+They are also available in the generated executable file.
+
+
+<DL COMPACT>
+
+<DT><CODE>--dfs</CODE>
+<DD>
+Perform a depth first search (default). 
+<DT><CODE>--bfs</CODE>
+<DD>
+Perform a bread first search. This option can only be used to check invariants.
+<DT><CODE>--idfs</CODE>
+<DD>
+Perform a iterative depth first search. This option is useful to produce smaller counter examples. 
+<DT><CODE>--step=&#60;num&#62;</CODE>
+<DD>
+Step size in the iterative depth first search (default = 100).
+<DT><CODE>--max-depth=&#60;num&#62;</CODE>
+<DD>
+Maximum search depth. This option is useful if the state space is too huge.
+<DT><CODE>--cache-size=&#60;size&#62;</CODE>
+<DD>
+The initial cache size.
+<DT><CODE>--supertrace</CODE>
+<DD>
+Use the supertrace algorithm to perform the validation. Supertrace is a controlled partial-search technique that
+is only meant for the verification of specifications that cannot be analyzed exhaustively. 
+<DT><CODE>--detailed-trace</CODE>
+<DD>
+Show the value of local variables when printing a counter example.
+<DT><CODE>--compact-trace</CODE>
+<DD>
+Show a compact counter example, only the differences between two successors are described.
+<DT><CODE>--tick=&#60;num&#62;</CODE>
+<DD>
+Tick frequency (default = 10000).
+</DL>
+
+
+
+<H1><A NAME="SEC18" HREF="salenv.html#TOC18">3. Emacs Front End</A></H1>
+<P>
+<A NAME="IDX24"></A>
+
+
+<P>
+The command <CODE>salenv-fron-end</CODE> starts a customized version of the Emacs editor.
+This customization will add a menu and will automatically start <CODE>salenv</CODE>.
+Some keyboard commands are also defined.
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC19">Menu commands</A>
+<LI><A HREF="salenv.html#SEC20">Keyboard commands</A>
+</UL>
+
+
+
+<H2><A NAME="SEC19" HREF="salenv.html#TOC19">3.1 Menu commands</A></H2>
+<P>
+<A NAME="IDX25"></A>
+
+
+<DL COMPACT>
+
+<DT><EM>help-salenv</EM>
+<DD>
+Opens the <CODE>info</CODE> version of this document.
+<DT><EM>parse</EM>
+<DD>
+Parses the context in the current buffer.
+<DT><EM>import</EM>
+<DD>
+Imports the SAL context in the current buffer. After executing this command, the abstract
+syntax tree of the given context will be available in the <CODE>salenv</CODE> process shell.
+The context will be parsed if necessary. 
+This command will check common errors such as: undefined variables, missing contexts, etc.
+<DT><EM>generate verifier</EM>
+<DD>
+Generates a <EM>verifier</EM> program to check the property located in the current cursor position.
+If the cursor is not located inside a SAL assertion, then an error message will be produced.
+The name of the generated program is <CODE>checker</CODE>. The user may add extra options in the
+mini buffer.
+<DT><EM>execute verifier</EM>
+<DD>
+Executes the program <CODE>checker</CODE>. The user may add extra options in the
+mini buffer.
+<DT><EM>generate &#38; execute</EM>
+<DD>
+Combines the two previous commands.
+<DT><EM>quick help</EM>
+<DD>
+Opens a <EM>Man</EM> page describing the model checker available options.
+<DT><EM>view state space (depth 5)</EM>
+<DD>
+Produces a graph representing the state space of the module located in the current cursor position.
+This command will search until depth = 5. This command is not intended to be used in large
+state spaces. For large state spaces, you should build your own specialized viewer. For instance
+<TT>`pcp_viewer.scm'</TT> contains the code used to build a viewer for the priority ceiling protocol.
+<DT><EM>view state space (depth 10)</EM>
+<DD>
+Similar to the command above.
+<DT><EM>view state space (depth 15)</EM>
+<DD>
+Similar to the command above.
+<DT><EM>view state space</EM>
+<DD>
+Similar to the command above, but you should specify the maximum depth in the mini buffer.
+<DT><EM>reset</EM>
+<DD>
+Reinitializes the <CODE>salenv</CODE> process. This command is useful if the <CODE>salenv</CODE> process
+stopped to respond or generated a segmentation violation.
+<DT><EM>go to salenv shell</EM>
+<DD>
+Goes to the buffer which is executing the <CODE>salenv</CODE> process.
+<DT><EM>go to shell</EM>
+<DD>
+Goes to the shell buffer and changes the current directory. 
+<DT><EM>report-salenv-bug</EM>
+<DD>
+Sets up mail buffer for reporting SALENV bugs.
+<DT><EM>exit-salenv</EM>
+<DD>
+Closes the Emacs front end.
+</DL>
+
+
+
+<H2><A NAME="SEC20" HREF="salenv.html#TOC20">3.2 Keyboard commands</A></H2>
+<P>
+<A NAME="IDX26"></A>
+
+
+<DL COMPACT>
+
+<DT><KBD>C-c C-v</KBD>
+<DD>
+Generate and execute a verifier to check the property located in the current cursor position.
+If the cursor is not located inside a SAL assertion, then an error message will be produced.
+The name of the generated program is <CODE>checker</CODE>. The user may add extra options in the
+mini buffer.
+<DT><KBD>C-c C-e</KBD>
+<DD>
+Executes the program <CODE>checker</CODE>. The user may add extra options in the
+mini buffer.
+<DT><KBD>C-c C-g</KBD>
+<DD>
+Generates a <EM>verifier</EM> program to check the property located in the current cursor position.
+The user may add extra options in the
+mini buffer.
+<DT><KBD>C-c C-s</KBD>
+<DD>
+Produces a graph representing the state space of the module located in the current cursor position.
+This command is not intended to be used in large
+state spaces. For large state spaces, you should build your own specialized viewer. For instance
+<TT>`pcp_viewer.scm'</TT> contains the code used to build a viewer for the priority ceiling protocol.
+The user should specify the maximum search depth in the mini buffer.
+<DT><KBD>C-c i</KBD>
+<DD>
+Opens the <CODE>info</CODE> version of this document.
+<DT><KBD>C-c C-z</KBD>
+<DD>
+Goes to the buffer which is executing the <CODE>salenv</CODE> process.
+</DL>
+
+
+
+<H1><A NAME="SEC21" HREF="salenv.html#TOC21">4. FAQ</A></H1>
+<P>
+<A NAME="IDX27"></A>
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC22">Status of SALENV</A>
+<LI><A HREF="salenv.html#SEC23">General questions</A>
+<LI><A HREF="salenv.html#SEC31">Compiling and Installing</A>
+<LI><A HREF="salenv.html#SEC35">Bugs and problems</A>
+<LI><A HREF="salenv.html#SEC42">Major packages and programs</A>
+</UL>
+
+
+
+<H2><A NAME="SEC22" HREF="salenv.html#TOC22">4.1 Status of SALENV</A></H2>
+<P>
+<A NAME="IDX28"></A>
+
+
+<P>
+SALENV originally was an acronym for SAL Environment. However, today,
+SALENV is a state space exploration toolkit for the SAL specification
+language.
+It was developed at SRI International's Computer Science Laboratory.
+SALENV 1.0 is the current version as of this writing. The program
+is still under development. So, you should expect bug and problems.
+If you notice any, please send a mail message to the following
+address: <A HREF="mailto:demoura@csl.sri.com">demoura@csl.sri.com</A>.
+
+
+
+
+<H2><A NAME="SEC23" HREF="salenv.html#TOC23">4.2 General questions</A></H2>
+<P>
+<A NAME="IDX29"></A>
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC24">Setting up the customization file</A>
+<LI><A HREF="salenv.html#SEC25">Setting up the Emacs customization file</A>
+<LI><A HREF="salenv.html#SEC26">Setting up the SALPATH</A>
+<LI><A HREF="salenv.html#SEC27">Starting SALENV</A>
+<LI><A HREF="salenv.html#SEC28">Exiting from SALENV</A>
+<LI><A HREF="salenv.html#SEC29">Getting more detailed error messages</A>
+<LI><A HREF="salenv.html#SEC30">Repeating commands</A>
+</UL>
+
+
+
+<H3><A NAME="SEC24" HREF="salenv.html#TOC24">4.2.1 How do I set up a <TT>`.salrc'</TT> file properly?</A></H3>
+<P>
+<A NAME="IDX30"></A>
+<A NAME="IDX31"></A>
+<A NAME="IDX32"></A>
+
+
+<P>
+See Info file `salrc', node `Init File'
+
+
+<P>
+The SALENV customization file is <TT>`.salrc'</TT>. It should be located in your
+home directory. This file will be loaded when you start SALENV.
+The customization file should contain Scheme code, so consider
+taking a bit of time to learn Scheme. You can use all SALENV commands described
+in this manual.   
+
+
+
+
+<H3><A NAME="SEC25" HREF="salenv.html#TOC25">4.2.2 How do I set up a <TT>`.emacs'</TT> file properly?</A></H3>
+<P>
+<A NAME="IDX33"></A>
+<A NAME="IDX34"></A>
+<A NAME="IDX35"></A>
+
+
+<P>
+See Info file `emacs', node `Emacs Init File'
+
+
+<P>
+If you plan to run SALENV inside Emacs, you should also consider to make
+the following modifications in your <TT>`.emacs'</TT> file:
+
+
+
+<PRE>
+(add-to-list 'load-path "/usr/local/salenv/emacs")
+(require 'sal-mode)
+(setq auto-mode-alist
+      (append
+       '(("\\.sal$" . sal-mode))
+         auto-mode-alist))
+</PRE>
+
+<P>
+Note the code above assume that you installed SALENV in the <VAR>/usr/local</VAR> directory.
+
+
+
+
+<H3><A NAME="SEC26" HREF="salenv.html#TOC26">4.2.3 How do I set up the <CODE>SALPATH</CODE>?</A></H3>
+<P>
+<A NAME="IDX36"></A>
+<A NAME="IDX37"></A>
+<A NAME="IDX38"></A>
+
+
+<P>
+SALENV and related tools will search context files in the path <EM>SALPATH</EM>. 
+The easiest way to set up this path is to set the environment variable
+<VAR>SALPATH</VAR>.
+If you are using <VAR>bash</VAR>, then you should modify your <TT>`.bashrc'</TT> file. 
+For instance, to set the current and the <VAR>/usr/local/salenv/lib</VAR> directories,
+you should add the following command to your <TT>`.bashrc'</TT> file:
+
+
+
+<PRE>
+export SALPATH=.:/usr/local/salenv/lib
+</PRE>
+
+<P>
+If you are using <VAR>tcsh</VAR>, then you should modify your <TT>`.cshrc'</TT> file:
+
+
+
+<PRE>
+setenv SALPATH  .:/usr/local/salenv/lib
+</PRE>
+
+<P>
+You can also add new directories to the SALPATH when you are starting or
+running SALENV. You can add directory <VAR>/XXX/YYY</VAR> to the load path like this:
+
+<PRE>
+(sal/add-to-path! "/XXX/YYY")
+</PRE>
+
+
+
+<H3><A NAME="SEC27" HREF="salenv.html#TOC27">4.2.4 How do I start SALENV?</A></H3>
+<P>
+<A NAME="IDX39"></A>
+
+
+<P>
+If you are using Emacs, then type <KBD>M-x salenv</KBD>.
+
+
+
+
+<H3><A NAME="SEC28" HREF="salenv.html#TOC28">4.2.5 How do I exit from SALENV?</A></H3>
+<P>
+<A NAME="IDX40"></A>
+
+
+<P>
+You can type:
+
+<PRE>
+(exit)
+</PRE>
+
+<P>
+or 
+
+
+
+<PRE>
+(quit)
+</PRE>
+
+
+
+<H3><A NAME="SEC29" HREF="salenv.html#TOC29">4.2.6 How can I get a more detailed error message?</A></H3>
+<P>
+<A NAME="IDX41"></A>
+
+
+<P>
+You should use the Bigloo error notifier. To use it, you should add the following
+line to your <TT>`.salrc'</TT> file:
+
+<PRE>
+(set-repl-error-notifier! default-repl-error-notifier)
+</PRE>
+
+<P>
+After that, you can set the environment variable <VAR>BIGLOOSTACKDEPTH</VAR>. So, 
+an execution stack of depth <VAR>BIGLOOSTACKDEPTH</VAR> is printed when an error is raised. 
+If you are using <VAR>bash</VAR>, then you can add the following command to your <TT>`.bashrc'</TT> file:
+
+<PRE>
+export BIGLOOSTACKDEPTH=12
+</PRE>
+
+
+
+<H3><A NAME="SEC30" HREF="salenv.html#TOC30">4.2.7 How can I repeat the last command?</A></H3>
+<P>
+<A NAME="IDX42"></A>
+<A NAME="IDX43"></A>
+
+
+<P>
+If you are running SALENV inside Emacs, you can type <KBD>M-p</KBD> and <KBD>M-n</KBD> to traverse
+the list of previously typed commands. 
+
+
+
+
+<H2><A NAME="SEC31" HREF="salenv.html#TOC31">4.3 Compiling and Installing</A></H2>
+<P>
+<A NAME="IDX44"></A>
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC32">Required third-party packages</A>
+<LI><A HREF="salenv.html#SEC33">Compiling and Installing SALENV</A>
+<LI><A HREF="salenv.html#SEC34">Changing the installation directory</A>
+</UL>
+
+
+
+<H3><A NAME="SEC32" HREF="salenv.html#TOC32">4.3.1 What are the required third-party packages?</A></H3>
+<P>
+<A NAME="IDX45"></A>
+
+
+<P>
+Required packages:
+
+<UL>
+<LI>GNU make (<CODE>gmake</CODE>).
+
+<LI>GNU C compiler (<CODE>gcc</CODE>).
+
+<LI>GNU Multi Precision library (<CODE>gmp</CODE>).
+
+<A HREF="http://www.swox.com/gmp/">http://www.swox.com/gmp/</A>
+<LI>Bigloo Scheme Compiler.
+
+<A HREF="http://www-sop.inria.fr/mimosa/fp/Bigloo/">http://www-sop.inria.fr/mimosa/fp/Bigloo/</A>
+<LI>A SAL parser (<CODE>sal2xml</CODE>).
+
+<A HREF="http://www.csl.sri.com/sal/">http://www.csl.sri.com/sal/</A>
+</UL>
+
+<P>
+Optional packages:
+
+<UL>
+<LI>Graphviz (<CODE>dot</CODE>).
+
+<A HREF="http://www.research.att.com/sw/tools/graphviz/download.html">http://www.research.att.com/sw/tools/graphviz/download.html</A>
+</UL>
+
+<P>
+The SALENV <CODE>configure</CODE> script will check if you have these packages.
+
+
+
+
+<H3><A NAME="SEC33" HREF="salenv.html#TOC33">4.3.2 How do I compile and install SALENV and related tools?</A></H3>
+<P>
+<A NAME="IDX46"></A>
+
+
+<P>
+This answer is meant for users of Linux systems. Users of other Unix-like systems may
+also try it.
+
+
+<P>
+For Linux systems, the easiest way is often to compile it
+from scratch.  You will need:
+
+
+
+<UL>
+
+<LI>SALENV sources.  Sources are available at <A HREF="http://www.csl.sri.com/sal">http://www.csl.sri.com/sal</A>.
+
+<LI>
+
+<CODE>gzip</CODE>, the GNU compression utility.  You can get <CODE>gzip</CODE> via
+anonymous ftp at mirrors of <TT>`ftp.gnu.org'</TT> sites; it should compile
+and install without much trouble on most systems.  Once you have
+retrieved the SALENV sources, you will probably be able to uncompress
+them with the command
+
+
+<PRE>
+gunzip --verbose salenv-1.0.tar.gz
+</PRE>
+
+<LI>
+
+<TT>`tar'</TT>, the "tape archiving" program, which moves multiple files
+into and out of archive files, or "tarfiles."  All of the files
+comprising the SALENV source come in a single tarfile, and must be
+extracted using <TT>`tar'</TT> before you can build SALENV.  Typically, the
+extraction command would look like
+
+
+<PRE>
+tar -xvvf salenv-1.0.tar
+</PRE>
+
+The <SAMP>`x'</SAMP> indicates that we want to extract files from this tarfile,
+the two <SAMP>`v'</SAMP>s force verbose output, and the <SAMP>`f'</SAMP> tells
+<TT>`tar'</TT> to use a disk file, rather than one on tape.
+
+If you're using GNU <TT>`tar'</TT> (available at mirrors of
+<TT>`ftp.gnu.org'</TT>), you can combine this step and the previous one by
+using the command
+
+
+<PRE>
+tar -zxvvf salenv-1.0.tar.gz
+</PRE>
+
+The additional <SAMP>`z'</SAMP> at the beginning of the options list tells GNU tar
+to uncompress the file with gunzip before extracting the tarfile's
+components.
+
+</UL>
+
+<P>
+At this point, the SALENV sources should be
+sitting in a directory called <TT>`salenv-1.0'</TT>.  On most common Linux and
+Unix-like systems, you should be able to compile SALENV with the 
+following commands:
+
+
+
+<PRE>
+cd salenv-1.0       # change directory to salenv-1.0
+./configure         # configure SALENV for your particular system 
+make                # use Makefile to build components, then SALENV 
+</PRE>
+
+<P>
+If the <CODE>make</CODE> completes successfully, the odds are fairly good that
+the build has gone well.  
+
+
+<P>
+By default, SALENV is installed in the following directories:
+
+
+<DL COMPACT>
+
+<DT><TT>`/usr/local/bin'</TT>
+<DD>
+binaries
+
+<DT><TT>`/usr/local/salenv/'</TT>
+<DD>
+Support files
+
+<DT><TT>`/usr/local/info'</TT>
+<DD>
+Info documentation
+
+<DT><TT>`/usr/local/man'</TT>
+<DD>
+Man documentation
+
+<DT><TT>`/usr/local/lib/bigloo/2.5a'</TT>
+<DD>
+Library files, if you installed Bigloo 2.5a at <TT>`/usr/local'</TT>.
+
+</DL>
+
+<P>
+To install files in those default directories, become the superuser and
+type
+
+
+
+<PRE>
+make install
+</PRE>
+
+<P>
+Note that <CODE>make install</CODE> will overwrite <TT>`/usr/local/bin/salenv'</TT>,
+SALENV Info/Man files, and all related libraries and executable files.
+
+
+<P>
+Much more verbose instructions (with many more hints and suggestions)
+come with the SALENV sources, in the file <TT>`INSTALL'</TT>.
+
+
+
+
+<H3><A NAME="SEC34" HREF="salenv.html#TOC34">4.3.3 How do I change the installation directory?</A></H3>
+<P>
+<A NAME="IDX47"></A>
+
+
+<P>
+You can specify an installation prefix other than <TT>`/usr/local'</TT> by giving <CODE>configure</CODE> the
+option <CODE>--prefix=PATH</CODE>.
+
+
+
+<PRE>
+./configure --prefix=PATH
+</PRE>
+
+
+
+<H2><A NAME="SEC35" HREF="salenv.html#TOC35">4.4 Bugs and problems</A></H2>
+<P>
+<A NAME="IDX48"></A>
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC36">Error in Loading Shared Libraries</A>
+<LI><A HREF="salenv.html#SEC37">Segmentation Violation and GMP</A>
+<LI><A HREF="salenv.html#SEC38">Segmentation Violtaion and the interpreter</A>
+<LI><A HREF="salenv.html#SEC39">Needed to allocate blacklisted block at 0x??????</A>
+<LI><A HREF="salenv.html#SEC40">Value was not completely initialized</A>
+<LI><A HREF="salenv.html#SEC41">Deadlocks in SAL specifications</A>
+</UL>
+
+
+
+<H3><A NAME="SEC36" HREF="salenv.html#TOC36">4.4.1 Error in Loading Shared Libraries</A></H3>
+<P>
+<A NAME="IDX49"></A>
+<A NAME="IDX50"></A>
+<A NAME="IDX51"></A>
+
+
+<P>
+On some architecture you will be needing to tell the 
+loader where to find the <EM>SALENV</EM> and <EM>Bigloo</EM> shared libraries. 
+This can be done two ways:
+
+
+
+<UL>
+<LI>setting the shell <CODE>LD_LIBRARY_PATH</CODE> variable.
+
+<LI>updating the <TT>`/etc/ld.so.conf'</TT> file (read by ldconfig man page).
+
+</UL>
+
+<P>
+Otherwise, you will probably receive the following error message:
+
+
+
+<PRE>
+salenv: error in loading shared libraries: libsalcore.so: cannot open shared object file: No such file or directory
+</PRE>
+
+<P>
+SALENV libraries are installed in the <EM>Bigloo</EM> shared libraries directory.
+If you installed Bigloo in <TT>`usr/local'</TT>, then the libraries are located at:
+
+
+
+<PRE>
+/usr/local/lib/bigloo/2.5a
+</PRE>
+
+<P>
+In this case, you can fix the problem by adding the following commando to your
+<TT>`.bashrc'</TT> file:
+
+
+
+<PRE>
+export LD_LIBRARY_PATH=/usr/local/lib/bigloo/2.5a:$LD_LIBRARY_PATH
+</PRE>
+
+
+
+<H3><A NAME="SEC37" HREF="salenv.html#TOC37">4.4.2 Segmentation Violation and GMP</A></H3>
+<P>
+<A NAME="IDX52"></A>
+<A NAME="IDX53"></A>
+
+
+<P>
+In some examples, if you use the flag <CODE>--use-gmp</CODE> in the SAL model checker, you
+will generate an executable file that will produce a segmentation violation. This
+problem is related to the GMP interface and the weak pointer module. 
+
+
+
+
+<H3><A NAME="SEC38" HREF="salenv.html#TOC38">4.4.3 Segmentation Violtaion and the interpreter</A></H3>
+<P>
+<A NAME="IDX54"></A>
+<A NAME="IDX55"></A>
+
+
+<P>
+<EM>salenv</EM> is a command language interpreter, and it is not intended to
+be used to check huge state spaces. If you try to model check
+huge state spaces using <EM>salenv</EM>, then you will probably produce 
+a segmentation violation due to stack overflow. 
+
+
+
+
+<H3><A NAME="SEC39" HREF="salenv.html#TOC39">4.4.4 Needed to allocate blacklisted block at 0x??????</A></H3>
+<P>
+<A NAME="IDX56"></A>
+
+
+<P>
+The message "Needed to allocate blacklisted block at 0x???????" is produced by the Scheme garbage collector, and
+can be safely ignored. This message will be suppressed in future versions.
+
+
+
+
+<H3><A NAME="SEC40" HREF="salenv.html#TOC40">4.4.5 Value was not completely initialized</A></H3>
+<P>
+<A NAME="IDX57"></A>
+<A NAME="IDX58"></A>
+<A NAME="IDX59"></A>
+
+
+<P>
+The <EM>salenv</EM> forces the user to initialize all local, global and output variables. If the user forgets to initialize these variables, the tool
+will produce the message "Value was not completely initialized". 
+
+
+
+
+<H3><A NAME="SEC41" HREF="salenv.html#TOC41">4.4.6 Deadlocks in SAL specifications</A></H3>
+<P>
+<A NAME="IDX60"></A>
+<A NAME="IDX61"></A>
+<A NAME="IDX62"></A>
+<A NAME="IDX63"></A>
+<A NAME="IDX64"></A>
+
+
+<P>
+A trace is in a deadlock if all guarded transitions are disabled. You can avoid deadlocks by using the option <CODE>--skip-transitions</CODE>, this
+option will add a skip transition when all guarded commands are disabled. To prove a LTL property, the SAL model checker generates a
+Buchi automata. This automata accepts infinite traces that are counter-examples for the LTL property. So, if all traces are in deadlock, the
+property is automatically valid, since there isn't any infinite trace. The <CODE>sal-deadlock-checker</CODE> can be used to detect deadlocks in
+a SAL specification.
+
+
+
+
+<H2><A NAME="SEC42" HREF="salenv.html#TOC42">4.5 Major packages and programs</A></H2>
+<P>
+<A NAME="IDX65"></A>
+
+
+
+<UL>
+<LI><A HREF="salenv.html#SEC43">salenv</A>
+<LI><A HREF="salenv.html#SEC44">sal-model-checker</A>
+<LI><A HREF="salenv.html#SEC45">extsal2sal</A>
+<LI><A HREF="salenv.html#SEC46">sal-dependencies</A>
+<LI><A HREF="salenv.html#SEC47">sal-pretty-printer</A>
+<LI><A HREF="salenv.html#SEC48">sal-simulator</A>
+<LI><A HREF="salenv.html#SEC49">sal-deadlock-checker</A>
+<LI><A HREF="salenv.html#SEC50">libsalcore</A>
+<LI><A HREF="salenv.html#SEC51">libsaldefaultengine</A>
+</UL>
+
+
+
+<H3><A NAME="SEC43" HREF="salenv.html#TOC43">4.5.1 salenv</A></H3>
+<P>
+<A NAME="IDX66"></A>
+
+
+<P>
+<EM>salenv</EM> is a command language interpreter that executes
+commands read from the standard input. You may use <EM>salenv</EM>
+to test new scripts and execute any command described in the manual.
+
+
+
+
+<H3><A NAME="SEC44" HREF="salenv.html#TOC44">4.5.2 sal-model-checker</A></H3>
+<P>
+<A NAME="IDX67"></A>
+
+
+<P>
+<EM>sal-model-checker</EM> is explicit state model checker for the SAL language. It was built by 
+using the <EM>SALENV</EM> toolkit. 
+This model checker accepts correctness claims specified in the syntax of
+<EM>Linear Temporal Logic</EM> (LTL). The model checker can only handle models that are bounded, and have only countably
+many distinct behaviors. This mean that all correctness properties automatically become formally
+decidable, within the constraints that are set by the problem size and the computational resources 
+that are available to the model checker to render the proofs.
+To verify that a specification satisfies some property, the model checker transforms the 
+negation of the LTL formula into a Buchi Automata, builds the product of that automaton with
+the specification, and checks this product for emptiness. If the product is not empty, then
+a counter-example is produced.
+
+
+
+
+<H3><A NAME="SEC45" HREF="salenv.html#TOC45">4.5.3 extsal2sal</A></H3>
+<P>
+<A NAME="IDX68"></A>
+
+
+<P>
+<EM>extsal2sal</EM> transforms an extended SAL context in a pure SAL context. An extended SAL context is similar
+to a pure SAL context, but contains new builtin constants. For instance, an extended
+SAL context may contain LTL operators (X, U, R, F, G, B, W). The new builtin operators are described
+in a specific SAL context. For instance, the LTL operators are described in the <TT>`ltl.sal'</TT> context.
+This context is useful if we want to type-check the pure SAL context produced by this tool.
+
+
+
+
+<H3><A NAME="SEC46" HREF="salenv.html#TOC46">4.5.4 sal-dependencies</A></H3>
+<P>
+<A NAME="IDX69"></A>
+
+
+<P>
+<EM>sal-dependencies</EM> collects all dependencies of a given context. In other words, it returns
+all contexts used directly or indirectly by the given context. This
+command is useful when one wants to generate dependencies automatically inside a
+Makefile.
+
+
+
+
+<H3><A NAME="SEC47" HREF="salenv.html#TOC47">4.5.5 sal-pretty-printer</A></H3>
+<P>
+<A NAME="IDX70"></A>
+
+
+<P>
+<EM>sal-pretty-printer</EM> generates a "human readable" version
+of the XML file associated with a SAL context. This XML file
+represents the abstract syntax tree of the SAL context. In the
+SAL framework, each context is stored in a different XML file.
+<EM>sal-pretty-printer</EM> searchs a context, i.e. the associated
+XML file, in the path specified by the environment variable <CODE>SALPATH</CODE>.
+
+
+
+
+<H3><A NAME="SEC48" HREF="salenv.html#TOC48">4.5.6 sal-simulator</A></H3>
+<P>
+<A NAME="IDX71"></A>
+
+
+<P>
+<EM>sal-simulator</EM> is a script environment, based on the Scheme programming language, 
+that allows the user to execute a SAL specification. Any command available in "sal-default-engine.bgl"
+can be used in this interactive shell. The user can use this script environment 
+to build build graphical simulation tools.
+
+
+
+
+<H3><A NAME="SEC49" HREF="salenv.html#TOC49">4.5.7 sal-deadlock-detector</A></H3>
+<P>
+<A NAME="IDX72"></A>
+
+
+<P>
+<EM>sal-deadlock-checker</EM> is a deadlock detector for the SAL language. 
+This program is useful for detecting traces that lead to deadlock situations, that is,
+a trace where it is not possible to fire any guarded command. 
+Obviously, a SAL specification can deadlock only if skip
+transitions are ignored. A <EM>skip transition</EM> in a module is performed when all guarded
+commands cannot be fired. If a deadlock is detected, a counter-example is produced.
+
+
+
+
+<H3><A NAME="SEC50" HREF="salenv.html#TOC50">4.5.8 libsalcore</A></H3>
+<P>
+<A NAME="IDX73"></A>
+
+
+<P>
+The <EM>libsalcore</EM> library contains:
+
+<UL>
+<LI>XML parser
+
+<LI>SAL abstract syntax API
+
+<LI>SAL Symbol Table
+
+<LI>Support code such as: growable vectors, bit-arrays, GMP interface, ordered sets, object system, and weak pointers.
+
+</UL>
+
+
+
+<H3><A NAME="SEC51" HREF="salenv.html#TOC51">4.5.9 libsaldefaultengine</A></H3>
+<P>
+<A NAME="IDX74"></A>
+
+
+<P>
+The <EM>libsaldefaultengine</EM> library contains the default SAL execution engine. This engine is used to execute
+code generated by the predefined code generators. Users may extend or modify this engine. 
+
+
+
+
+<H1><A NAME="SEC52" HREF="salenv.html#TOC52">Index</A></H1>
+
+<P>
+Jump to:
+<A HREF="#cindex_.">.</A>
+-
+<A HREF="#cindex_a">a</A>
+-
+<A HREF="#cindex_b">b</A>
+-
+<A HREF="#cindex_c">c</A>
+-
+<A HREF="#cindex_d">d</A>
+-
+<A HREF="#cindex_e">e</A>
+-
+<A HREF="#cindex_f">f</A>
+-
+<A HREF="#cindex_g">g</A>
+-
+<A HREF="#cindex_i">i</A>
+-
+<A HREF="#cindex_l">l</A>
+-
+<A HREF="#cindex_m">m</A>
+-
+<A HREF="#cindex_n">n</A>
+-
+<A HREF="#cindex_o">o</A>
+-
+<A HREF="#cindex_p">p</A>
+-
+<A HREF="#cindex_r">r</A>
+-
+<A HREF="#cindex_s">s</A>
+-
+<A HREF="#cindex_v">v</A>
+<P>
+<H2><A NAME="cindex_.">.</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX33"><TT>`.emacs'</TT> file, setting up</A>
+<LI><A HREF="salenv.html#IDX30"><TT>`.salrc'</TT> file, setting up</A>
+</DIR>
+<H2><A NAME="cindex_a">a</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX1">Acknowledgements</A>
+<LI><A HREF="salenv.html#IDX38">Adding to <CODE>SALPATH</CODE></A>
+</DIR>
+<H2><A NAME="cindex_b">b</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX48">Bugs and problems</A>
+</DIR>
+<H2><A NAME="cindex_c">c</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX43">Command, history</A>
+<LI><A HREF="salenv.html#IDX42">Command, repeat last</A>
+<LI><A HREF="salenv.html#IDX44">Compiling and Installing</A>
+<LI><A HREF="salenv.html#IDX46">Compiling SALENV</A>
+<LI><A HREF="salenv.html#IDX9">counter-examples, model-checker</A>
+<LI><A HREF="salenv.html#IDX32">Customization file, setting up</A>
+</DIR>
+<H2><A NAME="cindex_d">d</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX61">Deadlocks, model-checker</A>
+<LI><A HREF="salenv.html#IDX62">Deadlocks, sal-model-checker</A>
+<LI><A HREF="salenv.html#IDX60">Deadlocks, salenv</A>
+</DIR>
+<H2><A NAME="cindex_e">e</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX35">Emacs Customization file, setting up</A>
+<LI><A HREF="salenv.html#IDX24">Emacs front end</A>
+<LI><A HREF="salenv.html#IDX26">Emacs front end, keyboard commands</A>
+<LI><A HREF="salenv.html#IDX25">Emacs front end, menu commands</A>
+<LI><A HREF="salenv.html#IDX34">Emacs Init file, setting up</A>
+<LI><A HREF="salenv.html#IDX49">error in loading shared libraries</A>
+<LI><A HREF="salenv.html#IDX41">error messages</A>
+<LI><A HREF="salenv.html#IDX50">Error, cannot open share object file</A>
+<LI><A HREF="salenv.html#IDX10">example, model checking</A>
+<LI><A HREF="salenv.html#IDX40">Exiting from SALENV</A>
+<LI><A HREF="salenv.html#IDX68">extsal2sal</A>
+</DIR>
+<H2><A NAME="cindex_f">f</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX27">faq</A>
+</DIR>
+<H2><A NAME="cindex_g">g</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX29">General questions</A>
+</DIR>
+<H2><A NAME="cindex_i">i</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX31">Init file, setting up</A>
+<LI><A HREF="salenv.html#IDX47">Installation directory</A>
+</DIR>
+<H2><A NAME="cindex_l">l</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX73">libsalcore</A>
+<LI><A HREF="salenv.html#IDX51">libsalcore.so, cannot open shared object file</A>
+<LI><A HREF="salenv.html#IDX74">libsaldefaultengine</A>
+<LI><A HREF="salenv.html#IDX6">linear temporal logic</A>
+<LI><A HREF="salenv.html#IDX8">linear temporal logic, patterns</A>
+<LI><A HREF="salenv.html#IDX18">liveness property</A>
+<LI><A HREF="salenv.html#IDX5">LTL</A>
+<LI><A HREF="salenv.html#IDX63">LTL properties and Deadlocks, model-checker</A>
+<LI><A HREF="salenv.html#IDX64">LTL properties and Deadlocks, sal-model-checker</A>
+<LI><A HREF="salenv.html#IDX7">LTL, patterns</A>
+</DIR>
+<H2><A NAME="cindex_m">m</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX65">Major packages and programs</A>
+<LI><A HREF="salenv.html#IDX22">model checker, compilation time options</A>
+<LI><A HREF="salenv.html#IDX23">model checker, execution time options</A>
+<LI><A HREF="salenv.html#IDX21">model checker, flags</A>
+<LI><A HREF="salenv.html#IDX20">model checker, options</A>
+<LI><A HREF="salenv.html#IDX4">Model Checker, overview</A>
+<LI><A HREF="salenv.html#IDX3">model-checker</A>
+<LI><A HREF="salenv.html#IDX37">Modifying <CODE>SALPATH</CODE></A>
+<LI><A HREF="salenv.html#IDX15">mutual exclusion property</A>
+</DIR>
+<H2><A NAME="cindex_n">n</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX56">Needed to allocate blacklisted block</A>
+</DIR>
+<H2><A NAME="cindex_o">o</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX2">Overview of SALENV</A>
+</DIR>
+<H2><A NAME="cindex_p">p</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX11">Peterson's algorithm</A>
+<LI><A HREF="salenv.html#IDX16">Peterson's algorithm, invalid property</A>
+<LI><A HREF="salenv.html#IDX17">Peterson's algorithm, livness property</A>
+<LI><A HREF="salenv.html#IDX14">Peterson's algorithm, mutual exclusion property</A>
+<LI><A HREF="salenv.html#IDX19">Peterson's algorithm, SAL context</A>
+<LI><A HREF="salenv.html#IDX12">Peterson's algorithm, specification</A>
+<LI><A HREF="salenv.html#IDX13">Peterson's algorithm, verifying</A>
+</DIR>
+<H2><A NAME="cindex_r">r</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX45">Required packages</A>
+</DIR>
+<H2><A NAME="cindex_s">s</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX72">sal-deadlock-detector</A>
+<LI><A HREF="salenv.html#IDX69">sal-dependencies</A>
+<LI><A HREF="salenv.html#IDX67">sal-model-checker</A>
+<LI><A HREF="salenv.html#IDX70">sal-pretty-printer</A>
+<LI><A HREF="salenv.html#IDX71">sal-simulator</A>
+<LI><A HREF="salenv.html#IDX66">salenv</A>
+<LI><A HREF="salenv.html#IDX36"><CODE>SALPATH</CODE>, setting up</A>
+<LI><A HREF="salenv.html#IDX53">Segmentation Violation, --use-gmp</A>
+<LI><A HREF="salenv.html#IDX52">Segmentation Violation, GMP</A>
+<LI><A HREF="salenv.html#IDX54">Segmentation Violation, interpreter</A>
+<LI><A HREF="salenv.html#IDX55">Segmentation Violation, salenv</A>
+<LI><A HREF="salenv.html#IDX39">Starting SALENV</A>
+<LI><A HREF="salenv.html#IDX28">Status of SALENV</A>
+</DIR>
+<H2><A NAME="cindex_v">v</A></H2>
+<DIR>
+<LI><A HREF="salenv.html#IDX58">Value was not completely initialized, model-checker</A>
+<LI><A HREF="salenv.html#IDX59">Value was not completely initialized, sal-model-checker</A>
+<LI><A HREF="salenv.html#IDX57">Value was not completely initialized, salenv</A>
+</DIR>
+ 
+<P><HR><P>
+This document was generated on 16 July 2002 using
+<A HREF="http://wwwinfo.cern.ch/dis/texi2html/">texi2html</A>&nbsp;1.56k.
+</BODY>
+</HTML>

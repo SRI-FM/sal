@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="author" content="Leonardo de Moura"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="SAL: Symbolic Analysis Laboratory"/>
+<meta name="keywords" content="model checker, symbolic model checker, bounded model checker, formal methods, software verification, hardware verification, test-case generation, decision procedures"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<link rel="shortcut icon" href="images/sal-small.gif"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+    <link rel="stylesheet" type="text/css" href="fm-style.css" />
+    <title>Introduction</title>
+  </head>
+  <body>
+    <div class="nav">
+<img class="rfloat" src="images/sal3.jpg" alt="SAL"/>
+<table class="navbar">
+<tr>
+<th><a href="index.html">Home</a></th>
+<th>&bull;</th>
+<th><a href="introduction.html">Intro</a></th>
+<th>&bull;</th>
+<th><a href="documentation.html">Docs</a></th>
+<th>&bull;</th>
+<th><a href="download.html">Download</a></th>
+<th>&bull;</th>
+<th><a href="mailing_lists.html">Mail</a></th>
+<th>&bull;</th>
+<th><a href="http://fm.csl.sri.com">FM&nbsp;Tools</a></th>
+</tr>
+</table>
+</div>
+
+    <h1>Introduction</h1>
+    <div class="body">
+
+<p>
+SAL stands for Symbolic Analysis Laboratory.  It is a framework for
+combining different tools for abstraction, program analysis, theorem
+proving, and model checking toward the calculation of properties
+(symbolic analysis) of transition systems.  A key part of the SAL
+framework is an intermediate language for describing transition
+systems.  This language is intended to serve as the <i>target</i> for
+translators that extract the transition system description for other
+modeling and programming languages, and as a common <i>source</i> for
+driving different analysis tools. 
+</p>
+
+<p>
+The SAL intermediate language is not that different from the input languages 
+used by various other verification tools such as
+<a href="http://www-2.cs.cmu.edu/~modelcheck/smv.html">SMV</a>,
+<a href="http://formalverification.cs.utah.edu/Murphi/">Murphi</a>, and
+<a href="http://www-cad.eecs.berkeley.edu/~mocha/"> Mocha</a>,
+Like these languages, SAL describes transition systems in terms of
+initialization and transition commands.  These can be given by
+variable-wise definitions in the style of <a href="http://www-2.cs.cmu.edu/~modelcheck/smv.html">SMV</a>
+or as guarded commands in
+the style of <a href="http://formalverification.cs.utah.edu/Murphi/">Murphi</a>.
+</p>
+
+<p>
+The current generation of SAL tools comprises a collection of state of
+the art LTL model checkers and auxiliary tools based on them.   
+In future
+we expect to add tools for static analysis, invariant generation,
+abstraction, and a tool bus to connect these together.
+</p>
+
+<p>
+The SAL 3.0 distribution (and subsequent releases) includes the
+following primary tools.  These are fully operational and are
+maintained by us.
+</p>
+
+<dl>
+
+
+<dt><b>sal-wfc</b><dd> The SAL <i>well-formedness</i> checker; this is
+a limited typechecker for SAL.  You should not apply other SAL tools
+until any errors identified by the well-formedness checker have been
+corrected.  Note that <tt>sal-wfc</tt> is not a full typechecker, so
+some type-incorrect SAL specifications will escape detection and
+produce unpredictable results.  As an intermediate language, SAL is
+expected to be mechanically (and correctly) generated from some other
+notation, which has its own typechecker.
+
+<dt><b>sal-smc</b><dd> The SAL <i>symbolic</i> model checker; this is
+a BDD-based model checker for finite state systems.  SAL uses the <a
+href="https://github.com/vscosta/cudd">CUDD</a> BDD package and
+provides access to many options for variable ordering, and for
+clustering and partitioning the transition relation.  The model
+checker can perform both forward and backward search, and also
+prioritized traversal.
+
+<dt><b>sal-deadlock-checker</b><dd> An auxiliary tool, based on the
+symbolic model checker, for detecting deadlocks in finite state
+systems.
+
+<dt><b>sal-bmc</b><dd> The SAL <i>bounded</i> model checker; this is a
+model checker for finite state systems based on SAT solving.  In
+addition to refutation (i.e., bug detection and counterexample
+generation), the SAL bounded model checker can perform verification by
+k-induction.  SAL can use several SAT solvers, but defaults to <a
+href="http://yices.csl.sri.com">Yices</a>.
+
+<dt><b>sal-inf-bmc</b><dd> The SAL <i>infinite</i> bounded model checker;
+this is a model checker for infinite state systems based on SMT
+solving.  In addition to refutation (i.e., bug detection and
+counterexample generation), the SAL infinite bounded model checker can
+perform verification by k-induction.  SAL can use several SMT solvers,
+but defaults to <a href="http://yices.csl.sri.com">Yices</a>.
+
+<dt><b>sal-atg</b><dd> The SAL automated <i>test generator</i>; this
+is an auxiliary tool that uses the symbolic, bounded, and infinite
+bounded model checkers to perform automated generation of input
+sequences determined by specified <i>trap variables</i>.
+The SAL tools are scripts, written in Scheme, that invoke functions of
+the SAL API; <tt>sal-atg</tt> is a good model for those who wish to
+develop their own scripts.
+
+<dt><b>salenv-exec</b><dd> The actual SAL executable.  All the
+other SAL tools are scripts on the API of <tt>salenv-exec</tt>;
+<tt>salenv-exec-safe</tt> is a version with more error detection,
+while <tt>salenv</tt> and <tt>salenv-safe</tt> are the top-level shell
+scripts invoked by other SAL tools.
+
+</dl>
+
+
+<p>
+
+In addition, the distribution includes the following experimental
+tools.  These are incomplete and may be buggy; we do not undertake to
+maintain them.  They are made available so that others can experiment
+with their capabilities or build on their source.
+
+<dl>
+
+<dt><b>sal-sim</b><dd> The SAL <i>simulator</i>; this is an
+interactive front end to other SAL tools.
+
+<dt><b>sal-wmc</b><dd> The SAL <i>witness</i> model checker; this is
+an experimental CTL model checker.
+
+<dt><b>sal-path-finder</b><dd> An auxiliary tool, based on the bounded
+model checker, that generates random paths.
+
+<dt><b>sal-emc</b><dd> The SAL <i>explicit state</i> model checker.
+
+<dt><b>sal-path-explorer</b><dd> An auxiliary tool, based on the
+explicit state model checker.
+
+<dt><b>ltl2buchi</b><dd> An auxiliary tool that generates
+(visualizations of) Buchi automata from SAL LTL formulas.
+
+</dl>
+
+
+</div>
+  <div class="footer">
+    <footer class="page-footer"><hr />Last modified: <script>let lmod = new Date(document.lastModified);document.write(lmod.toDateString());</script>&nbsp; | &nbsp;Webmaster: <a href="mailto:owre@csl.sri.com">Sam Owre</a> &#149; <a href="mailto:shankar@csl.sri.com">N. Shankar</a> </footer>
+  </div>
+</body>
+</html>
+

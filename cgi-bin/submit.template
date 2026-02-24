@@ -1,0 +1,107 @@
+<!-- $Date: $ -->
+<!-- $Id: $ -->
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"name="Author" content="Sam Owre">
+<title>?SYSTEM? Verification</title>
+
+</head>
+
+<body background="http://?SYSTEM?.csl.sri.com/images/?SYSTEM?.jpg" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<! ======================= Form Starts Here ==============================>
+
+<form method=post action="test.cgi">
+
+<table BORDER=0 COLS=2 WIDTH="90%" >
+<tr>
+<td width="130">
+</td>
+
+<td>
+
+<font size=+2 color="red">
+<b>You still need to review and submit your request.</b>
+<br>
+
+<br>
+<br>
+</font>
+<font size=+1>
+To <font color="red"> change </font> information:
+ use your browser's Back button to return to the application page.
+<br>
+To <font color="red"> send your request </font>
+ click the SUBMIT button below.
+<br>
+<br>
+
+<br>
+<b>You are about to submit the following information:
+</b><br>
+<br>&nbsp;&nbsp;&nbsp;I <b><i>DO</i></b> agree to
+    abide by the ?SYSTEM? license restrictions.<br>
+</td>
+</tr>
+<tr>
+<td>
+
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+</td>
+
+<td>
+
+<!-- The following hidden fields are necessary to carry data forward from
+     the first form to the final one -->
+
+<input TYPE="hidden" NAME="FORM" VALUE="verification" >
+<input TYPE="hidden" NAME="SYSTEM" VALUE="SAL" >
+<input TYPE="hidden" NAME="AGREETORESTRICTIONS" VALUE="DO"> 
+
+<input TYPE="hidden" NAME="REQUESTER" VALUE="Sam" >
+<input TYPE="hidden" NAME="INSTITUTION" VALUE="foo" >
+<input TYPE="hidden" NAME="EMAIL" VALUE="who@cares" >
+<input TYPE="hidden" NAME="STREET" VALUE="bar" >
+
+<input TYPE="hidden" NAME="CITY" VALUE="baz" >
+<input TYPE="hidden" NAME="STATE" VALUE="no" >
+<input TYPE="hidden" NAME="ZIP" VALUE="99999" >
+<input TYPE="hidden" NAME="COUNTRY" VALUE="us" >
+<input TYPE="hidden" NAME="PHONE" VALUE="99" >
+
+<font size=+1>
+<br>&nbsp;&nbsp;&nbsp;Name: <b><i></i></b>
+
+<br>&nbsp;&nbsp;&nbsp;Organization: <b><i>foo</i></b>
+<br>&nbsp;&nbsp;&nbsp;Street/Mailbox: <b><i>bar</i></b>
+<br>&nbsp;&nbsp;&nbsp;City: <b><i>baz</i></b>
+<br>&nbsp;&nbsp;&nbsp;State/Province: <b><i>no</i></b>
+<br>&nbsp;&nbsp;&nbsp;Zip Code: <b><i>99999</i></b>
+<br>&nbsp;&nbsp;&nbsp;Country: <b><i>us</i></b>
+
+<br>&nbsp;&nbsp;&nbsp;Phone: <b><i>99</i></b>
+<br>&nbsp;&nbsp;&nbsp;Email: <b><i>who@cares</i></b>
+</font>
+<center>
+<input TYPE="submit" NAME="SUBMIT" VALUE="SUBMIT" >
+<center>
+</form>
+
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

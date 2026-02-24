@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>LTL -> B&uuml;chi Automata</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+
+<H1>LTL -> B&uuml;chi Automata</H1>
+
+<form action="http://www.csl.sri.com/~demoura/cgi-bin/ltl.cgi" method=POST>
+<b>LTL formula:</b>
+<input type=text size=90 name="formula" value=""><br>
+<input type=checkbox name=optimize checked> Enable new optimizations (e.g. direct simulation, reverse simulation, bdds)<br>
+<input type=submit value=Convert><br>
+</form>
+
+The LTL formulas themselves are defined with the operators and connectives below. 
+
+<H2> Accepted temporal logic operators are: </H2>
+<pre><tt>
+     G    (Always)
+     F    (Eventually)
+     U    (Strong Until)
+     W    (Weak Until) (p W q) == ((p U q) || G p)
+     R    (Release) (p R q) == !(!p U !q)
+     M    (The Dual of Weak Until) (p M q) == !(!p W !q)
+     X    (Next)
+</tt></pre>
+
+<H2> Boolean Operators:  </H2>
+<pre><tt>
+     &&   (And)
+     ||   (Or)
+     !    (Negation)
+     ->   (Implication)
+     <->  (IFF)
+</tt></pre>
+
+<BR> All operators are left-associative, except the operator "->"
+
+<H2> Boolean Predicates: </H2>
+
+<pre><tt>
+     true, false
+     any lowercase string
+</tt></pre>
+
+<H2> Precedence: </H2>
+Sorted in order from least to greatest, the operator precedences are: 
+<pre><tt>
+     <->, -> , ||,  &&
+     W,  U,  M,  R,  F , G 
+     X , !
+</tt></pre>
+
+<H2> Examples: </H2>
+<pre><tt>
+     G p
+     !( F !q )
+     p U q
+     p U (G (q U r))
+     Fp && F!p
+     !(G F p1 && G F p2 -> G(q -> F r))
+     G(q -> ((!p U (s || r)) || G !p))
+     G((q && Fr) -> (!p U (s || r)))
+     !(p1 U (p2 U (p3 U p4)))
+     F r -> (p -> (!r U (s && !r))) U r
+     G((q && F r) -> (p -> (!r U (s && !r && !z && X((!r && !z) U t)))) U r)
+     ((p1 U q1) || (t1 R p1)) && ((p2 U q2) || (t2 R p2))
+</tt></pre>
+
+<hr noshade>
+<i>
+<font size=-1>
+Last updated Jul 22 2002 by
+  <a href="mailto: demoura@csl.sri.com">Leonardo de Moura</a>
+</font>
+</i>
+
+</BODY>
+</HTML>
